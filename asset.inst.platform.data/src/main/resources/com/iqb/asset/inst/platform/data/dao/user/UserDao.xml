@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.user.UserDao" >
+
+	<resultMap type="com.iqb.asset.inst.platform.data.bean.user.UserBean" id="userBean">
+		<result property="id" column="id" />
+		<result property="realName" column="realName" />
+		<result property="regId" column="regId" />
+		<result property="passWord" column="passWord" />
+		<result property="smsMobile" column="smsMobile" />
+		<result property="idNo" column="idNo" />
+		<result property="status" column="status" />
+		<result property="openId" column="openId" />
+		<result property="autoLogin" column="autoLogin" />
+		<result property="lastLoginTime" column="lastLoginTime" />
+		<result property="loginIp" column="loginIp" />
+		<result property="version" column="version" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+	
+	<!-- 表中的字段 -->
+	<sql id="cols">
+		id, realName, regId, passWord, smsMobile, idNo, status, openId, autoLogin, lastLoginTime, hasAuthority, loginIp, version, createTime, updateTime
+	</sql>
+	<!-- 根据用户regId获取用户信息 -->
+	<select id="getUserByRegId" parameterType="string" resultMap="userBean">
+   		SELECT 
+		  <include refid="cols"></include>
+		FROM inst_user 
+		WHERE regId = #{regId} LIMIT 1 ;
+	</select>
+	<!-- 通过ID查询用户信息 -->
+	<select id="getUserById" parameterType="string" resultMap="userBean">
+		SELECT 
+		  <include refid="cols"></include>
+		FROM inst_user 
+		WHERE id = #{id} LIMIT 1 ;
+	</select>
+	
+	<!-- 取消用户自动登录  -->
+	<update id="cancleUserAutoLogin" parameterType="string">
+		UPDATE inst_user SET autoLogin = 0 WHERE regId = #{regId}
+	</update>
+	
+	<!-- 更新用户信息  -->
+	<update id="updateUserLoginInfo" parameterType="com.iqb.asset.inst.platform.data.bean.user.UserBean">
+		UPDATE inst_user SET loginIp = #{loginIp}, lastLoginTime = NOW(), openId = #{openId}, autoLogin = #{autoLogin} WHERE regId = #{regId};
+	</update>
+	
+	<!-- 用户注册  -->
+	<insert id="userReg" parameterType="com.iqb.asset.inst.platform.data.bean.user.UserBean">
+		INSERT INTO inst_user (regId, passWord, smsMobile, status, openId,
+		<if test="publicNo != null and publicNo != '' and publicNo > 0">
+		 publicNo,
+		</if>
+		 createTime) VALUES (#{regId}, #{passWord}, #{regId}, 1, #{openId},
+		<if test="publicNo != null and publicNo != '' and publicNo > 0">
+		 #{publicNo},
+		</if> 
+		 NOW());
+	</insert>
+	
+	<!-- 更新密码 -->
+	<update id="updateUserPwd" parameterType="com.iqb.asset.inst.platform.data.bean.user.UserBean">
+		UPDATE inst_user SET passWord = #{newPassWord} WHERE regId = #{regId}
+	</update>
+	
+	<!-- 根据用户openId获取用户信息 -->
+	<select id="getUserInfoByOpenId" parameterType="string" resultMap="userBean">
+   		SELECT 
+		  <include refid="cols"></include>
+		FROM
+		  inst_user 
+		WHERE openId = #{openId} 
+		AND status = 1
+		AND autoLogin = 1
+		LIMIT 1 
+	</select>
+	<!-- 根据regId更新用户信息 -->
+	<update id="updateUserInfoByRegId" parameterType="com.iqb.asset.inst.platform.data.bean.user.UserBean">
+		UPDATE inst_user SET realName = #{realName},idNo = #{idNo} WHERE regId = #{regId} and (hasAuthority=0 OR hasAuthority is null)
+	</update>
+	<update id="updateUserInfoMobileByRegId" parameterType="com.iqb.asset.inst.platform.data.bean.user.UserBean">
+        UPDATE inst_user SET smsMobile = #{smsMobile} WHERE regId = #{regId} 
+    </update>
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.risk.RiskDao" >
+
+	<!-- 查询风控信息  -->
+	<select id="queryRiskInfo" parameterType="com.iqb.asset.inst.platform.data.bean.risk.RiskInfoBean" resultType="com.iqb.asset.inst.platform.data.bean.risk.RiskInfoBean">
+		SELECT
+		    A.id,
+		    A.regId,
+		    A.riskType,
+		    A.checkInfo,
+		    A.step1,
+		    A.step2,
+		    A.step3,
+		    A.step4,
+		    B.smsMobile
+		FROM
+		    inst_riskinfo A
+		LEFT JOIN inst_user B on A.regid = B.regid
+		WHERE
+		    A.regId = #{regId} AND A.riskType = #{riskType} LIMIT 1
+	</select>
+	
+	<!-- 保存风控信息  -->
+	<insert id="insertRiskInfo" parameterType="com.iqb.asset.inst.platform.data.bean.risk.RiskInfoBean">
+		INSERT INTO inst_riskinfo (regId, riskType, checkInfo, step1) VALUE (#{regId}, #{riskType}, #{checkInfo}, #{step1})
+	</insert>
+	
+	<!-- 保存风控信息 -->
+	<update id="updateRiskInfo" parameterType="com.iqb.asset.inst.platform.data.bean.risk.RiskInfoBean">
+		UPDATE inst_riskinfo
+		<trim prefix="SET" suffixOverrides=",">
+            <if test="checkInfo!=null and checkInfo!=''">
+                checkInfo = #{checkInfo},
+            </if>
+            <if test="step1!=null and step1!=''">
+                step1 = #{step1},
+            </if>
+            <if test="step2!=null and step2!=''">
+                step2 = #{step2},
+            </if>
+            <if test="step3!=null and step3!=''">
+                step3 = #{step3},
+            </if>
+            <if test="step4!=null and step4!=''">
+                step4 = #{step4},
+            </if>
+        </trim>
+		 where regId = #{regId} AND riskType = #{riskType}
+	</update>
+</mapper>

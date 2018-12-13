@@ -1,0 +1,95 @@
+html {font-size:20px; height:100%; overflow:hidden; }
+.borderArea{
+	border-top:1px solid #d5d5d5;
+	border-bottom:1px solid #d5d5d5;
+	background:#fff;
+}
+
+
+.iptItem{
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    border-bottom: 1px solid #D5D5DB;
+    background:#fff;
+    zoom: 1;
+    -webkit-box-sizing:border-box;
+    width:95%;
+	margin-left:5%;
+	padding:0;
+}
+.iptItem label{
+    display:inline-block;
+    width: 85px;
+    font-size: 0.75rem;
+    line-height: 1.8rem;
+    color: #000;
+}
+.text-input{
+    display:inline-block;
+    border: none;
+    outline: none;
+    font-size: 0.75rem;
+    color: #000;
+}
+.redBtns{
+    display: block;
+    width: 100%;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    text-align: center;
+    border:0;
+    outline:0;
+    background:#ccc;
+    color:#fff;
+    -webkit-appearance: none;
+}
+#mask{
+     position: fixed;
+     top: 0;
+     right: 0;
+     bottom: 0;
+     left: 0;
+     background-color: black;
+     opacity: 0.5;
+     display: none;
+}
+.maskcontent {
+    display: none;
+    width: 250px;
+    height: 130px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 10px #292929;
+    border: 1px solid #BDBDBD;
+    background: #fff;
+    position: fixed;
+    left: 30%;
+    top:170px;
+}
+.cb {
+    width: 100%;
+    height: 85px;
+    line-height: 85px;
+    font-size:  14px;
+    color: #212121;
+    text-align:center;
+}
+.cm {
+    border-top: 1px solid #ddd;
+    height: 50px;
+}
+.qd {
+    font-size: 16px;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 45px; 
+    line-height:45px;
+    text-align: center;
+    color: #E04142;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="UTF-8" />
+	    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <title>已分期</title>
+	    
+	    <!-- 样式文件引入 -->
+		<link rel="stylesheet" type="text/css" href="../../../css/common/module.css" />
+		<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />	    
+	    <link rel="stylesheet" type="text/css" href="../../../css/merchant/orderList.css" />
+	    
+	    <!-- 脚本文件引入 -->
+		<script defer async="true" data-main="../../../js/merchant/order/staged.js" src="../../../js/require.js"></script>    
+	</head>
+	<body>
+	    <!-- 搜索框 -->
+	    <div class='searchBigBox'>
+		    <div class='searchBox'>
+		        <input type='text' placeholder='请输入姓名/手机号' id='searchContent'>
+		        <div class='searchLogo'>
+		           <img src='../../../img/search.png' width="20px"> 
+		        </div>
+		    </div>
+	    </div>
+		<ul id="tabs">
+		    <li><a href="javascript:void(0)" title="review">审核中</a></li>
+		    <li><a href="javascript:void(0)" title="topay">待支付</a></li>
+		    <li><a href="javascript:void(0)" title="pass">已通过</a></li>
+		    <li><a href="javascript:void(0)" title="stated" id="current">已分期</a></li>
+		    <li><a href="javascript:void(0)" title="failed">未通过</a></li>
+	    </ul>
+		<div id="content">
+			
+		</div>
+	</body>
+</html>

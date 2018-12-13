@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.deal_online_data.merchantPwd.dao.OnlineDataMerchantDao">
+	
+	<!-- 获取商户列表  -->
+	<select id="getMerchantList" resultType="com.iqb.asset.inst.platform.deal_online_data.merchantPwd.bean.MerchantBean">
+		SELECT ID, MERCHANTNO, PASSWORD FROM inst_merchantinfo
+	</select>
+
+	<!-- 更新商户密码  -->
+	<update id="updateMerchantPwd" parameterType="com.iqb.asset.inst.platform.deal_online_data.merchantPwd.bean.MerchantBean">
+		UPDATE inst_merchantinfo SET PASSWORD = #{password} WHERE ID = #{id}
+	</update>
+	
+</mapper>

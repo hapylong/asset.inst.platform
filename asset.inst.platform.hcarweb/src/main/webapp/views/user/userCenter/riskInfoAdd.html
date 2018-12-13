@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">  
+    <title>个人信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    
+    <!-- 样式文件引入 -->
+    <link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+    <link href="../../../css/common/mobiscroll.custom-2.17.1.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/user/riskInfoAdd.css">
+    
+    <!-- 脚本文件引入 -->
+	<script defer async="true" data-main="../../../js/user/userCenter/riskInfoAdd.js" src="../../../js/require.js"></script>
+    <style>
+    .provincetab{
+       display:none;
+    }
+    </style>
+</head>
+<body>
+<form id="checkInfoForm" method="post">
+    <div class="title" style='margin-top:0.78rem;border-top:1px solid #d5d5d5;'>
+        <img src="../../../img/l3.png">
+        <span>通讯信息</span>
+    </div>
+    <div class="tit_content">
+        <span>手机号码：</span>
+        <input type="tel" id="mobelPhone"  name="mobelPhone"  class="input checkinput" placeholder="请输入手机号码" maxlength=11 onkeyup="this.value=this.value.replace(/[^\d]/g,'')"/>
+    </div>
+    <div class="title">
+        <img src="../../../img/l1.png">
+        <span>基本信息</span>
+    </div>
+    <div class="tit_content provincetab">
+        <span>省份：</span>
+        <input type="text"  id ="province"  name="province" class="input checkinput" placeholder="省份" style='width:20%'/>
+        <span>省&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;城市：</span>
+        <input type="text"  id ="city"  name="city" class="input checkinput" placeholder="城市" style='width:20%'/>
+        <span>市</span>
+    </div>
+    <div class="tit_content">
+        <span>常驻地址：</span>
+        <input type="text"  id ="addProvince"  name="addProvince" class="input checkinput" placeholder="请输入常驻地址" />
+    </div>
+    <div class="tit_content">
+        <span>婚姻状况：</span>
+        <div  style="display:inline-block;position:relative;width:62%;">
+            <input id='marriedStatus' name='marriedStatus' class="input checkinput" placeholder='请选择婚姻状况' readonly> 
+            <input type='hidden' id='marriedStatusValue'>       
+        </div>
+    </div>
+
+    <div class="title">
+        <img src="../../../img/l2.png">
+        <span>紧急联系人</span>
+    </div>
+    <div class="tit_content">
+        <span>姓名（亲属）：</span>
+        <input type="text" id="contactName1" name="contactName1"  class="spinput input checkinput" placeholder="请输入姓名"/>
+    </div>
+    <div class="tit_content">
+        <span>手机号：</span>
+        <input type="tel"   id="contactMobel1"  name="contactMobel1" class="input checkinput" placeholder="请输入手机号码" maxlength=11 onkeyup="this.value=this.value.replace(/[^\d]/g,'')"/>
+    </div>
+    <div class="tit_content">
+        <span>姓名（朋友）：</span>
+        <input type="text" id="contactName2" name="contactName2"  class="spinput input checkinput" placeholder="请输入姓名"/>
+    </div>
+    <div class="tit_content">
+        <span>手机号：</span>
+        <input type="tel"  id="contactMobel2" name="contactMobel2"  class="spinput input checkinput" placeholder="请输入手机号码" maxlength=11 onkeyup="this.value=this.value.replace(/[^\d]/g,'')"/>
+    </div>
+    <div class="submitss">保存</div>
+    <div class='btnBox' style="width:90%;height:2.5rem;margin:2rem auto;overflow:hidden;display:none;">
+        <a href="memberCenter.html"  id="back">返回</a>
+        <a href="javascript:;" id="save-revise" style="display:none;">保存</a>
+        <a href="javascript:;" id="revise">修改</a>
+    </div>
+    <!-- 弹窗 -->
+    <div id="mask"></div>
+	<div class="maskcontent">
+	    <div class="cb">
+	        
+	    </div>
+	    <div class="cm">
+	        <span class="qx">取消</span>
+	        <span class="qd">确定</span>
+	    </div>
+	</div>
+</form>
+</body>
+</html>
+
+

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">  
+    <title>个人信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    
+    <!-- 样式文件引入 -->
+    <link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+    <link href="../../../css/common/mobiscroll.custom-2.17.1.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/user/riskInfoAdd.css">
+    
+    <!-- 脚本文件引入 -->
+	<script defer async="true" data-main="../../../js/user/userCenter/riskInfoAdd.js" src="../../../js/require.js"></script>
+    <style>
+    .provincetab{
+       display:none;
+    }
+    .codeShow{
+       display:none;
+    }
+    .title span{
+    	float: left;
+   	 	padding-top: 1rem;
+    	padding-left: 2.7%;
+    	color:#585858;
+    }
+    .tit_content{
+        padding:0;
+    }
+    .tit_content span{
+    	float: left;
+    	line-height: 2.7rem;
+    	/* padding-top: 2.7%; */
+    	padding-left: 2.7%;
+    	color:#585858;
+    }
+    .login-input,.login-pwd{
+	    display: inline-block;
+	    width: 100%;
+	    height: 100%;
+	    line-height: 2rem;
+	    font-size:1.3rem;
+	    border: none;
+	    outline: none;
+	    padding: 0.8rem 0 0.8rem 3rem;
+	    box-sizing:border-box;
+	    -moz-box-sizing:border-box;
+	    -webkit-box-sizing:border-box;
+	}
+	.sendMsg{
+	    display: block;
+	    position: absolute;
+	    right: 0;
+	    top: 0;
+	    height: 100%;
+	    font-size: 1rem;
+	    padding: 0 5px;
+	    color: #fff;
+	}
+	.send-able{
+	     background:#354384;
+	}
+	.send-able:hover,.send-able:active{
+	    background:#2f3d7b;
+	}
+	.send-unable{
+	    background-color: #ccc;
+	}
+	.sendTim,.sendDet{
+	    color: #fff!important;
+	}
+    </style>
+</head>
+<body>
+<form id="checkInfoForm" method="post" style="color:#585858">
+    <div class="title" style='margin-top:0.3rem;border-top:1px solid #d5d5d5;'>
+        <img src="../../../img/l3.png">
+        <span>通讯信息</span>
+    </div>
+    <div class="tit_content">
+        <span>手机号码：</span>
+        <input type="tel" id="mobelPhone"  name="mobelPhone"  class="input checkinput" placeholder="请输入手机号码" maxlength=11 onkeyup="this.value=this.value.replace(/[^\d]/g,'')"/>
+    </div>
+    <div class="tit_content">
+        <span>短信接收手机号：</span>
+        <input type="tel" id="smsMobile"  name="smsMobile"  class="input checkinput" placeholder="请输入手机号码" maxlength=11 onkeyup="this.value=this.value.replace(/[^\d]/g,'')"/>
+    </div>
+    <div class="tit_content codeShow">
+        <span>验证码：</span>
+        <input type="number" class="input checkinput" id="verificationCode" name="verificationCode" placeholder="请输入收到的验证码" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" maxlength="6">
+        <span id="smsSendBtn" class="sendMsg send-unable"><span class="sendTim"></span><span class="sendDet" style='padding-left:5px'>获取验证码</span></span>
+    </div>
+    <div class="title">
+        <img src="../../../img/l1.png">
+        <span>基本信息</span>
+    </div>
+    <div class="tit_content provincetab">
+        <span>省份：</span>
+        <input type="text"  id ="province"  name="province" class="input checkinput" placeholder="省份" style='width:15%;height:2.8rem;float:left;"'/>
+        <span>省&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;城市：</span>
+        <input type="text"  id ="city"  name="city" class="input checkinput" placeholder="城市" style='width:15%;height:2.8rem;float:left;'/>
+        <span>市</span>
+    </div>
+    <div class="tit_content">
+        <span>常驻地址：</span>
+        <input type="text"  id ="addProvince"  name="addProvince" class="input checkinput" placeholder="请输入常驻地址" />
+    </div>
+    <div class="tit_content">
+        <span>婚姻状况：</span>
+        <div  style="display:inline-block;position:relative;width:62%;">
+            <input id='marriedStatus' name='marriedStatus' class="input checkinput" placeholder='请选择婚姻状况' readonly> 
+            <input type='hidden' id='marriedStatusValue'>       
+        </div>
+    </div>
+
+    <div class="title">
+        <img src="../../../img/l2.png">
+        <span>紧急联系人</span>
+    </div>
+    <div class="tit_content">
+        <span>姓名（亲属）：</span>
+        <input type="text" id="contactName1" name="contactName1"  class="spinput input checkinput" placeholder="请输入姓名"/>
+    </div>
+    <div class="tit_content">
+        <span>手机号：</span>
+        <input type="tel"   id="contactMobel1"  name="contactMobel1" class="input checkinput" placeholder="请输入手机号码" maxlength=11 onkeyup="this.value=this.value.replace(/[^\d]/g,'')"/>
+    </div>
+    <div class="tit_content">
+        <span>姓名（朋友）：</span>
+        <input type="text" id="contactName2" name="contactName2"  class="spinput input checkinput" placeholder="请输入姓名"/>
+    </div>
+    <div class="tit_content">
+        <span>手机号：</span>
+        <input type="tel"  id="contactMobel2" name="contactMobel2"  class="spinput input checkinput" placeholder="请输入手机号码" maxlength=11 onkeyup="this.value=this.value.replace(/[^\d]/g,'')"/>
+    </div>
+    <div class="submitss">保存</div>
+    <div class='btnBox' style="width:90%;height:2.5rem;margin:2rem auto;overflow:hidden;display:none;">
+        <a href="memberCenter.html"  id="back">返回</a>
+        <a href="javascript:;" id="save-revise" style="display:none;">保存</a>
+        <a href="javascript:;" id="revise">修改</a>
+    </div>
+    <!-- 弹窗 -->
+    <div id="mask"></div>
+	<div class="maskcontent">
+	    <div class="cb">
+	        
+	    </div>
+	    <div class="cm">
+	        <span class="qx">取消</span>
+	        <span class="qd">确定</span>
+	    </div>
+	</div>
+</form>
+</body>
+</html>
+
+

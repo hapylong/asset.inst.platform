@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.deal_online_data.generateBillInfo.dao.DataBillDao">
+	
+	<!-- 获取银行卡信息列表  -->
+	<select id="getInstBak2VcInfoList" resultType="com.iqb.asset.inst.platform.deal_online_data.generateBillInfo.bean.DataBillBean">
+		SELECT 
+		  ib.id,
+		  ib.regId,
+		  io.orderId,
+		  DATE_FORMAT(ib.orderDate, '%Y%m%d') AS orderDate,
+		  ib.merchantNo,
+		  DATE_FORMAT(ib.beginDate, '%Y%m%d') AS beginDate,
+		  ib.installSumAmt,
+		  ib.installAmt,
+		  ib.takePaymentAmt,
+		  ib.takePayment,
+		  ib.takeInterest,
+		  ib.takeMonth,
+		  ib.installTerms,
+		  ib.planId,
+		  ib.STATUS,
+		  CASE
+		    im.PUBLICNO 
+		    WHEN '0' 
+		    THEN '10201' 
+		    WHEN '1' 
+		    THEN '10202' 
+		    WHEN '2' 
+		    THEN '10102' 
+		    WHEN '3' 
+		    THEN '10102' 
+		  END AS openId 
+		FROM
+		  inst_bak2vc ib 
+		  LEFT JOIN inst_merchantinfo im 
+		    ON ib.merchantNo = im.MERCHANTNO 
+		  LEFT JOIN inst_orderinfo io 
+		    ON ib.orderId = io.orderNo 
+	</select>
+	
+	<!-- 获取出胡桃之外的所用开户的用户  -->
+	<select id="getInstBak2VcInfoList4Sms" resultType="com.iqb.asset.inst.platform.deal_online_data.generateBillInfo.bean.DataBillBean">
+		SELECT 
+		  ib.id,
+		  ib.regId,
+		  io.orderId,
+		  DATE_FORMAT(ib.orderDate, '%Y%m%d') AS orderDate,
+		  ib.merchantNo,
+		  DATE_FORMAT(ib.beginDate, '%Y%m%d') AS beginDate,
+		  ib.installSumAmt,
+		  ib.installAmt,
+		  ib.takePaymentAmt,
+		  ib.takePayment,
+		  ib.takeInterest,
+		  ib.takeMonth,
+		  ib.installTerms,
+		  ib.planId,
+		  ib.STATUS,
+		  im.PUBLICNO AS openId 
+		FROM
+		  inst_bak2vc ib 
+		  LEFT JOIN inst_merchantinfo im 
+		    ON ib.merchantNo = im.MERCHANTNO 
+		  LEFT JOIN inst_orderinfo io 
+		    ON ib.orderId = io.orderNo 
+		    WHERE im.merchantNo != 'htqb';
+	</select>
+
+</mapper>

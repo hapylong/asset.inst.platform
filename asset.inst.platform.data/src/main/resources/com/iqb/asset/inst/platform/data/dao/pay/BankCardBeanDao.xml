@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.pay.BankCardBeanDao">
+
+	<resultMap id="bankCardBean" type="com.iqb.asset.inst.platform.data.bean.pay.BankCardBean">
+		<result property="id" column="id" />
+		<result property="userId" column="userId" />
+		<result property="bankCardNo" column="bankCardNo" />
+		<result property="bankMobile" column="bankMobile" />
+		<result property="bankName" column="bankName" />
+		<result property="status" column="status" /><!-- 1,移除卡，2，正常卡 3，激活卡 -->
+		<result property="bankCode" column="bankCode" />
+		<result property="dayLimit" column="dayLimit" />
+		<result property="singleLimit" column="singleLimit" />
+		<result property="version" column="version" />
+		<result property="createTime" column="createtime" />
+		<result property="updateTime" column="updatetime" />
+	</resultMap>
+	
+	<!-- 根据用户手机号查询用户卡数量 -->
+	<select id="getBankCount" parameterType="String" resultType="int">
+		SELECT count(1) from inst_bankcard B,inst_user U WHERE B.userId = U.id AND B.`status` in(2,3) AND U.regId=#{regId};
+	</select>
+
+	<!-- 查询用户所有有效卡信息  -->
+	<select id="getAllBankCards" parameterType="String" resultMap="bankCardBean">
+		SELECT
+			a.*,c.dayLimit,c.singleLimit
+		FROM
+			inst_bankcard a,
+			inst_user b,
+			inst_basebankinfo c
+		WHERE
+			a.userId = b.id
+		AND a.bankCode = c.bankCode
+		AND b.regId = #{regId}
+		AND a.STATUS in (2,3)
+	</select>
+	
+	<!-- 绑卡 -->
+	<insert id="insertBankCard" parameterType="com.iqb.asset.inst.platform.data.bean.pay.BankCardBean">
+		INSERT INTO inst_bankcard (userId,bankCardNo,bankMobile,bankName,status,bankCode,version,createTime,authFlag)
+		VALUES(#{userId},#{bankCardNo},#{bankMobile},#{bankName},#{status},#{bankCode},#{version},#{createTime},#{authFlag})
+	</insert>
+	
+	<!-- 修改银行卡 -->
+	<update id="updateBankCard" parameterType="com.iqb.asset.inst.platform.data.bean.pay.BankCardBean">
+		UPDATE inst_bankcard
+		<set>
+			version = #{version,jdbcType=INTEGER} + 1,
+			<if test="bankCardNo != null and bankCardNo != ''">
+				bankCardNo = #{bankCardNo},
+			</if>
+			<if test="bankMobile != null and bankMobile != ''">
+				bankMobile = #{bankMobile},
+			</if>
+			<if test="bankName != null and bankName != ''">
+				bankName = #{bankName},
+			</if>
+			<if test="status != null and status != ''">
+				status = #{status},
+			</if>
+			<if test="bankCode != null and bankCode != ''">
+				bankCode = #{bankCode},
+			</if>
+		</set>
+		<where>
+			status &lt;&gt; 1
+			<if test="userId != null and userId != ''">
+				and userId = #{userId}
+			</if>
+			<if test="id != null and id != ''">
+				and id = #{id}
+			</if>
+			<if test="bankCardNo != null and bankCardNo != ''">
+				and bankCardNo = #{bankCardNo}
+			</if>
+		</where>
+	</update>
+	
+	<select id="selectBankCardById" parameterType="long" resultMap="bankCardBean">
+		SELECT a.*,c.dayLimit,c.singleLimit 
+		FROM
+			inst_bankcard a,
+			inst_user b,
+			inst_basebankinfo c
+		WHERE
+			a.userId = b.id
+		AND a.bankCode = c.bankCode
+		AND a.id = #{id}
+	</select>
+	
+	<!-- 根据用户id获取用户最早绑卡信息  -->
+	<select id="getBankCardByUserIdAscById" parameterType="string" resultMap="bankCardBean">
+		SELECT bankCardNo, bankMobile, bankName, bankCode FROM inst_bankcard WHERE userId = #{userId} AND STATUS != 1 ORDER BY id ASC LIMIT 1
+	</select>
+	
+	<!-- 通过银行卡号获取银行卡信息  -->
+	<select id="getBankCardByCardNo" parameterType="string" resultMap="bankCardBean">
+		SELECT bankCardNo, bankMobile, bankName, bankCode FROM inst_bankcard WHERE bankCardNo = #{cardNo} AND userId = #{userId} AND STATUS != 1 ORDER BY id ASC LIMIT 1
+	</select>
+	
+</mapper>

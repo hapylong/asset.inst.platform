@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.deal_online_data.user.dao.DataUserDao">
+	
+	<!-- 插入用户信息  -->
+	<insert id="insertUserInfo" parameterType="com.iqb.asset.inst.platform.deal_online_data.user.bean.DataUserBean">
+		INSERT INTO inst_user( 
+			  id,
+			  realName,
+			  regId,
+			  PASSWORD,
+			  smsMobile,
+			  idNo,
+			  STATUS,
+			  openId,
+			  autoLogin,
+			  hasAuthority,
+			  lastLoginTime,
+			  loginIp,
+			  VERSION
+		  )
+		  VALUES
+		  (
+			  #{id},
+			  #{realName},
+			  #{regId},
+			  #{passWord},
+			  #{smsMobile},
+			  #{idNo},
+			  #{status},
+			  #{openId},
+			  #{autoLogin},
+			  '1',
+			  #{lastLoginTime},
+			  #{loginIp},
+			  #{version}
+		  )
+	</insert>
+
+	<!-- 根据用户id获取用户信息  -->
+	<select id="getUserInfoByUserId" resultType="com.iqb.asset.inst.platform.deal_online_data.user.bean.DataUserBean">
+		SELECT 
+		  *
+		FROM
+		  inst_user 
+		WHERE regId = #{regId} 
+	</select>
+
+	<!-- 获取用户信息列表  -->
+	<select id="getUserInfoList" resultType="com.iqb.asset.inst.platform.deal_online_data.user.bean.DataUserBean">
+		SELECT 
+		  id,
+		  real_name AS realName,
+		  reg_id AS regId,
+		  PASSWORD AS 'passWord',
+		  reg_id AS smsMobile,
+		  id_card AS idNo,
+		  STATUS,
+		  openId,
+		  autoLogin,
+		  lastLoginTime,
+		  login_ip AS loginIp,
+		  '1' AS VERSION
+		FROM
+		  fqzf_user 
+	</select>
+	
+</mapper>

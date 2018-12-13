@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" type="text/css" href="../../../css/common/module.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/common/selection.css" />
+	<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/user/bindCard.css">
+	<script defer async="true" data-main="../../../js/user/userCenter/bindCard.js" src="../../../js/require.js"></script>
+	<title>开户鉴权</title>
+</head>
+<body>
+	<form id="bankInfoForm" action="userVerify.do" method="post">
+		<div class="borderArea" style="margin-top:5px;padding:0;">
+			<div class="iptItem">
+				<label>卡&nbsp;&nbsp;类&nbsp;&nbsp;型</label>
+		        <input type="text" class="text-input" id="bankType" name="bankType" placeholder="请选择银行卡类型" readonly>
+		        <input type='hidden' id='bankCode'>
+			</div>
+			<p class="iptItem">
+				<label for="">银行卡号</label>
+				<input type="text" class="text-input" id="bankCard" name="bankCard" placeholder="请输入您的银行卡号" oninput="judge()" maxlength='20'>
+				<i class="close"><img src="../../../img/close.png" alt=""></i>
+			</p>
+			<p class="iptItem" style="border-bottom:none;">
+				<label for="">预留手机号</label>
+				<input type="text" class="text-input" id="phone" name="phone" placeholder="请输入您的银行预留手机号" maxlength='11' oninput="judge()">
+				<i class="close"><img src="../../../img/close.png" alt=""></i>
+			</p>
+		</div>
+		<div class="submit" style="margin-top:3rem;">
+			<input type='button' class="redBtns" value='保存' disabled>
+		</div>
+	</form>
+</body>
+</html>

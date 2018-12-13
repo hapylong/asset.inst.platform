@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.deal_online_data.order.dao.DataOrderDao">
+
+	<!-- 插入订单信息 -->
+	<insert id="insertOrderInfo" parameterType="com.iqb.asset.inst.platform.deal_online_data.order.bean.DataOrderBean">
+		INSERT INTO inst_orderinfo (
+		id,
+		orderId,
+		orderNo,
+		userId,
+		regId,
+		merchantNo,
+		bizType,
+		orderName,
+		orderAmt,
+		orderItems,
+		orderRemark,
+		preAmt,
+		preAmtStatus,
+		STATUS,
+		wfStatus,
+		riskStatus,
+		refundFlag,
+		margin,
+		downPayment,
+		serviceFee,
+		planId,
+		qrCodeId,
+		takePayment,
+		feeYear,
+		feeAmount,
+		monthInterest,
+		chargeWay,
+		procInstId,
+		fee,
+		sumMoney,
+		applyAmt,
+		gpsAmt,
+		assessPrice,
+		VERSION,
+		createTime,
+		updateTime
+		)
+		VALUES
+		(
+		#{id},
+		#{orderId},
+		#{orderNo},
+		#{userId},
+		#{regId},
+		#{merchantNo},
+		#{bizType},
+		#{orderName},
+		#{orderAmt},
+		#{orderItems},
+		#{orderRemark},
+		#{preAmt},
+		#{preAmtStatus},
+		#{status},
+		#{wfStatus},
+		#{riskStatus},
+		#{refundFlag},
+		#{margin},
+		#{downPayment},
+		#{serviceFee},
+		#{planId},
+		#{qrCodeId},
+		#{takePayment},
+		#{feeYear},
+		#{feeAmount},
+		#{monthInterest},
+		#{chargeWay},
+		#{procInstId},
+		#{fee},
+		#{sumMoney},
+		#{applyAmt},
+		#{gpsAmt},
+		#{assessPrice},
+		#{version},
+		#{createTime},
+		#{updateTime}
+		)
+	</insert>
+
+	<!-- 根据订单id获取订单信息 -->
+	<select id="getOrderInfoByOrderId" resultType="com.iqb.asset.inst.platform.deal_online_data.order.bean.DataOrderBean">
+		SELECT * FROM inst_orderinfo WHERE orderId = #{orderId}
+	</select>
+
+	<!-- 获取订单信息列表 -->
+	<select id="getOrderInfoList" resultType="com.iqb.asset.inst.platform.deal_online_data.order.bean.DataOrderBean">
+		SELECT 
+		  fo.id,
+		  order_id AS orderId,
+		  order_no AS orderNo,
+		  user_id AS userId,
+		  fu.reg_id AS regId,
+		  fmu.merch_code AS merchantNo,
+		  CASE
+		    fmu.groupName 
+		    WHEN 'old' 
+		    THEN '2002' 
+		    WHEN 'new' 
+		    THEN '2001' 
+		    WHEN 'yianjia' 
+		    THEN '1100' 
+		    WHEN 'huahua' 
+		    THEN '1000' 
+		    ELSE '2001' 
+		  END AS bizType,
+		  order_name AS orderName,
+		  order_amt AS orderAmt,
+		  order_items AS orderItems,
+		  order_rem AS orderRemark,
+		  pre_amount AS preAmt,
+		  pre_amount_status AS preAmtStatus,
+		  fo.status,
+		  wfStatus,
+		  riskStatus,
+		  refundFlag,
+		  margin,
+		  downPayment,
+		  serviceFee,
+		  planId,
+		  qrCodeId,
+		  takepayment AS takePayment,
+		  feeYear,
+		  feeAmount,
+		  monthInterest,
+		  chargeWay,
+		  PROCINSTID AS procInstId,
+		  fo.fee,
+		  sumMoney,
+		  apply_amt AS applyAmt,
+		  gps_amt AS gpsAmt,
+		  ASSESSPRICE AS assessPrice,
+		  fo.version,
+		  createTime,
+		  updateTime,
+		  PROJECTNAME AS projectName,
+		  PROJECTNO AS projectNo,
+		  GUARANTEE AS guarantee,
+		  GUARANTEENAME AS guaranteeName,
+		  CARSORTNO AS carsortNO 
+		FROM
+		  fqzf_order fo 
+		  LEFT JOIN fqzf_merchant_user fmu 
+		    ON fo.merch_id = fmu.id 
+		  LEFT JOIN fqzf_user fu 
+		    ON fo.user_id = fu.id 
+		WHERE fo.status = 1 
+	</select>
+
+	<!-- 插入订单工作流信息 -->
+	<insert id="insertOrderOtherInfo" parameterType="com.iqb.asset.inst.platform.deal_online_data.order.bean.DataOrderBean">
+		INSERT INTO inst_orderotherinfo (
+		orderId,
+		merchantNo,
+		VERSION,
+		createTime,
+		updateTime,
+		projectName,
+		projectNo,
+		guarantee,
+		guaranteeName,
+		carsortNo
+		)
+		VALUES
+		(
+		#{orderId},
+		#{merchantNo},
+		#{version},
+		#{createTime},
+		#{updateTime},
+		#{projectName},
+		#{projectNo},
+		#{guarantee},
+		#{guaranteeName},
+		#{carsortNo}
+		)
+	</insert>
+
+</mapper>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>信用信息</title>
+        
+        <!-- 样式文件引入 -->
+        <link rel="stylesheet" type="text/css" href="../../../css/hhuser/module.css" />
+        <link rel="stylesheet" type="text/css" href="../../../css/common/selection.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../../css/hhuser/stageApplication.css" />  
+        <link rel="stylesheet" type="text/css" href="../../../css/hhuser/creditCtrStep3.css" /> 
+         
+        <!-- 脚本文件引入 -->
+        <script defer async="true" data-main="../../../js/hhuser/userCenter/creditCtrStep3.js" src="../../../js/require.js"></script>
+               
+        <!-- 页面样式 -->
+        <style type="text/css">
+            .hidden {
+            	display: none;
+            }
+            .invisible {
+				visibility: hidden;
+			}
+        </style>
+    </head>
+    <body>
+        <div class="page3">
+            <p>增信信息</p>    
+            <div class="circle"></div>
+            <span>补充以下信息可提高信用：车辆行驶证、房产证、银<br>行流水、结婚证、芝麻信用及通话详单照片（选填） 
+            </span>   
+            <ul class="IdCard1">
+                <li class="IdCardFace">
+                    <img class="img2" for="file1" src="../../../img/qualifications1.png" />
+                </li>
+                <li class="IdCardBcak">
+                    <img src="../../../img/qualifications2.png" />
+                </li>
+            </ul> 
+            <span class="info">增信信息</span>
+            <button class="btn" id="btn-apply" style="margin-top: 20px">完成</button>
+        </div>
+        
+        <form id="form1">
+        	<input type="file" class="hidden" id="file1" name="file" accept="image/*" />
+        </form>
+    </body>
+</html>

@@ -1,0 +1,326 @@
+package com.iqb.asset.inst.platform.service.scheduler.impl;
+
+import java.math.BigDecimal;
+import java.security.GeneralSecurityException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.annotation.Resource;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import redis.clients.jedis.Jedis;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.iqb.asset.inst.platform.biz.order.OrderBeanBiz;
+import com.iqb.asset.inst.platform.biz.pay.PaymentAmtDetailBiz;
+import com.iqb.asset.inst.platform.common.constant.RedisConstant;
+import com.iqb.asset.inst.platform.common.redis.RedisPlatformDao;
+import com.iqb.asset.inst.platform.common.util.http.SimpleHttpUtils;
+import com.iqb.asset.inst.platform.common.util.number.BigDecimalUtil;
+import com.iqb.asset.inst.platform.common.util.xf.CoderException;
+import com.iqb.asset.inst.platform.common.util.xf.XFUtils;
+import com.iqb.asset.inst.platform.data.bean.order.OrderBean;
+import com.iqb.asset.inst.platform.data.bean.pay.PayChannelConf;
+import com.iqb.asset.inst.platform.service.repay.IPaymentService;
+import com.iqb.asset.inst.platform.service.scheduler.ILockBillPayQueService;
+
+@SuppressWarnings({"rawtypes"})
+@Service("lockBillPayQueService")
+public class LockBillPayQueServiceImpl implements ILockBillPayQueService {
+
+	protected static final Logger logger = LoggerFactory.getLogger(LockBillPayQueServiceImpl.class);
+	private static final String SERVICE = "REQ_ORDER_QUERY_BY_ID";
+	private static final String SECID = "RSA";
+	private static final String VERSION = "3.0.0";
+	
+	@Resource
+    private RedisPlatformDao redisPlatformDao;
+	
+	@Resource
+    private OrderBeanBiz orderBeanBiz;
+	
+	@Autowired
+    private IPaymentService paymentService;
+	
+	@Autowired
+    private PaymentAmtDetailBiz paymentAmtDetailBiz;
+	
+	@Override
+	public void handleXfAmountAsyncQue() {
+		long len = redisPlatformDao.len(RedisConstant.XF_AMOUNT_ASYNCRESULT_QUEUE);
+		if(len == 0)
+			return;
+		for(long l=0;l<len && l<20;l++){
+			String tmpKey = redisPlatformDao.rightPop(RedisConstant.XF_AMOUNT_ASYNCRESULT_QUEUE);
+			if(tmpKey == null)
+				continue;
+			String jsonStrVal = redisPlatformDao.getValueByKey(tmpKey);
+			if(jsonStrVal == null)
+				continue;
+			if(jsonStrVal.trim().equals(""))
+				try {
+		        	redisPlatformDao.removeValueByKey(tmpKey);
+		        } catch (Exception e) {
+		            logger.error("移除先锋全额回调对象出现异常", e);
+		        }
+			
+			try {
+				Map<String, String> resMap = JSON.parseObject(jsonStrVal,Map.class);
+				Map<String, String> handRMap = paymentService.xfAmountAsyncReturn(resMap);
+				if(handRMap == null || handRMap.containsKey("errno") || !"0".equals(handRMap.get("errno"))){
+					//处理不成功丢回备份队列
+					redisPlatformDao.leftPush(RedisConstant.XF_AMOUNT_ASYNCRESULT_BAK_QUEUE, tmpKey);
+				}else{
+					try {
+			        	redisPlatformDao.removeValueByKey(tmpKey);
+			        } catch (Exception e) {
+			            logger.error("移除先锋全额回调对象出现异常", e);
+			        }
+				}
+			} catch (Exception e) {
+	            logger.error("处理先锋全额回调对象出现异常", e);
+	            redisPlatformDao.leftPush(RedisConstant.XF_AMOUNT_ASYNCRESULT_BAK_QUEUE, tmpKey);
+	        }
+		}
+		
+		len = redisPlatformDao.len(RedisConstant.XF_AMOUNT_ASYNCRESULT_BAK_QUEUE);
+		if(len != 0)
+			for(long l=0;l<len;l++){
+				String tmpKey = redisPlatformDao.rightPop(RedisConstant.XF_AMOUNT_ASYNCRESULT_BAK_QUEUE);
+				if(tmpKey == null || tmpKey.trim().equals(""))
+					continue;
+				redisPlatformDao.leftPush(RedisConstant.XF_AMOUNT_ASYNCRESULT_QUEUE, tmpKey);
+			}
+	}
+
+	@Override
+	public void handleXfbreakAmtAsyncQue() {
+		long len = redisPlatformDao.len(RedisConstant.XF_BREAKAMT_ASYNCRESULT_QUEUE);
+		if(len == 0)
+			return;
+		for(long l=0;l<len && l<20;l++){
+			String tmpKey = redisPlatformDao.rightPop(RedisConstant.XF_BREAKAMT_ASYNCRESULT_QUEUE);
+			if(tmpKey == null)
+				continue;
+			String jsonStrVal = redisPlatformDao.getValueByKey(tmpKey);
+			if(jsonStrVal == null)
+				continue;
+			if(jsonStrVal.trim().equals(""))
+				try {
+		        	redisPlatformDao.removeValueByKey(tmpKey);
+		        } catch (Exception e) {
+		            logger.error("移除先锋全额回调对象出现异常", e);
+		        }
+			
+			try {
+				Map<String, String> resMap = JSON.parseObject(jsonStrVal,Map.class);
+				Map<String, String> handRMap = paymentService.xfbreakAmtAsyncReturn(resMap);
+				if(handRMap == null || !handRMap.containsKey("errno") || !"0".equals(handRMap.get("errno"))){
+					//处理不成功丢回备份队列
+					redisPlatformDao.leftPush(RedisConstant.XF_BREAKAMT_ASYNCRESULT_BAK_QUEUE, tmpKey);
+				}else{
+					try {
+			        	redisPlatformDao.removeValueByKey(tmpKey);
+			        } catch (Exception e) {
+			            logger.error("移除先锋全额回调对象出现异常", e);
+			        }
+				}
+			} catch (Exception e) {
+	            logger.error("处理先锋全额回调对象出现异常", e);
+	            redisPlatformDao.leftPush(RedisConstant.XF_BREAKAMT_ASYNCRESULT_BAK_QUEUE, tmpKey);
+	        }
+		}
+		
+		len = redisPlatformDao.len(RedisConstant.XF_BREAKAMT_ASYNCRESULT_BAK_QUEUE);
+		if(len != 0)
+			for(long l=0;l<len;l++){
+				String tmpKey = redisPlatformDao.rightPop(RedisConstant.XF_BREAKAMT_ASYNCRESULT_BAK_QUEUE);
+				if(tmpKey == null || tmpKey.trim().equals(""))
+					continue;
+				redisPlatformDao.leftPush(RedisConstant.XF_BREAKAMT_ASYNCRESULT_QUEUE, tmpKey);
+			}
+	}
+
+	@Override
+	public void handleLockBillPayQue() {
+		long len = redisPlatformDao.len(RedisConstant.LOCK_FOR_PAYMENT_ORDER_QUEUE);
+		if(len == 0)
+			return;
+		for(long l=0;l<len && l<20;l++){
+			String tmpKey = redisPlatformDao.rightPop(RedisConstant.LOCK_FOR_PAYMENT_ORDER_QUEUE);
+			if(tmpKey == null)
+				continue;
+			String jsonStrVal = redisPlatformDao.getValueByKey(tmpKey);
+			if(jsonStrVal == null)
+				continue;
+			if(jsonStrVal.trim().equals(""))
+				try {
+		        	redisPlatformDao.removeValueByKey(tmpKey);
+		        } catch (Exception e) {
+		            logger.error("解除账单支付金额锁定出现异常", e);
+		        }
+			
+			JSONObject lockMap = JSON.parseObject(jsonStrVal);
+			long systemMinutes = 0;
+			try {
+				systemMinutes = Long.parseLong(lockMap.getString("systemMinutes").replaceAll(",", ""));
+	        } catch (Exception e) {
+	            logger.error("获取redisKey["+tmpKey+"]的对象的[systemMinutes]属性值发生异常",e);
+	            continue;
+	        }
+			
+			long currMinutes = System.currentTimeMillis()/1000/60;
+			if(currMinutes-systemMinutes < 5){//若未超过5分钟则放入备份队列
+				logger.info("redisKey[{}]距离上次处理时间已达[{}]分钟，未超过5分钟，暂时不处理，放回锁定队列",tmpKey,currMinutes-systemMinutes);
+				redisPlatformDao.leftPush(RedisConstant.LOCK_FOR_PAYMENT_ORDER_BAK_QUEUE, tmpKey);
+			}else{//已达5分钟的订单调用渠道接口查询支付结果
+				try {
+					String orderId = lockMap.getString("orderId");
+					String outOrderId = lockMap.getString("outOrderId");
+					OrderBean orderBean = orderBeanBiz.getOrderInfoByOrderId(orderId);
+			        PayChannelConf payChannel = paymentService.getLastPayChannel(orderBean);
+			        String queryResult = sendQuery(payChannel,outOrderId);
+			        
+			        JSONObject rsMap = JSON.parseObject(queryResult);
+			        String errorCode = rsMap.getString("errorCode");
+					String status = rsMap.getString("status");
+					
+					logger.info("orderId[{}],outOrderId[{}],status[{}],errorCode[{}]"
+							,orderId,outOrderId,status,errorCode); 
+					if(status != null && status.trim().equalsIgnoreCase("I")){
+						lockMap.put("notFirst", "1");
+						lockMap.put("systemMinutes", (System.currentTimeMillis()/1000/60)+"");//更新处理时间为当前时间实现5分钟内不再像第三方查询
+						redisPlatformDao.setKeyAndValue(tmpKey, lockMap.toJSONString());
+						redisPlatformDao.leftPush(RedisConstant.LOCK_FOR_PAYMENT_ORDER_BAK_QUEUE, tmpKey);
+					}else if(status != null && status.trim().equalsIgnoreCase("S")){
+						try {//若订单已成功则移除队列不在发起查询，后续由第三方回调出发支付成功流程
+			        		redisPlatformDao.removeValueByKey(tmpKey);
+			        	}catch (Exception ee) {
+			        		logger.error("解除账单支付金额锁定出现异常", ee);
+			        	}
+					}else if(errorCode != null && "00001,00002,10008,20000,20001,20002,99999,99020".indexOf(errorCode.trim()) > -1){
+						logger.error("redisKey[{}],orderId[{}],outOrderId[{}],status[{}],errorCode[{}]"
+								,tmpKey,orderId,outOrderId,status,errorCode); 
+						lockMap.put("notFirst", "1");
+						lockMap.put("systemMinutes", (System.currentTimeMillis()/1000/60)+"");//更新处理时间为当前时间实现5分钟内不再像第三方查询
+						redisPlatformDao.setKeyAndValue(tmpKey, lockMap.toJSONString());
+						redisPlatformDao.leftPush(RedisConstant.LOCK_FOR_PAYMENT_ORDER_BAK_QUEUE, tmpKey);
+					}else
+						handleResultValue(tmpKey,outOrderId);
+				} catch (Throwable e) {
+		            logger.error("对redisKey["+tmpKey+"]的对象进行支付结果查询时发生错误",e);
+		            redisPlatformDao.leftPush(RedisConstant.LOCK_FOR_PAYMENT_ORDER_BAK_QUEUE, tmpKey);
+		            continue;
+		        }
+			}
+		}
+		
+		len = redisPlatformDao.len(RedisConstant.LOCK_FOR_PAYMENT_ORDER_BAK_QUEUE);
+		if(len != 0)
+			for(long l=0;l<len;l++){
+				String tmpKey = redisPlatformDao.rightPop(RedisConstant.LOCK_FOR_PAYMENT_ORDER_BAK_QUEUE);
+				if(tmpKey == null || tmpKey.trim().equals(""))
+					continue;
+				redisPlatformDao.leftPush(RedisConstant.LOCK_FOR_PAYMENT_ORDER_QUEUE, tmpKey);
+			}
+	}
+	
+	private void handleResultValue(String lockOrderPayKey,String outOrderId){
+		// 解除账单支付金额锁定
+        try {
+        	Map<String, Object> tMp = new HashMap<String, Object>();
+    		tMp.put("outOrderId", outOrderId);
+    		tMp.put("cacheFlag", new Integer(2));
+    		paymentAmtDetailBiz.updateCacheFlagByOutOrderId(tMp);
+        } catch (Exception e) {
+        	logger.error("处理账单支付金额锁定出现异常", e);
+        }finally{
+        	try {
+        		redisPlatformDao.removeValueByKey(lockOrderPayKey);
+        	}catch (Exception ee) {
+        		logger.error("解除账单支付金额锁定出现异常", ee);
+        	}
+        }
+	}
+	
+	private String sendQuery(PayChannelConf payChannel,String outOrderId) throws GeneralSecurityException, CoderException {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("service", SERVICE);
+		params.put("secId", SECID);
+		params.put("version", VERSION);
+		params.put("reqSn", UUID.randomUUID().toString().replaceAll("-", ""));
+		params.put("merchantId", payChannel.getMerchantId());
+		params.put("merchantNo", outOrderId);
+		String sign = XFUtils.createSign(payChannel.getKey(), "sign", params, "RSA");
+		params.put("sign", sign);
+		String result = SimpleHttpUtils.httpPost(payChannel.getGateWay(), params);
+		return result;
+	}
+	
+	public static void main(String[] args) throws Exception{
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("service", "REQ_ORDER_QUERY_BY_ID");
+		params.put("secId", SECID);
+		params.put("version", VERSION);
+		params.put("reqSn", UUID.randomUUID().toString().replaceAll("-", ""));
+		params.put("merchantId", "M200003384");
+		params.put("merchantNo", "TYLD2001180706002-884220");
+		
+		String result = "";
+		//String sign = XFUtils.createSign(merKey, "sign", params, "RSA");
+		//params.put("sign", sign);
+		//result = SimpleHttpUtils.httpPost("https://mapi.ucfpay.com/gateway.do", params);
+		System.out.println(result);
+		
+		JSONObject rsMap = JSON.parseObject(result);
+		if(rsMap != null){
+			String errorCode = rsMap.getString("errorCode");
+			String status = rsMap.getString("status");
+			if(status != null && status.trim().equalsIgnoreCase("I"))
+				System.out.println("ing");
+			else if(errorCode != null && "00001,00002,10008,20000,20001,20002,99999,99020".indexOf(errorCode.trim()) > -1){
+				System.out.println("ing");
+			}else
+				System.out.println("done");
+		}
+		
+		
+		String orderId = "CDHTC2002171106005X";
+		String repayNo = "1";
+		String payAmount = "2000";
+		String outOrderId = "SYQS2002170120008-721438";
+		Map<String, String> tMp = new HashMap<String, String>();
+        tMp.put("orderId", orderId);
+        tMp.put("repayNo", repayNo);
+        tMp.put("amount", BigDecimalUtil.narrow(new BigDecimal(payAmount)).doubleValue()+"");
+        tMp.put("systemMinutes", (System.currentTimeMillis()/1000/60-13)+"");
+        tMp.put("outOrderId", outOrderId);
+        
+       // String lockBillPayKey = RedisConstant.LOCK_FOR_PAYMENT_BILL_PREFIX+orderId+"_"+repayNo;
+        Jedis jedis = new Jedis("47.94.247.233", 6379, 30000);
+        //jedis.auth("6379");
+        jedis.select(1);
+        //jedis.set(lockBillPayKey, JSON.toJSONString(tMp));
+        jedis.lpush(RedisConstant.XF_BREAKAMT_ASYNCRESULT_QUEUE, "xfbreakAmtAsyncReturn_TYLD2001180711002-859954");
+        if(jedis != null){
+			try{
+				jedis.disconnect();
+			}catch(Throwable e){
+				e.printStackTrace();
+			}
+			try{
+				jedis.close();
+			}catch(Throwable e){
+				e.printStackTrace();
+			}
+		}
+        
+	}
+	
+}

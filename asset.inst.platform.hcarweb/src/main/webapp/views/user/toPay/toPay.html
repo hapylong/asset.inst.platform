@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/common/module.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/user/toPay.css">
+	<script defer async="true" data-main="../../../js/user/toPay/toPay.js" src="../../../js/require.js"></script>
+	<title>还款</title>
+</head>
+<body>
+    <div style='width:100%;height:14px;background:#f5f5f5;position:fixed;left:0;top:0;z-index:2'></div>
+    <ul id="tabs">
+	    <li><a href="toPay.html" id="current">我要还款</a></li>
+	    <li><a href="earlyPay.html">提前退租</a></li>
+    </ul>
+    <div class="borderArea">
+        
+    </div>
+    <div class='iconBlock' style='margin:calc(30% - 7.5rem) auto 0;display:none;'>
+        <img src='../../../img/empty.png' style='width:125px;display:block;margin:0 auto;'>
+        <p style='font-size:1.7rem;color:#adadad;text-align:center;margin-top:2rem;'>您暂时还没有账单</p>
+	</div>
+	<div class='fixedBottom'>
+	    <img src='../../../img/moneyIcon.png' class='moneyIcon'>
+	    <span class='moneyText' style='margin-left:calc(21.5% + 10px);'>累计应还:</span>
+	    <span class='amoutMoney moneyText'>0.00</span>
+	    <span class='payNow'>立即还款</a>
+	</div> 
+	<!-- 弹窗 -->
+    <div id="mask"></div>
+	<div class="maskcontent">
+	    <div class="cb"><p>罚息金额=剩余本金*罚息利率*逾期天数+滞纳金</p></div>
+	    <div class="cm">
+	        <div class="qd">知道了</div>
+	    </div>
+	</div>
+	<!-- 银行卡 -->
+	<div class='planContent'>
+	    <div class='planContent-title'>
+	                   选择付款方式
+            <span class='close'>X</span>
+	    </div>
+	    <div class='planContentItem'>
+	         <p class='useNewCard'>使用新卡付款<img src='../../../img/arrowRight.png'></p>
+	    </div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<modules>
+	工具包
+	<module>asset.inst.platform.common</module>
+	前置
+	<module>asset.inst.platform.front</module>
+	前端
+	<module>asset.inst.platform.web</module>
+	测试用例
+	<module>asset.inst.platform.testcase</module>
+	服务层
+	<module>asset.inst.platform.service</module>
+	数据层
+	<module>asset.inst.platform.data</module>
+	缓存
+	<module>asset.inst.platform.cache</module>
+	业务层
+	<module>asset.inst.platform.biz</module>
+</modules>

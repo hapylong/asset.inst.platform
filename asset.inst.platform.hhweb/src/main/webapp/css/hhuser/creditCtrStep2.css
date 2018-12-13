@@ -1,0 +1,89 @@
+body{background:white}
+.page2{
+    width: 100%;
+    background: white;
+    overflow: hidden;
+}
+.page2 p{margin: 8px 0px 7px 20px;font-size: 15px;}
+.page2 span{
+    font-size: 12px;
+    display:block;
+    margin-left: 36px;
+    margin-top: 6px;
+}
+.page2 .circle{
+    width: 12px;
+    height: 12px;
+    margin-left: 20px;
+    margin-top: 3px;
+    display: inline-block;
+    background-color: #06c8c4;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    float: left;
+}
+.page2 .IdCard1 .info{display:inline-block;width:100%;text-align:center;margin-left:0;}
+.page2 .IdCard2 .info{display:inline-block;width:100%;text-align:center;margin-left:0;}
+.page2 ul{
+    color: #06c8c4;
+    overflow: hidden;
+    margin: 30px 0px 30px 0px;
+}
+.page2 ul li img{
+    display:block;
+    margin:0 auto;
+}
+/*5- 显示5*/
+@media screen and (max-width: 320px) {
+       .page2 .IdCard1 li img{
+           width:148px;
+           height:93px;
+       }
+       .page2 .IdCard2 li img{
+           width:256px;
+           height:161px;
+       }
+}
+/*5 - 6  显示5*/
+@media screen and (min-width: 321px) and (max-width: 375px) {
+       .page2 .IdCard1 li img{
+           width:148px;
+           height:93px;
+       }
+       .page2 .IdCard2 li img{
+           width:256px;
+           height:161px;
+       }
+}
+/*6-6plus  显示6*/
+@media screen and (min-width: 376px) and (max-width: 414px){
+       .page2 .IdCard1 li img{
+           width:172px;
+           height:109px;
+       }
+       .page2 .IdCard2 li img{
+           width:300px;
+           height:189px;
+       }
+}
+/*6plus+  显示6plus*/
+@media screen and (min-width: 415px){
+       .page2 .IdCard1 li img{
+           width:191px;
+           height:120px;
+       }
+       .page2 .IdCard2 li img{
+           width:332px;
+           height:209px;
+       }
+}
+.page2 .IdCard1 li{
+    float: left;
+    width: 46%;
+    margin-left: 3%;
+}
+.page2 .IdCard2 li{
+    width: 80%;
+    margin: 0 auto;
+}

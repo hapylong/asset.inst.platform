@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/hhuser/module.css" />
+    <link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/hhuser/stageApplication.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/hhuser/orderDetail.css">
+    <script defer async="true" data-main="../../../js/hhuser/myOrder/orderDetails.js" src="../../../js/require.js"></script>
+    <title>订单详情</title>
+    <!-- 页面样式 -->
+    <style type="text/css">
+       .weui-dialog__btn_primary {
+           color: #06c8c4;
+       }
+       .spanL{font-size: 0.8rem;}
+       .spanR{
+          float: right;
+          color: #06c8c4;
+          margin-right: 1rem;
+          margin-top: 0.3rem;
+          font-size: 0.8rem;
+       }
+       .mainr1 span{
+		  margin-left:0px;
+		  font-size:0.64rem;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+         <form id="orderForm">
+            <input type='hidden' class='preAmtInput'/>
+            <div class="mains clearfix">
+               <span class="spanL">订单状态:</span>
+               <span class="spanR"></span>
+            </div>
+            <section class="main" style="margin-top: 5px; height: auto;">
+               <div class="main1 clearfix">
+                  <div class="mainr clearfix" style="position: relative; border-bottom: none;">
+                     <span>商户名称</span>
+                     <input type="text" id="merchantShortName" name="merchantShortName" placeholder="商户名称" readonly />
+                  </div>
+               </div>
+            </section>
+            <section class="main" style="margin-top: 5px; height: auto;">
+               <div class="main1 clearfix">
+                  <div class="mainr clearfix">
+                     <span>项目信息</span>
+                   </div>
+               </div>
+               <div class="main2 pro1">
+                  <div class="main2-r">
+                     <div class="mainr2 clearfix">
+                        <span class="span1">单价</span>
+                             <input type="text" class="price" id="price1" name="price1" placeholder="金额" readonly/>
+                             <span class="span2">元</span>            
+                     </div>
+                     <div class="mainr1 clearfix">
+                        <span>项目1</span>
+                        <input type="text" class="item" id="item1" name="item1" placeholder="项目名称" readonly/>           
+                     </div>
+                  </div>
+               </div>
+               <div class="main2 pro2 pro">
+                  <div class="main2-r">
+                     <div class="mainr2 clearfix">
+                        <span class="span1">单价</span>
+                             <input type="text" class="price" id="price2" name="price2" placeholder="金额" readonly/>
+                             <span class="span2">元</span>            
+                        </div>
+                     <div class="mainr1 clearfix">
+                        <span>项目2</span>
+                             <input type="text" class="item" id="item2" name="item2" placeholder="项目名称" readonly/>           
+                        </div>
+                     </div>
+               </div>
+               <div class="main2 pro3 pro">
+                  <div class="main2-r">
+                     <div class="mainr2 clearfix">
+                        <span class="span1">单价</span>
+                             <input type="text" class="price" id="price3" name="price3" placeholder="金额" readonly/>
+                             <span class="span2">元</span>            
+                        </div>
+                     <div class="mainr1 clearfix">
+                        <span>项目3</span>
+                             <input type="text" class="item" id="item3" name="item3" placeholder="项目名称" readonly/>           
+                        </div>
+                     </div>
+               </div>
+               <div class="main2 pro4 pro">
+                  <div class="main2-r">
+                     <div class="mainr2 clearfix">
+                        <span class="span1">单价</span>
+                             <input type="text" class="price" id="price3" name="price3" placeholder="金额" readonly/>
+                             <span class="span2">元</span>            
+                        </div>
+                     <div class="mainr1 clearfix">
+                        <span>项目3</span>
+                             <input type="text" class="item" id="item3" name="item3" placeholder="项目名称" readonly/>           
+                        </div>
+                     </div>
+               </div>
+               <div class="main2 pro5 pro">
+                  <div class="main2-r">
+                     <div class="mainr2 clearfix">
+                        <span class="span1">单价</span>
+                             <input type="text" class="price" id="price3" name="price3" placeholder="金额" readonly/>
+                             <span class="span2">元</span>            
+                        </div>
+                     <div class="mainr1 clearfix">
+                        <span>项目3</span>
+                             <input type="text" class="item" id="item3" name="item3" placeholder="项目名称" readonly/>           
+                        </div>
+                     </div>
+               </div>
+            </section>
+            <section class="main" style="margin-top: 5px; height:auto;">
+               <div class="main1 clearfix">
+                  <div class="mainr clearfix">
+                     <span>分期信息</span>
+                   </div>
+               </div>
+               <div class="main1">
+                  <div class="mainr clearfix">
+                     <span>借款总额</span>
+                          <input type="text" id="amt" name="amt" placeholder="借款总额" readonly />           
+                     </div>
+               </div>
+               <div class="main1 approvedAmt" >
+                  <div class="mainr clearfix">
+                     <span>核准金额</span>
+                          <input type="text" id="approvedAmt" name="approvedAmt" placeholder="核准金额" readonly />           
+                     </div>
+               </div>
+               <div class="main1 clearfix">
+                  <div class="mainr clearfix plans" style="position: relative">
+                     <span>分期期数</span>
+                     <input type="text" id="installTerms" name="installTerms" placeholder="分期期数" readonly />
+                  </div>
+               </div>
+               <div class="main1">
+                  <div class="mainr clearfix">
+                     <span>首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;付</span>
+                     <input type="text" id="downPayment" name="downPayment" placeholder="首付金额" readonly />
+                   </div>
+               </div>
+               <div class="main1">
+                  <div class="mainr clearfix">
+                     <span>月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;供</span>
+                     <input type="text" id="monthInterest" name="monthInterest" placeholder="月供金额" readonly />
+                  </div>
+               </div>                               
+               <div class="main1 clearfix">
+                  <div class="mainr clearfix" style="border-bottom: none">
+                     <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+                     <input type="text" id="remark" name="remark" placeholder="请输入备注" readonly/>
+                  </div>
+               </div>
+            </section>
+            <section class="main preAmt" style="margin-top: 5px; height: auto;">
+               <div class="main1 clearfix">
+                  <div class="mainr clearfix" style="position: relative; border-bottom: none;">
+                     <span style="width: 23%">待支付金额</span>
+                     <input style="width:calc(36% - 2rem);" type="text" id="preAmt" name="preAmt" placeholder="待支付金额" readonly />
+                     <span>元</span>
+                  </div>
+               </div>
+            </section>
+         </form>
+         <div class='btnBox'>
+             <button class="btn" id="btn-apply" style="margin-top: 20px;display:block">去支付</button>
+             <button class="btnQuit" id="quit" style="margin-top: 40px;">放弃</button>
+             <button class="btnConfirm" id="confirm" style="margin-top: 40px;">确定核准金额并提交</button>
+         </div>
+         <!-- 银行卡弹窗 -->
+	    <div id="mask"></div>
+	    <div class='planContent'>
+		    <div class='planContent-title'>
+		                   选择付款方式
+	            <span class='close'>X</span>
+		    </div>
+		    <div class='planContentItem'>
+		         <p class='useNewCard'>使用新卡付款<img src='../../../img/arrowRight.png'></p>
+		    </div>
+	    </div>
+	    <!-- 弹窗 -->
+	    <div class="maskcontent">
+		    <div class="cb">
+		        
+		    </div>
+		    <div class="cm">
+		        <span class="qx">取消</span>
+		        <span class="qd">确定</span>
+		    </div>
+	    </div>
+</div>
+</body>
+</html>

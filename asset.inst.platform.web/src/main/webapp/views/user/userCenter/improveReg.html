@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" type="text/css" href="../../../css/common/module.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/common/selection.css" />
+	<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/user/bindCard.css">
+	<script defer async="true" data-main="../../../js/user/userCenter/improveReg.js" src="../../../js/require.js"></script>
+	<title>完善注册信息</title>
+</head>
+<body>
+	<form id="bankInfoForm" action="userVerify.do" method="post">
+		<div class="borderArea" style="margin-top:14px;padding:0">
+			<p class="iptItem">
+				<label>真实姓名</label>
+				<input type="text" class="text-input" id="realName" name="realName" placeholder="请输入您的姓名" oninput="judge()">
+				<i class="close"><img src="../../../img/close.png" alt=""></i>
+			</p>
+			<p class="iptItem" style="border-bottom:none;">
+				<label for="">身份证号</label>
+				<input type="text" class="text-input" id="IDCard" name="IDCard" maxlength=18 placeholder="请输入您的身份证号码" 
+				style="text-transform:uppercase" oninput="judge()">
+				<i class="close"><img src="../../../img/close.png" alt=""></i>
+			</p>
+		</div>
+		<div class="submit" style="margin-top:3rem;">
+			<input type='button' class="redBtns" value='保存' disabled>
+		</div>
+	</form>
+</body>
+</html>

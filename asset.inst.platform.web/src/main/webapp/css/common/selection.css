@@ -1,0 +1,119 @@
+   .planContent{
+       display: none;
+       background: #fff;
+       position: fixed;
+       left:0;
+       right:0;
+       bottom:0; 
+   }
+   .planContent-title{
+       width:100%;
+       height:1.88rem;
+       border-bottom:1px solid #dcdcdc;
+       line-height:1.88rem;
+       text-align:center;
+       font-size:0.78rem;
+       color:#000;
+       background:#fff;
+   }
+   .planContentItem{
+       width:100%;
+       height:11.28rem;
+       overflow:scroll;
+   }
+   .planContent-bottom{
+       width:100%;
+	   line-height: 1.88rem;
+	   color: #fff;
+	   font-size: 0.7rem;
+	   background: #E04142;
+	   text-align: center;
+   }
+   .planContent-title span{
+       color:#ababab;
+       position:absolute;
+       right:15px;
+   }
+   .planContent-item{
+       width:90%;
+       margin:0 auto;
+       border-bottom:1px solid #dcdcdc;
+       overflow:hidden;
+   }
+   .planContent-item:last-child{
+       border-bottom:0;
+   }
+   .planContent-item-left{
+       width:10%;
+       float:left;
+       margin-top:1.6rem;
+   }
+   .planContent-item-right{
+       width:89%;
+       height:3.76rem;
+       float:left;
+   }
+   .planContent-item-right-top{
+       display:inline-block;
+       font-size:0.7rem;
+       color:#000;
+       margin-top:0.8rem;
+   }
+   .planContent-item-right-bottom{
+       margin-top:1rem;
+       font-size:0.6rem;
+       color:#b7b7b7;
+       margin-top:0.2rem;
+   }
+   .choosePlan{
+       display:block;
+       width:30px;
+       height:1.88rem;
+       position:absolute;
+       right:0;
+       top:0;
+   }
+   .choosePlan img{
+       display:block;
+       margin-top:0.84rem;
+       margin-right:8px;
+   }
+   
+   
+   
+    label {
+		display: inline;
+    }
+	.regular-radio {
+		display: none;
+    }
+	.regular-radio + label {
+		-webkit-appearance: none;
+		background-color: #fff;
+		border: 1px solid #cacece;
+		padding: 9px;
+		border-radius: 50px;
+		display: inline-block;
+		position: relative;
+    }
+	.regular-radio:checked + label:after {
+		content: '';
+		position: absolute;
+		width: 8px;
+		height: 5px;
+		background: transparent;
+		top: 4px;
+		left: 4px;
+		border: 2px solid #fff;
+		border-top: none;
+		border-right: none;
+		-webkit-transform: rotate(-45deg);
+		-moz-transform: rotate(-45deg);
+		-o-transform: rotate(-45deg);
+		-ms-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+	}
+	.regular-radio:checked + label {
+		background-color: #e13e3f;
+		border: 0;
+	}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" type="text/css" href="../../../css/common/module.css">
+	<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/user/bindCard.css">
+	<script defer async="true" data-main="../../../js/user/toPay/paySplit.js" src="../../../js/require.js"></script>
+	<title>待支付</title>
+</head>
+<body>
+	<form id="bankInfoForm" action="userVerify.do" method="post">
+		<div class="borderArea" style="margin-top:14px;padding:0">
+			<p class="iptItem">
+				<label>待支付金额</label>
+				<input type="text" class="text-input" id="needToPay" readonly>
+			</p>
+			<p class="iptItem" style="border-bottom:none;">
+				<label for="">支付金额</label>
+				<input type="number" class="text-input" id="toPay" placeholder="请输入支付金额">
+			</p>
+		</div>
+		<div class="submit" style="margin-top:3rem;">
+			<input type='button' class="pay" value='下一步'>
+		</div>
+	</form>
+	<!-- 银行卡弹窗 -->
+   <div id="mask"></div>
+   <div class='planContent'>
+	    <div class='planContent-title'>
+	                   选择付款方式
+            <span class='close'>X</span>
+	    </div>
+	    <div class='planContentItem'>
+	         <p class='useNewCard'>使用新卡付款<img src='../../../img/arrowRight.png'></p>
+	    </div>
+   </div>
+</body>
+</html>

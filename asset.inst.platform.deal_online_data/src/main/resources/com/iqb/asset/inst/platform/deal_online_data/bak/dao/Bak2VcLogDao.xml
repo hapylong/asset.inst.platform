@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.deal_online_data.bak.dao.Bak2VcLogDao">
+
+	<!-- 插入银行卡信息  -->
+	<insert id="saveBak2VcLog" parameterType="com.iqb.asset.inst.platform.deal_online_data.bak.bean.Bak2VcLog">
+		INSERT INTO inst_bak2vclog (id, regId, TYPE, reason) VALUE (#{id}, #{regId}, #{type}, #{reason})
+	</insert>
+
+</mapper>

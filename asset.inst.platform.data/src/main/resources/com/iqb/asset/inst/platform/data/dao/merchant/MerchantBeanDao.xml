@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.merchant.MerchantBeanDao">
+
+	<resultMap id="merchantBean" type="com.iqb.asset.inst.platform.data.bean.merchant.MerchantBean">
+		<result property="id" column="ID" />
+		<result property="level" column="LEVEL" />
+		<result property="parentId" column="PARENTID" />
+		<result property="merchantNo" column="MERCHANTNO" />
+		<result property="publicNo" column="PUBLICNO" />
+		<result property="password" column="PASSWORD" />
+		<result property="merchantShortName" column="MERCHANTSHORTNAME" />
+		<result property="merchantFullName" column="MERCHANTFULLNAME" />
+		<result property="province" column="PROVINCE" />
+		<result property="city" column="CITY" />
+		<result property="merchantAddr" column="MERCHANTADDR" />
+		<result property="riskType" column="RISKTYPE" />
+		<result property="merchantRemark" column="MERCHANTREMARK" />
+		<result property="status" column="STATUS" />
+		<result property="wfStatus" column="WFSTATUS" />
+		<result property="enabled" column="ENABLED" />
+		<result property="openId" column="OPENID" />
+		<result property="autoLogin" column="AUTOLOGIN" />
+		<result property="lastLoginTime" column="LASTLOGINTIME" />
+		<result property="version" column="VERSION" />
+		<result property="createTime" column="CREATETIME" />
+		<result property="updateTime" column="UPDATETIME" />
+	</resultMap>
+
+	<!-- 表中的字段 -->
+	<sql id="cols">
+		ID, LEVEL, PARENTID, MERCHANTNO,PUBLICNO, PASSWORD, MERCHANTSHORTNAME, MERCHANTFULLNAME, PROVINCE, CITY,
+		MERCHANTADDR,
+		RISKTYPE, MERCHANTREMARK, STATUS, WFSTATUS, ENABLED, OPENID, AUTOLOGIN, LASTLOGINTIME, VERSION,
+		CREATETIME,
+		UPDATETIME,tstRunCode
+	</sql>
+
+	<!-- 根据用户merchantNo获取用户信息 -->
+	<select id="getMerchantByMerchantNo" parameterType="string" resultType="com.iqb.asset.inst.platform.data.bean.merchant.MerchantBean">
+		SELECT
+		<include refid="cols"></include>
+		FROM inst_merchantinfo WHERE MERCHANTNO = #{merchantNo} LIMIT 1
+	</select>
+
+	<!-- 取消用户自动登录 -->
+	<update id="cancleMerchantAutoLogin" parameterType="string">
+		UPDATE inst_merchantinfo SET AUTOLOGIN = 0 WHERE MERCHANTNO
+		= #{merchantNo}
+	</update>
+
+	<!-- 更新用户信息 -->
+	<update id="updateMerchantLoginInfo" parameterType="com.iqb.asset.inst.platform.data.bean.merchant.MerchantBean">
+		UPDATE inst_merchantinfo SET LASTLOGINTIME = NOW() ,
+		OPENID = #{openId} , AUTOLOGIN = #{autoLogin} WHERE MERCHANTNO = #{merchantNo}
+	</update>
+
+	<!-- 更新密码 -->
+	<update id="updateMerchantPwd" parameterType="com.iqb.asset.inst.platform.data.bean.merchant.MerchantBean">
+		UPDATE inst_merchantinfo SET PASSWORD = #{newPassword} WHERE
+		MERCHANTNO = #{merchantNo}
+	</update>
+
+	<!-- 根据openId查询商户信息 -->
+	<select id="getMerchantInfoByOpenId" parameterType="string" resultType="com.iqb.asset.inst.platform.data.bean.merchant.MerchantBean">
+		SELECT id, MERCHANTNO AS merchantNo, PASSWORD AS 'password'
+		FROM inst_merchantinfo WHERE OPENID = #{openId} LIMIT 1
+	</select>
+
+	<!-- 获取商户列表 -->
+	<select id="getMerchantList" parameterType="map" resultType="com.iqb.asset.inst.platform.data.bean.merchant.MerchantBean">
+		SELECT
+		M.LEVEL AS 'level',
+		M.PARENTID AS parentId,
+		M.MERCHANTNO AS merchantNo,
+		M.MERCHANTSHORTNAME AS merchantShortName,
+		M.CITY AS 'city',
+		M.RISKTYPE AS riskType
+		FROM
+		inst_merchantinfo M,inst_merchantbiztype B
+		WHERE M.MERCHANTNO = B.merchantNo AND M.ENABLED != 1 AND M.PUBLICNO = #{wechatNo}
+		AND B.bizType = #{bizType}
+		ORDER BY
+		CASE
+		WHEN M.CITY = #{city}
+		THEN 0
+		ELSE 1
+		END,
+		M.PROVINCE,
+		M.CITY
+	</select>
+
+	<!-- 根据商户号获取分期计划列表 -->
+	<select id="getPlanListByMerchantNo" parameterType="map" resultType="com.iqb.asset.inst.platform.data.bean.plan.PlanBean">
+		SELECT
+		id,
+		PLANSHORTNAME AS planShortName,
+		CONCAT(PLANFULLNAME," ",REMARK) AS planFullName,
+		MERCHANTNO AS merchantNo,
+		DOWNPAYMENTRATIO AS downPayMentRatio,
+		SERVICEFEERATIO AS
+		serviceFeeRatio,
+		MARGINRATIO AS marginRatio,
+		FEERATIO AS feeRatio,
+		FEEYEAR AS feeYear,
+		TAKEPAYMENT AS takePayment,
+		INSTALLPERIODS installPeriods
+		FROM
+		inst_plan
+		WHERE MERCHANTNO = #{merchantNo} 
+		AND STATUS = 1
+		<if test="bizType != null and bizType != '' ">
+			AND BIZTYPE = #{bizType}
+		</if>
+	</select>
+	
+	<!-- 查询商户省市区 -->
+	<select id="getProvinceCity" resultMap="merchantBean">
+		SELECT PROVINCE,CITY FROM inst_merchantinfo WHERE ENABLED = 0 AND PUBLICNO = #{wechatNo} GROUP BY PROVINCE,CITY ;
+	</select>
+	
+	<!-- 根据商户号获取车型信息  -->
+	<select id="getCarModelsByMerchantNo" parameterType="com.iqb.asset.inst.platform.data.bean.merchant.MerchantBean" resultType="string">
+		SELECT DISTINCT projectName FROM inst_projectbaseinfo WHERE merchantNo = #{merchantNo}
+	</select>
+	
+	<!-- 根据车型获取车系信息  -->
+	<select id="getCarVehByProjectName" parameterType="com.iqb.asset.inst.platform.data.bean.merchant.MerchantBean" resultType="string">
+		SELECT DISTINCT projectInfo FROM inst_projectbaseinfo WHERE merchantNo = #{merchantNo} AND projectName = #{projectName}
+	</select>
+</mapper>

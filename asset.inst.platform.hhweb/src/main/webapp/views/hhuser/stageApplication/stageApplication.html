@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="wdth=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>提交分期申请</title>
+		
+		<!-- 样式文件引入 -->
+		<link rel="stylesheet" type="text/css" href="../../../css/hhuser/module.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/common/selection.css" />
+		<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/hhuser/stageApplication.css" />
+		
+		<!-- 脚本文件引入 -->
+		<script defer async="true" data-main="../../../js/hhuser/stageApplication/stageApplication.js" src="../../../js/require.js"></script>		
+		
+		<!-- 页面样式 -->
+		<style type="text/css">
+			.hidden {
+				display: none;
+			}
+			.invisible {
+				visibility: hidden;
+			}
+			.weui-dialog__btn_primary {
+			    color: #06c8c4;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<form id="orderForm">
+				<section class="main" style="height: 3.76rem">
+					<div class="mains clearfix">
+						<div class="mainl" style="height: 100%; float: left; position: relative;">
+							<img src="../../../img/location2.png" style="width: 10px; position: absolute; left: 0; top: calc((100% - 14px)/2);" />
+						</div>
+						<div class="mainsr clearfix">			                
+			                <input id="location" type="text" readonly />
+			                <span>手动选择 &gt;</span>
+						</div>
+					</div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix" style="position: relative; border-bottom: none;">
+							<span>商户名称</span>
+							<input type="text" id="merchantShortName" name="merchantShortName" placeholder="请选择商户名称" readonly />
+							<div><img src="../../../img/ar.png" style="width: 20px; position: absolute; right:8px; top:14px;" /></div>
+						</div>
+					</div>
+					</section>
+					<section class="main proMain" style="margin-top: 5px; height: auto;">
+					<div class="main1 clearfix">
+						<div class="mainr clearfix">
+							<span>项目信息</span>
+					    </div>
+					</div>
+					<div class="main2">
+						<div class="main2-r">
+							<div class="mainr2 clearfix">
+								<span class="span1">单价</span>
+			                    <input type="number" class="price" id="price1" name="price1" placeholder="金额" />
+			                    <span class="span2">元</span>				
+			            	</div>
+							<div class="mainr1 clearfix">
+								<span>项目1</span>
+								<img src='../../../img/deleteGray.png' class='proDelete'>
+			                    <input type="text" class="item" id="item1" name="item1" placeholder="请输入项目名称" />				
+			            	</div>
+		            	</div>
+					</div>
+					<div class="main3">
+					     <img src="../../../img/moreItem.png">
+					     <span>添加项目</span>
+					</div>
+					</section>
+					<section class="main" style="margin-top: 5px; height: 11.28rem;">
+					<div class="main1 clearfix">
+						<div class="mainr clearfix">
+							<span>分期信息</span>
+					    </div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>借款总额</span>
+		                    <input type="number" id="amt" name="amt" placeholder="借款总额" readonly />				
+		            	</div>
+					</div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix plans" style="position: relative">
+							<span>分期方案</span>
+		                    <input type="text" id="planShortName" name="planShortName" placeholder="请选择分期方案" readonly />
+						    <div class="choosePlan" ><img src="../../../img/choosePlan.png" style="width: 20px" /></div>
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>首<font class="invisible">占位</font>付</span>
+							<input type="text" id="downPayment" name="downPayment" placeholder="首付" readonly />
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>月<font class="invisible">占位</font>供</span>
+							<input type="text" id="monthInterest" name="monthInterest" placeholder="月供" readonly />
+						</div>
+					</div>										 
+					<div class="main1">
+						<div class="mainr clearfix" style="border-bottom: none">
+							<span>备<font class="invisible">占位</font>注</span>
+							<input type="text" id="remark" name="remark" placeholder="请输入备注" />
+						</div>
+					</div>
+				</section>
+			</form>
+			<button class="btn" id="btn-apply" style="margin-top: 20px;">提交申请</button>
+			<input type="text" class="hidden" id="merchantNo" />
+			<input type="text" class="hidden" id="planId" />
+			<div id="mask"></div>
+			<div class="planContent">
+			    <div class="planContent-title">请选择分期方案<span class="close">X</span></div>
+			    <div class="planContentItem"></div>
+			    <div class="planContent-bottom">确定</div>  
+			</div>
+			<!-- 弹框 -->
+			<div class="maskcontent">
+			    <div class="cb">
+			    </div>
+			    <div class="cm">
+			        <span class="qx">取消</span>
+			        <span class="qd">确定</span>
+			    </div>
+	        </div>
+		</div>
+	</body>
+</html>

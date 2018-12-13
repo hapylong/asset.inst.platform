@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.deal_online_data.openaccount.dao.DataAccountDao">
+
+	<!-- 获取银行卡信息列表  -->
+	<select id="getAccounInfoList" resultType="com.iqb.asset.inst.platform.deal_online_data.openaccount.bean.DataAccountBean">
+    	SELECT B.regId,B.orderId,U.idNo,U.realName,(SELECT bankCardNo FROM inst_bankcard C WHERE C.userId = U.id ORDER BY C.id LIMIT 1 ) AS bankCardNo FROM inst_bak2vc B, inst_user U WHERE B.regId = U.regId
+	</select>
+	
+</mapper>

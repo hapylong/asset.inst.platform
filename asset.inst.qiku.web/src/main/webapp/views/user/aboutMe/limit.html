@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/common/module.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/user/bankCardList.css">
+	<style>
+		body{
+			background-color:#ffffff;
+		}
+		img{
+			width: 3%;
+   			margin-top: -0.6%;
+   			padding-left: 1%;
+		}
+		div{
+			margin:9px;
+		}
+		span{
+			color:#f39800;
+			text-indent: 15px;
+			margin: 6px 0px 6px 0px;
+			font-size: 1.3rem;
+		}
+		table{
+    		border-collapse: collapse;
+    		font-size: 1.5rem;
+    		margin: 0 auto;
+    		box-shadow: 0px 0px 0px 1px #ababab
+		}
+		tr{
+			border-bottom: 1px solid #ababab;
+		}
+		td{
+			border-right: 1px solid #ababab;
+			padding: 4px 23px 3px 9px;
+			color: #585858;
+		}
+	</style>
+	<script defer async="true" data-main="../../../js/user/aboutMe/limit.js" src="../../../js/require.js"></script>
+	<title>银行卡限额</title>
+</head>
+<body>
+	<div>
+		<img src='../../../img/limit.png'>
+    	<span class='bankLimit'>各银行限额</span>
+    </div>
+    <table>
+       <tr style="border-top: 5px solid #ebeff5;">
+         <td>银行名称</td>
+         <td>单笔限额</td>
+         <td style="border-right: none;">日累计限额</td>
+       </tr>
+    </table>
+    <div class="submit" style="margin-top:3rem;margin-bottom:2rem;">
+	   <a href='addBankCard.html' class="save" style='background:#f39800'>返回</a>
+	</div>
+</body>
+</html>

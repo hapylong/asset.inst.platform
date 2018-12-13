@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.dict.DictRepository">
+
+<!-- 配置映射字段 -->
+    <resultMap type="com.iqb.asset.inst.platform.data.bean.dict.DictEntity"
+        id="dictMap">
+        <result column="DICT_TYPE_CODE" property="dictDypeCode" />
+        <result column="DICT_NAME" property="dictName" />
+        <result column="DICT_CODE" property="dictCode" />
+        <result column="DICT_VALUE" property="dictValue" />
+        <result column="CASCADE_CODE" property="casCadeCode" />
+        <result column="REMARK" property="remark" />
+        <result column="IS_ENABLE" property="isEnable" />
+    </resultMap>
+    
+    <select id="getDictByDTCAndDC" resultMap="dictMap" parameterType="Map">
+        SELECT
+            dict_type_code,dict_name,dict_code,dict_value,cascade_code,remark,is_enable
+        FROM 
+            iqb_sys_dict_item 
+        WHERE 
+            is_enable = 1 
+        AND
+            dict_type_code=#{dtc} 
+        AND 
+            dict_code=#{dc};
+    </select>
+</mapper>

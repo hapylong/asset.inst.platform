@@ -1,0 +1,41 @@
+package com.iqb.asset.inst.platform.biz.pay;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.iqb.asset.inst.platform.common.base.biz.BaseBiz;
+import com.iqb.asset.inst.platform.data.dao.pay.PaymentAmtDetailDao;
+
+/**
+ * 
+ */
+@Component
+public class PaymentAmtDetailBiz extends BaseBiz {
+    
+    @Autowired
+    private PaymentAmtDetailDao paymentAmtDetailDao;
+
+    public int insertPaymentAmtDetail(Map<String, Object> map) {
+    	super.setDb(0, super.MASTER);
+    	return paymentAmtDetailDao.insertPaymentAmtDetail(map);
+    }
+	
+	public int updateCacheFlagByOutOrderId(Map<String, Object> map) {
+		super.setDb(0, super.MASTER);
+		return paymentAmtDetailDao.updateCacheFlagByOutOrderId(map);
+	}
+	
+	public Long sumCacheAmtByOrderIdANDRepayNo(String orderId,int repayNo) {
+		super.setDb(0, super.SLAVE);
+		return paymentAmtDetailDao.sumCacheAmtByOrderIdANDRepayNo(orderId,repayNo);
+	}
+    
+	public List<String> queryOutOrderIdByOrderIdANDRepayNo(String orderId,int repayNo) {
+		super.setDb(0, super.SLAVE);
+		return paymentAmtDetailDao.queryOutOrderIdByOrderIdANDRepayNo(orderId,repayNo);
+	}
+	
+}

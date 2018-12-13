@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>订单详情</title>
+		
+		<!-- 样式文件引入 -->
+		<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />	
+    	<link rel="stylesheet" type="text/css" href="../../../css/merchant/orderDetails.css" />
+    	
+    	<!-- 脚本文件引入 -->
+		<script defer async="true" data-main="../../../js/merchant/order/orderDetails.js" src="../../../js/require.js"></script>    	
+	</head>
+	<body>
+		<div class="back">
+		   <div class="part">
+		      <div class="part-title">
+		        <span class="sl">订单状态</span>
+		        <span class="sr"></span>
+		      </div>
+		      <div class="parti">
+		         <span class="parti-l">订&nbsp;&nbsp;单&nbsp;&nbsp;号</span>
+		         <span class="parti-m">：</span>
+		         <span class="parti-r" id="orderId"></span>
+		      </div>
+		      <div class="parti" style="margin-top: 0.2rem">
+		         <span class="parti-l">订单名称</span>
+		         <span class="parti-m">：</span>
+		         <span class="parti-r" id="orderName"></span>
+		      </div>
+		      <div class="parti">
+		         <span class="parti-l">订单金额</span>
+		         <span class="parti-m">：</span>
+		         <span class="parti-r" id="orderAmt"></span>
+		      </div>
+		      <div class="parti">
+		         <span class="parti-l">分期详情</span>
+		         <span class="parti-m">：</span>
+		         <span class="parti-r" id="stageDetail"></span>
+		      </div>
+		      <div class="parti">
+		         <span class="parti-l">首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;付</span>
+		         <span class="parti-m">：</span>
+		         <span class="parti-r" id="downPayment"></span>
+		      </div>
+		      <div class="parti">
+		         <span class="parti-l">上&nbsp;&nbsp;收&nbsp;息 </span>
+		         <span class="parti-m">：</span>
+		         <span class="parti-r" id="feeAmount"></span>
+		      </div>
+		      <div class="parti">
+		         <span class="parti-l">月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;供</span>
+		         <span class="parti-m">：</span>
+		         <span class="parti-r" id="monthPer"></span>
+              </div>
+		      <div class="parti">
+		         <span class="parti-l">保&nbsp;&nbsp;证&nbsp;金 </span>
+		         <span class="parti-m">：</span>
+		         <span class="parti-r" id="margin"></span>
+		      </div>
+		      <div class="parti">
+		         <span class="parti-l">服&nbsp;&nbsp;务&nbsp;费 </span>
+		         <span class="parti-m">：</span>
+		         <span class="parti-r" id="serviceFee"></span>
+		      </div>
+		      <div class="parti bordershow" style="padding-bottom:0.2rem;">
+		         <span class="parti-l">下单时间</span>
+		         <span class="parti-m">：</span>
+		         <span class="parti-r" id="orderTime"></span>
+		      </div>
+		   </div>
+		   <div class="part" style="margin-top: 0.7rem">
+		      <div class="part-title">
+		        <span class="sl">个人信息</span>
+		      </div>
+		      <div class="parti" style="margin-top: 0.2rem">
+		         <span class="parti-l">用户姓名</span>
+		         <span class="parti-m">：</span>
+		         <span class="parti-r" id="realName"></span>
+		      </div>
+		      <div class="parti">
+		         <span class="parti-l">手&nbsp;&nbsp;机&nbsp;号 </span>
+		         <span class="parti-m">：</span>
+		         <span class="parti-r" id="regId"></span>
+		      </div>
+		      <div class="parti">
+		         <span class="parti-l">身份证号</span>
+		         <span class="parti-m">：</span>
+		         <span class="parti-r" id="idNo"></span>
+		      </div>
+		   </div>
+		</div>	
+	</body>
+</html>

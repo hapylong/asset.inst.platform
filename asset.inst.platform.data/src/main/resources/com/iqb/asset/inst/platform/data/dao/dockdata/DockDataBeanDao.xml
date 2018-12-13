@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.dockdata.DockDataBeanDao">
+
+	<resultMap id="dockDataBean" type="com.iqb.asset.inst.platform.data.bean.dockdata.DockDataBean">
+		<result property="id" column="ID" />
+		<result property="extOrderId" column="EXTORDERID" />
+		<result property="orderId" column="ORDERID" />
+		<result property="merchantNo" column="MERCHANTNO" />
+		<result property="name" column="NAME" />
+		<result property="idNo" column="IDNO" />
+		<result property="mobile" column="MOBILE" />
+		<result property="content" column="CONTENT" />
+		<result property="contract" column="CONTRACT" />
+		<result property="riskStatus" column="RISKSTATUS" />
+		<result property="riskRemark" column="RISKREMARK" />
+		<result property="statusCallBackUrl" column="STATUSCALLBACKURL" />
+		<result property="contractCallBackUrl" column="CONTRACTCALLBACKURL" />
+		<result property="version" column="VERSION" />
+		<result property="createTime" column="CREATETIME" />
+		<result property="updateTime" column="UPDATETIME" />
+	</resultMap>
+	
+	<sql id="insertCols">
+		EXTORDERID,MERCHANTNO, NAME, IDNO, MOBILE, CONTENT, RISKSTATUS,RISKREMARK, STATUSCALLBACKURL, CONTRACTCALLBACKURL, CREATETIME,UPDATETIME
+	</sql>
+	
+	<sql id="cols">
+		EXTORDERID,MERCHANTNO,ORDERID, NAME, IDNO, MOBILE, CONTENT, RISKSTATUS,RISKREMARK, STATUSCALLBACKURL, CONTRACTCALLBACKURL, CREATETIME,UPDATETIME
+	</sql>
+	
+	<!-- 根据对接商户进件数据 -->
+	<select id="getDockDataInfo" parameterType="java.lang.String" resultMap="dockDataBean">
+		select <include refid="cols"/> from inst_dockdata where EXTORDERID = #{extOrderId} limit 1;
+	</select>
+	
+	<!-- 查询dockData -->
+	<select id="getDockDataByOrderId" parameterType="java.lang.String" resultMap="dockDataBean">
+		select <include refid="cols"/> from inst_dockdata where ORDERID = #{orderId} limit 1;
+	</select>
+	
+	<!-- 将落地进件数据 -->
+	<insert id="insertDockDataInfo" parameterType="com.iqb.asset.inst.platform.data.bean.dockdata.DockDataBean">
+		INSERT INTO	inst_dockdata (<include refid="insertCols"/>) VALUES (#{extOrderId},#{merchantNo}, #{name}, #{idNo}, #{mobile},
+		#{content}, #{riskStatus}, #{riskRemark}, #{statusCallBackUrl},
+		#{contractCallBackUrl}, #{createTime}, #{updateTime});
+	</insert>
+	
+	<!-- 修改状态 -->
+	<update id="modDockDataInfo">
+		UPDATE inst_dockdata set RISKSTATUS=#{riskStatus},RISKREMARK=#{riskRemark},UPDATETIME=#{updateTime}
+		WHERE ID=#{id}
+	</update>
+	
+	<update id="updateDockData">
+		UPDATE inst_dockdata SET ORDERID=#{orderId} WHERE EXTORDERID=#{extOrderId}
+	</update>
+	
+</mapper>

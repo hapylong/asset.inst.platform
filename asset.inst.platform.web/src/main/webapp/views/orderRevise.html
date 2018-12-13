@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">  
+    <title>个人信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    
+    <!-- 样式文件引入 -->
+    <link rel="stylesheet" type="text/css" href="../js/lib/weui/css/weui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/user/riskInfoAdd.css">
+    
+    <!-- 脚本文件引入 -->
+	<script defer async="true" data-main="../js/orderDetails.js" src="../js/require.js"></script>
+    <style>
+	    .searchBigBox{
+		width:100%;
+	    padding:0.5rem;
+	    position:fixed;
+		left:0;
+		top:0;
+		z-index:2;
+		background:#f2f2f2;
+		}
+		.searchBox{
+			width:calc(100% - 1.3rem);
+			/* height:1.5rem; */
+			border:1px solid #d2d2d2;
+			border-radius:8px;
+			padding:0.15rem;
+			background:#fff;
+			position:relative;
+		}
+		#searchContent{
+			line-height:1.5rem;
+			border:0;
+			outline:none;
+			width: 80%;
+		}
+		.searchLogo{
+			width:1.8rem;
+			height:1.8rem;
+			border-radius:0 8px 8px 0;
+			position:absolute;
+			right:0;
+			bottom:0;
+		}
+		.searchLogo img{
+			display:block;
+			margin:0 auto;
+			margin-top:calc((1.8rem - 20px)/2);
+		}
+		.tit_content .input{
+		    color:#000;
+		}
+    </style>
+</head>
+<body>
+<!-- 搜索框 -->
+<div class='searchBigBox' style='background:#fff;'>
+ <div class='searchBox'>
+     <input type='text' placeholder='请输入订单号' id='searchContent'>
+     <div class='searchLogo'>
+        <img src='../img/search.png' width="20px"> 
+     </div>
+ </div>
+</div>
+<form id="checkInfoForm" method="post">
+    <input type="hidden" id="version"  name="version"/>
+    <div class="title" style='margin-top:3.3rem;border-top:1px solid #d5d5d5;'>
+        <img src="../img/l1.png">
+        <span>订单信息</span>
+    </div>
+    <div class="tit_content">
+        <span>preAmtStatus：</span>
+        <input type="tel" id="preAmtStatus"  name="preAmtStatus"  class="input checkinput" placeholder="请输入preAmtStatus"/>
+    </div>
+    <div class="tit_content">
+        <span>status：</span>
+        <input type="text"  id ="status"  name="status" class="input checkinput" placeholder="请输入status"/>
+    </div>
+    <div class="tit_content">
+        <span>wfStatus：</span>
+        <input type="text"  id ="wfStatus"  name="wfStatus" class="input checkinput" placeholder="请输入wfStatus"/>
+    </div>
+    <div class="tit_content">
+        <span>riskStatus：</span>
+        <input type="text"  id ="riskStatus"  name="riskStatus" class="input checkinput" placeholder="请输入riskStatus"/>
+    </div>
+    <div class="tit_content">
+        <span>orderAmt：</span>
+        <input type="text"  id ="orderAmt"  name="orderAmt" class="input checkinput" readonly/>
+    </div>
+    <div class="tit_content">
+        <span>regId：</span>
+        <input type="text"  id ="regId"  name="regId" class="input checkinput" readonly/>
+    </div>
+    <div class="submitss">保存</div>
+    <!-- 弹窗 -->
+    <div id="mask" style='z-index:5;opacity:0.8'></div>
+	<div class="maskcontent" style='z-index:6'>
+	    <div class="cb" style='line-height:20px;padding-top:20px;height:65px;'>
+	         <p>请在输入框中输入内容</p>
+	         <input type='text' style='margin-top:10px;' id='inputHtml'>      
+	    </div>
+	    <div class="cm">
+	        <span class="qd" style='width:100%'>确定</span>
+	    </div>
+	</div>
+</form>
+</body>
+</html>
+
+

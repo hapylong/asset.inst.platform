@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" type="text/css" href="../../../css/hhuser/module.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/login/login.css">
+	<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+
+	<script defer async="true" data-main="../../../js/hhuser/login/user_reg.js" src="../../../js/require.js"></script>
+	<title>注册</title>
+	<style>
+	/* .checkbox{width:90%;margin:0 auto;margin-left:5%}
+	.checkbox-text{float:right} */
+	.agree{margin-left:5%;}
+	.agree span,.agree a{font-size:1.4rem}
+	</style>
+</head>
+<body>
+	<form id="regForm" method="post">
+		<div style="padding-top:1rem;">
+			<div class="borderArea" style="margin-top:0;">
+				<p class="iptItem">
+					<span class="logIcon" style='width:1.1rem'><img src="../../../img/mobile.png" alt=""></span>
+					<input type="tel" class="login-input" id="regId" name="regId" placeholder="请输入手机号" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" maxlength="11">
+					<i class="close"><img src="../../../img/close.png" alt=""></i>
+				</p>
+				<p class="iptItem" style='margin-top:5px;'>
+					<span class="logIcon" style='width:1.6rem;'><img src="../../../img/code2.png" alt=""></span>
+					<input type="number" class="login-input" id="verificationCode" name="verificationCode" placeholder="请输入收到的验证码" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" maxlength="6">
+					<span id="smsSendBtn" class="sendMsg send-able"><span class="sendTim"></span><span class="sendDet">获取验证码</span></span>
+					<i class="close close2" style='top:1.1rem;right:8rem;'><img src="../../../img/close.png" alt=""></i>
+				</p>
+			</div>
+		</div>
+		<div class="logTip" style="margin-top:1rem;">
+		</div>
+		<div style="padding-top:0.5rem;">
+			<div class="borderArea" style="margin-top:0;">
+				<p class="iptItem">
+					<span class="logIcon"><img src="../../../img/password1.png" alt=""></span>
+					<input type="password" class="login-pwd" id="password" name="passWord" maxlength=10 placeholder="请设置6~10位数字字母组合密码" onkeyup="this.value=this.value.replace(/[^0-9,a-z,A-Z]/g,'')">
+					<i class="eyeIcon eye-close"><i></i></i>
+				</p>
+				<p class="iptItem" style="margin-top:5px">
+					<span class="logIcon"><img src="../../../img/password1.png" alt=""></span>
+					<input type="password" class="login-pwd" id="rePassword"  placeholder="请确认密码" maxlength=10 onkeyup="this.value=this.value.replace(/[^0-9,a-z,A-Z]/g,'')">
+					<i class="eyeIcon eye-close"><i></i></i>
+				</p>
+			</div>
+		</div>
+		<div class="agree">
+		    <div class="checkbox" style='width:25px;'>
+		  		<input type="checkbox"  id="checkboxInput" name="checkboxInput" checked="checked"/>
+			  	<label for="checkboxInput"></label>
+	  	    </div>
+			<span>同意</span><a href="agreement.html" style="color:#06c8c4;">《花の花世界用户协议》</a><a href="serviceFee.html" style="color:#06c8c4;">《服务费计算规则》</a>
+		</div>
+		<div id="regBtn" class="submit" style="margin-top:1.5rem;">
+			<a href="#" class="redBtn">提交</a>
+		</div>	
+		<div class="logTip txtCenter" style="margin-top:1.5rem;">
+			<a href="login.html" class="logReg">已有账号，登录</a>
+		</div>
+		<!-- 弹窗 -->
+	    <div id="mask"></div>
+		<div class="maskcontent">
+		    <div class="cb">
+		        <p>输入答案，即可获取验证码</p>
+		        <div class='code'>
+			        <img id="numCode" height='26px'>
+			        <input type="tel" name="imageVerifyCode" id="imageVerifyCode" placeholder=''/>
+		        </div>
+		    </div>
+		    <div class="cm">
+		        <span class="qx">取消</span>
+		        <span class="qd">确定</span>
+		    </div>
+		</div>
+	</form>
+	<div class="weui-footer weui-footer_fixed-bottom">
+		<p class="weui-footer__text">Copyright © 2016-2026 iqb.io</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.order.OrderBeanDao">
+
+	<resultMap id="orderBean" type="com.iqb.asset.inst.platform.data.bean.order.OrderBean">
+		<result property="id" column="id" />
+		<result property="orderId" column="orderId" />
+		<result property="userId" column="userId" />
+		<result property="regId" column="regId" />
+		<result property="merchantNo" column="merchantNo" />
+		<result property="bizType" column="bizType" />
+		<result property="orderName" column="orderName" />
+		<result property="orderAmt" column="orderAmt" />
+		<result property="orderItems" column="orderItems" />
+		<result property="orderRemark" column="orderRemark" />
+		<result property="preAmt" column="preAmt" />
+		<result property="receivedPreAmt" column="receivedPreAmt" /><!-- 收到的实际预付款 -->
+		<result property="preAmtStatus" column="preAmtStatus" />
+		<result property="status" column="status" />
+		<result property="riskStatus" column="riskStatus" />
+		<result property="wfStatus" column="wfStatus" />
+		<result property="contractStatus" column="contractStatus" />
+		<result property="riskRetRemark" column="riskRetRemark" />
+		<result property="refundFlag" column="refundFlag" />
+		<result property="margin" column="margin" />
+		<!-- jira：10000 支付主体ID -->
+		<!-- 剩余期数月 -->
+		<result property="leftInstIMonth" column="leftInstIMonth" />
+		<result property="leftInstIDay" column="leftInstIDay" />
+		<!-- 剩余期数日 -->
+		<result property="payOwnerId" column="payOwnerId" />
+		<result property="downPayment" column="downPayment" />
+		<result property="serviceFee" column="serviceFee" />
+		<result property="planId" column="planId" />
+		<result property="qrCodeId" column="qrCodeId" />
+		<result property="takePayment" column="takePayment" />
+		<result property="feeYear" column="feeYear" />
+		<result property="feeAmount" column="feeAmount" />
+		<result property="monthInterest" column="monthInterest" />
+		<result property="chargeWay" column="chargeWay" />
+		<result property="procInstId" column="procInstId" />
+		<result property="fee" column="fee" />
+		<result property="sumMoney" column="sumMoney" />
+		<result property="applyAmt" column="applyAmt" />
+		<result property="gpsAmt" column="gpsAmt" />
+		<result property="assessPrice" column="assessPrice" />
+		<result property="version" column="version" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<!-- 支付日志信息映射 -->
+	<resultMap type="com.iqb.asset.inst.platform.data.bean.pay.PaymentLogBean" id="paymentLogBean">
+		<result property="regId" column="regId" />
+		<result property="orderId" column="orderId" />
+		<result property="merchantNo" column="merchantNo" />
+		<result property="amount" column="amount" />
+		<result property="bankCardNo" column="bankCardNo" />
+		<result property="bankId" column="bankId" />
+		<result property="bankName" column="bankName" />
+		<result property="orderStatus" column="orderStatus" />
+		<result property="flag" column="flag" />
+		<result property="repayNo" column="repayNo" />
+		<result property="remark" column="remark" />
+		<result property="tradeNo" column="tradeNo" />
+		<result property="outOrderId" column="outOrderId" />
+		<result property="tranTime" column="tranTime" />
+		<result property="createTime" column="createTime" />
+	</resultMap>
+
+	<!-- order表字段 -->
+	<sql id="orderCols">
+		orderId,userId,regId,merchantNo,bizType,orderName,orderAmt,orderItems,orderRemark,preAmt,preAmtStatus,status,
+		riskStatus,wfStatus,contractStatus,riskRetRemark,refundFlag,margin,downPayment,serviceFee,planId,qrCodeId,takePayment,feeYear,feeAmount,
+		monthInterest,chargeWay,procInstId,fee,sumMoney,applyAmt,gpsAmt,assessPrice,version,createTime,updateTime,leftInstIMonth
+	</sql>
+
+	<!-- 支付日志的字段 -->
+	<sql id="paymentLog">
+		amount,tranTime,bankCardNo,bankId,bankName,orderStatus,createTime,merchantNo,regId,orderId,tradeNo,outOrderId,flag,repayNo
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="condition_sql">
+		<!-- Equal query -->
+		<if test="riskStatus != null">
+			AND riskStatus = #{riskStatus}<!-- 订单状态 -->
+		</if>
+		<if test="regId != null and regId != ''">
+			AND U.regId = #{regId}<!-- 手机号 -->
+		</if>
+		<if test="realName !=null and realName !=''">
+			AND U.realName = #{realName}<!-- 用户名称 -->
+		</if>
+		<if test="merchantNo !=null and merchantNo != '' ">
+			AND O.merchantNo = #{merchantNo}
+		</if>
+	</sql>
+
+	<!-- 商户根据条件查询订单信息 -->
+	<select id="getOrderInfoByList" parameterType="java.util.Map" resultMap="orderBean">
+		SELECT
+		*
+		FROM inst_orderinfo O, inst_user U WHERE O.userId = U.id
+		<include refid="condition_sql"></include>
+	</select>
+
+	<!-- 根据id获取二维码订单信息 -->
+	<select id="getQrOrderInfoById" parameterType="map" resultType="com.iqb.asset.inst.platform.data.bean.order.QrCodeBean">
+		SELECT
+		iq.id,
+		PLANID AS planId,
+		PROJECTNAME AS
+		projectName,
+		PROJECTDETAIL AS projectDetail,
+		iq.MERCHANTNO AS merchantNo,
+		im.MERCHANTSHORTNAME AS merchantShortName,
+		INSTALLAMOUNT AS installAmount,
+		INSTALLPERIODS AS installPeriods,
+		DOWNPAYMENT AS downPayment,
+		SERVICEFEE AS serviceFee,
+		MONTHINTEREST AS monthInterest,
+		MARGIN,
+		iq.FEE,
+		REMARK,
+		IMGNAME AS imgName
+		FROM
+		inst_qrcode iq
+		LEFT JOIN inst_merchantinfo im
+		ON iq.MERCHANTNO = im.MERCHANTNO
+		WHERE iq.id = #{id}
+	</select>
+
+	<!-- 插入订单信息 -->
+	<insert id="insertOrderInfo" parameterType="com.iqb.asset.inst.platform.data.bean.order.OrderBean" keyProperty="id"
+		useGeneratedKeys="true">
+		INSERT INTO inst_orderinfo (
+		<include refid="orderCols"></include>
+		)
+		VALUES
+		(#{orderId},#{userId},#{regId},#{merchantNo},#{bizType},#{orderName},#{orderAmt},#{orderItems},
+		#{orderRemark},#{preAmt},#{preAmtStatus},#{status},#{riskStatus},#{wfStatus},#{contractStatus},#{riskRetRemark},#{refundFlag},#{margin},
+		#{downPayment},#{serviceFee},#{planId},#{qrCodeId},#{takePayment},#{feeYear},#{feeAmount},#{monthInterest},
+		#{chargeWay},#{procInstId},#{fee},#{sumMoney},#{applyAmt},#{gpsAmt},#{assessPrice},#{version},
+		#{createTime},#{updateTime},#{orderItems})
+	</insert>
+
+	<!-- 根据orderId获取订单信息 -->
+	<select id="getOrderInfoByOrderId" parameterType="string" resultType="com.iqb.asset.inst.platform.data.bean.order.OrderBean">
+		SELECT
+			*
+		FROM
+		inst_orderinfo WHERE orderId = #{orderId} AND STATUS = 1 LIMIT 1
+	</select>
+
+	<!-- 根据orderNo获取订单信息 -->
+	<select id="getOrderInfoByOrderNo" parameterType="string"
+		resultType="com.iqb.asset.inst.platform.data.bean.order.OrderBean">
+		SELECT
+		<include refid="orderCols"></include>
+		FROM
+		inst_orderinfo WHERE orderNo = #{orderNo} AND STATUS = 1 LIMIT 1
+	</select>
+
+	<select id="getOrderInfoById" parameterType="java.lang.String" resultMap="orderBean">
+		SELECT
+		<include refid="orderCols" />
+		FROM
+		inst_orderinfo WHERE id = #{id} AND STATUS = 1 LIMIT 1;
+	</select>
+
+	<!-- 更新订单信息 -->
+	<update id="updateOrderInfo" parameterType="com.iqb.asset.inst.platform.data.bean.order.OrderBean">
+		UPDATE inst_orderinfo SET STATUS = 1,riskStatus = #{riskStatus},riskRetRemark = #{riskRetRemark} WHERE orderId =
+		#{orderId}
+	</update>
+
+	<!-- 添加支付日志 -->
+	<insert id="addPaymentLog" parameterType="java.util.Map">
+		insert into inst_paymentlog (
+		<include refid="paymentLog" />
+		)
+		values(#{amount},#{tranTime},#{bankCardNo},#{bankId},#{bankName},#{orderStatus},NOW(),#{merchantId},#{regId},#{orderId},#{tradeNo},#{outOrderId},#{flag},#{repayNo})
+	</insert>
+	
+	<!-- 统计支付历史总金额 -->
+	<select id="getSumPayAmt" parameterType="String" resultType="String">
+		SELECT sum(amount) from inst_paymentlog WHERE orderId=#{orderId} AND repayNo=#{repayNo};
+	</select>
+
+	<!-- 根据orderId获取支付日志信息 -->
+	<select id="getPaymentLogByOutOrderId" parameterType="String" resultMap="paymentLogBean">
+		select
+		<include refid="paymentLog" />
+		from inst_paymentlog where outOrderId = #{outOrderId}
+	</select>
+	
+	<!-- 修改实际预付款金额 -->
+	<update id="updatePreInfo" parameterType="java.util.Map">
+		update inst_orderinfo SET version = version+1,receivedPreAmt=#{receivedPreAmt},preAmtStatus = #{preAmtStatus} ,riskStatus = #{riskStatus} ,updateTime=NOW() WHERE orderId = #{orderId}
+	</update>
+	
+	<!-- 更新做完预支付的订单 -->
+	<update id="updateOrderAfterPrePay" parameterType="String">
+		update
+		inst_orderinfo set status = 1 , preAmtStatus =
+		1,riskStatus =
+		0,updateTime =NOW()
+		where orderId = #{orderId}
+	</update>
+	
+<select id="getBalanceAdvanceOrder" parameterType="String" resultType="com.iqb.asset.inst.platform.data.bean.order.RefundOrderBean">
+            SELECT *,(
+              SELECT
+                  settleStatus
+              FROM
+                  inst_settleapply b
+              WHERE
+                  b.orderid= a.orderid
+              ORDER BY
+                  createtime
+              DESC LIMIT 1
+              )
+            AS
+              settlestatus
+            FROM
+              inst_orderinfo a
+            WHERE a.regId=#{regId}
+            AND
+            <!-- FINANCE-2486：当订单状态为已放款/已分期后都可做提前结清 由原来的只查询分期订单修改为分期和放款订单 -->
+              (a.riskStatus =3 or a.riskStatus=7)
+      </select>
+
+
+	<!-- 易安家用户更新做完预支付的订单  -->
+	<update id="updateOrderAfterPrePay4Yianjia" parameterType="String">
+		update
+		inst_orderinfo set status = 1 , preAmtStatus =
+		1,riskStatus = 3,updateTime =NOW()
+		where orderId = #{orderId}
+	</update>
+	
+	<!-- 订单置无效接口 -->
+	<update id="invalidOrder">
+		UPDATE inst_orderinfo SET `status`=2 WHERE orderId = #{orderId};
+	</update>
+	
+	<!-- 修改审核状态接口 -->
+	<update id="updateOrderRiskStatus">
+		UPDATE inst_orderinfo SET riskStatus = #{riskStatus} WHERE orderId= #{orderId};
+	</update>
+	
+	<!-- 更新订单信息(状态类:preAmtStatus，status，wfStatus，riskStatus, contractStatus) -->
+	<update id="updateOrderByCondition" parameterType="com.iqb.asset.inst.platform.data.bean.order.OrderBean">
+		UPDATE inst_orderinfo 
+		<set>
+			version = #{version,jdbcType=INTEGER} + 1,
+			<if test="preAmtStatus != null">
+				preAmtStatus = #{preAmtStatus},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="wfStatus != null and wfStatus != ''">
+				wfStatus = #{wfStatus},
+			</if>
+			<if test="riskStatus != null">
+				riskStatus = #{riskStatus},
+			</if>
+			<if test="contractStatus != null and contractStatus != '' ">
+				contractStatus = #{contractStatus},
+			</if>
+		</set>
+		WHERE orderId = #{orderId} and status = 1
+	</update>
+	
+	<insert id="createSettleApplyBean" parameterType="com.iqb.asset.inst.platform.data.bean.pay.InstSettleApplyBean" keyProperty="id"
+        useGeneratedKeys="true">
+       INSERT INTO inst_settleapply (
+        orderId, userId, overdueAmt, cutOverdueAmt, finalOverdueAmt,
+        cutOverdueRemark, payAmt, payPrincipal, surplusPrincipal, margin,
+        feeAmount, settleStatus, refundAmt, refundMargin, shouldRepayAmt,
+        totalRepayAmt, receiveAmt, recieveDate, amtStatus, hiddenFee,
+        curItems, reason, remark, expiryDate, payMethod,
+        procInstId, version, createTime, cutOverdueFlag, totalOverdueInterest,
+        remainInterest, monthPrincipal,totalRepayAmtOriginal,overItems
+    )
+    VALUES
+        (
+           #{orderId}, #{userId}, #{overdueAmt}, #{cutOverdueAmt}, #{finalOverdueAmt},
+	        #{cutOverdueRemark}, #{payAmt}, #{payPrincipal}, #{surplusPrincipal}, #{margin},
+	        #{feeAmount}, #{settleStatus}, #{refundAmt}, #{refundMargin}, #{shouldRepayAmt},
+	        #{totalRepayAmt}, #{receiveAmt}, #{recieveDate}, #{amtStatus}, #{hiddenFee},
+	        #{curItems}, #{reason}, #{remark}, #{expiryDate}, #{payMethod},
+	        #{procInstId}, 1, now(), #{cutOverdueFlag}, #{totalOverdueInterest},
+	        #{remainInterest}, #{monthPrincipal},#{totalRepayAmtOriginal},#{overItems}
+        );
+    </insert>
+    
+    <select id="getISAPByOid" parameterType="java.lang.String" resultType="com.iqb.asset.inst.platform.data.bean.pay.InstSettleApplyBean">
+        SELECT 
+            *, (totalRepayAmt - IFNULL(receiveAmt,0)) as needPayAmt
+        FROM
+            inst_settleapply 
+        WHERE
+            orderid = #{orderId}
+        ORDER BY id desc LIMIT 1
+    </select>
+    
+    
+    <update id="updateSettleApplyProcInstIdById" parameterType="com.iqb.asset.inst.platform.data.bean.pay.InstSettleApplyBean">
+      UPDATE 
+        inst_settleapply
+        <set>
+            VERSION = #{version}+1 ,
+            <if test="overdueAmt != null and overdueAmt != '' ">
+                overdueAmt = #{overdueAmt},
+            </if>
+            <if test="cutOverdueAmt != null and cutOverdueAmt != '' ">
+                cutOverdueAmt = #{cutOverdueAmt},
+            </if>
+            <if test="finalOverdueAmt != null and finalOverdueAmt != '' ">
+                finalOverdueAmt = #{finalOverdueAmt},
+            </if>
+            <if test="cutOverdueRemark != null and cutOverdueRemark != '' ">
+                cutOverdueRemark = #{cutOverdueRemark},
+            </if>
+            <if test="payAmt != null and payAmt != '' ">
+                payAmt = #{payAmt},
+            </if>
+            <if test="payPrincipal != null and payPrincipal != '' ">
+                payPrincipal = #{payPrincipal},
+            </if>
+            <if test="surplusPrincipal != null and surplusPrincipal != '' ">
+                surplusPrincipal = #{surplusPrincipal},
+            </if>
+            <if test="margin != null and margin != '' ">
+                margin = #{margin},
+            </if>
+            <if test="feeAmount != null and feeAmount != '' ">
+                feeAmount = #{feeAmount},
+            </if>
+             <if test="settleStatus != null ">
+                settleStatus = #{settleStatus},
+            </if>
+             <if test="refundAmt != null and refundAmt != '' ">
+                refundAmt = #{refundAmt},
+            </if>
+            <if test="refundMargin != null and refundMargin != '' ">
+                refundMargin = #{refundMargin},
+            </if>
+             <if test="shouldRepayAmt != null and shouldRepayAmt != '' ">
+                shouldRepayAmt = #{shouldRepayAmt},
+            </if>
+             <if test="totalRepayAmt != null and totalRepayAmt != '' ">
+                totalRepayAmt = #{totalRepayAmt},
+            </if>
+            <if test="receiveAmt != null and receiveAmt != '' ">
+                receiveAmt = #{receiveAmt},
+            </if>
+             <if test="amtStatus != null and amtStatus != '' ">
+                amtStatus = #{amtStatus},
+            </if>
+            <if test="hiddenFee != null and hiddenFee != '' ">
+                hiddenFee = #{hiddenFee},
+            </if>
+            <if test="curItems != null">
+                curItems = #{curItems},
+            </if>
+            <if test="reason != null and reason != '' ">
+                reason = #{reason},
+            </if>
+            <if test="remark != null and remark != '' ">
+                REMARK = #{remark},
+            </if>
+            <if test="expiryDate != null and expiryDate != '' ">
+                expiryDate = #{expiryDate},
+            </if>
+            <if test="procInstId != null and procInstId != '' ">
+                procInstId = #{procInstId},
+            </if>
+            <if test="payMethod != null and payMethod != '' ">
+                payMethod = #{payMethod},
+            </if>
+            <if test="totalOverdueInterest != null and totalOverdueInterest != '' ">
+                totalOverdueInterest = #{totalOverdueInterest,jdbcType=DECIMAL},
+            </if>
+            <if test="remainInterest != null and remainInterest != '' ">
+                remainInterest = #{remainInterest},
+            </if>
+            <if test="cutOverdueFlag != null and cutOverdueFlag != '' ">
+                cutOverdueFlag = #{cutOverdueFlag},
+            </if>
+            <if test="monthPrincipal != null and monthPrincipal != '' ">
+                monthPrincipal = #{monthPrincipal},
+            </if>
+            <if test="recieveDate != null and recieveDate != '' ">
+                recieveDate = #{recieveDate},
+            </if>
+            <if test="totalRepayAmtOriginal != null and totalRepayAmtOriginal != '' ">
+                totalRepayAmtOriginal = #{totalRepayAmtOriginal},
+            </if>
+             <if test="overItems != null and overItems != '' ">
+                overItems = #{overItems},
+            </if>
+            UPDATETIME = NOW()
+        </set>
+        <where>
+            orderId = #{orderId}
+            <if test="id != null and id != '' ">
+                and id = #{id}
+            </if>
+        </where>
+    </update>
+    
+    <update id="updateSettleApply" parameterType="java.util.Map">
+    	UPDATE inst_settleapply SET version = version+1,amtStatus=#{amtStatus},recieveDate=NOW(),receiveAmt=#{receiveAmt} WHERE id=#{id};
+    </update>
+    
+    <select id="getNeedPayAmt" parameterType="String" resultType="com.iqb.asset.inst.platform.data.bean.pay.InstSettleApplyBean">
+    	SELECT totalRepayAmt-IFNULL(receiveAmt,0) as needPayAmt,amtStatus,orderId,totalRepayAmt,receiveAmt from inst_settleapply WHERE id = #{id};
+    </select>
+    
+    <select id="getSpecialSABByOrderId" parameterType="String" resultType="com.iqb.asset.inst.platform.data.bean.pay.InstSettleApplyBean">
+        SELECT
+            *
+        FROM
+            inst_settleapply
+        WHERE
+            orderid = #{orderId} 
+        AND NOT ISNULL(settlestatus)
+        ORDER BY
+            createtime
+        DESC
+        LIMIT
+            1
+    </select>
+    
+    <update id="updateSettleStatus" parameterType="java.util.Map">
+		UPDATE inst_settleapply SET settleStatus = #{settleStatus} WHERE id = #{id};
+	</update>
+	<select id="selectInstPDByOId" parameterType="String" resultType="String">
+		select APPLY_STATUS from iqb_inst_penalty_derate where ORDER_ID = #{orderId} and APPLY_STATUS = "1"
+	</select>
+	<select id="getOrderInfoByRegId" parameterType="String" resultType="com.iqb.asset.inst.platform.data.bean.order.OrderBean">
+		select * from inst_orderinfo where regId = #{regId}
+	</select>
+</mapper>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>信用信息</title>
+        
+        <!-- 样式文件引入 -->
+        <link rel="stylesheet" type="text/css" href="../../../css/hhuser/module.css" />
+        <link rel="stylesheet" type="text/css" href="../../../css/common/selection.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../../css/hhuser/stageApplication.css" />  
+        <link rel="stylesheet" type="text/css" href="../../../css/hhuser/creditCtrStep1.css" />  
+        <link rel="stylesheet" type="text/css" href="../../../css/hhuser/creditCtrStep2.css" />  
+        <link rel="stylesheet" type="text/css" href="../../../css/hhuser/creditCtrStep3.css" />  
+        <link rel="stylesheet" type="text/css" href="../../../css/hhuser/creditCtrStep4.css" /> 
+          
+        <!-- 脚本文件引入 -->
+        <script defer async="true" data-main="../../../js/hhuser/userCenter/creditCtrStep4.js" src="../../../js/require.js"></script>
+               
+        <!-- 页面样式 -->
+        <style type="text/css">
+            .hidden {
+            	display: none;
+            }
+            .invisible {
+				visibility: hidden;
+			}
+        </style>
+    </head>
+    <body>
+        <div class="page1">
+            <form id="orderForm">
+                <section class="main" style="height: auto; margin-top: 20px;">
+                    <div class="main1 clearfix">
+                        <div class="mainr clearfix">
+                            <img class="ico1" src="../../../img/basicInfo.png">
+                            <span style="width: 25%">基本信息</span>            
+                        </div>
+                        <div class="mainr clearfix" style="position: relative">
+                            <span>婚姻状况</span>
+                            <input type="text" id="marriedStatus" name="marriedStatus" placeholder="请选择婚姻状况" readonly />
+                            <div class="hidden"><img src="../../../img/ar.png" style="width: 20px; position: absolute; right:8px; top:14px;" /></div>
+                        </div>
+                        <div class="mainr clearfix" style="position: relative">
+                            <span>性<font class="invisible">占位</font>别</span>
+                            <input type="text" id="sex" name="sex" placeholder="请选择性别" readonly />
+                            <div class="hidden"><img src="../../../img/ar.png" style="width: 20px; position: absolute; right:8px; top:14px;" /></div>
+                        </div>
+                        <div class="mainr clearfix" style="position: relative">
+                            <span>文化水平</span>
+                            <input type="text" id="culturalLevel" name="culturalLevel " placeholder="请选择文化水平" readonly />
+                            <div class="hidden"><img src="../../../img/ar.png" style="width: 20px; position: absolute; right:8px; top:14px;" /></div>
+                        </div>
+                        <div class="mainr clearfix">
+                            <span>常住地址</span>
+                            <input type="text" id="regAddr" name="regAddr" placeholder="请输入常住地址" readonly />              
+                        </div>
+                        <div class="mainr clearfix">
+                            <span>工作单位</span>
+                            <input type="text" id="company" name="company" placeholder="请输入工作单位" readonly />              
+                        </div>
+                        <div class="mainr clearfix">
+                            <span>单位座机</span>
+                            <input type="number" id="phoneNum" name="phoneNum" placeholder="请输入单位座机 如 01012345678" oninput="if(value.length>12)value=value.slice(0,12)" readonly />              
+                        </div>
+                        <div class="mainr clearfix" style="border-bottom: none">
+                            <span>月&nbsp;&nbsp;收&nbsp;&nbsp;入</span>
+                            <input type="number" id="income" name="income " placeholder="请输入月收入" readonly />              
+                        </div>
+                    </div>
+                </section>
+                <section class="main" style="height:auto;margin-top: 20px">
+                    <div class="main1 clearfix">
+                        <div class="mainr clearfix">
+                            <img class="ico2" src="../../../img/emergency.png">
+                            <span style="width: 25%">紧急联系人</span>            
+                        </div>
+                        <div class="mainr clearfix">
+                            <span>亲属姓名</span>
+                            <input type="text" id="contactName1" name="contactName1" placeholder="请输入亲属姓名" readonly />              
+                        </div>
+                        <div class="mainr clearfix">
+                            <span>手&nbsp;&nbsp;机&nbsp;&nbsp;号</span>
+                            <input type="number" id="contactMobel1" name="contactMobel1" placeholder="请输入亲属手机号" oninput="if(value.length>11)value=value.slice(0,11)" readonly />              
+                        </div>
+                        <div class="mainr clearfix">
+                            <span>朋友姓名</span>
+                            <input type="text" id="contactName2" name="contactName2" placeholder="请输入朋友姓名" readonly />              
+                        </div>
+                        <div class="mainr clearfix" style="border-bottom: none">
+                            <span>手&nbsp;&nbsp;机&nbsp;&nbsp;号</span>
+                            <input type="number" id="contactMobel2" name="contactMobel2" placeholder="请输入朋友手机号" oninput="if(value.length>11)value=value.slice(0,11)" readonly />              
+                        </div>
+                    </div>
+                </section>
+            </form>
+        </div>
+        <div class="page2">
+            <p>身份证件</p>    
+            <div class="circle"></div>
+            <span>清晰可辨的身份证正反面照片(扫描拍照均可，要求：<br>完整，清晰)</span>   
+            <ul class="IdCard1">
+                <li class="IdCardFace">
+                    <img id="btn_file1" src="../../../img/IdCardFace.png" />
+                    <span class="info">身份证正面照</span>
+                </li>
+                <li class="IdCardBcak">
+                    <img id="btn_file2" src="../../../img/IdCardBcak.png" />
+                    <span class="info">身份证背面照</span>
+                </li>
+            </ul> 
+            <div class="circle"></div>
+            <span>借款人手持身份证照片：借款人头像清晰可辨，身份<br> 证件清晰可辨（注意身份证不要遮住借款人下巴）</span>
+            <ul class="IdCard2">
+                <li>
+                    <img id="btn_file3" src="../../../img/IdCard.png" />
+                    <span class="info">借款人手持身份证照片</span>
+                </li>
+            </ul> 
+        </div>
+        <div class="page3">
+            <p>增信信息</p>    
+            <div class="circle"></div>
+            <span>补充以下信息可提高信用：车辆行驶证、房产证、银<br>行流水、结婚证、芝麻信用及通话详单照片（选填） </span>   
+            <ul class="IdCard1">
+                <li class="IdCardBcak hidden">
+                    <img src="../../../img/qualifications2.png" />
+                </li>
+            </ul> 
+            <span class="info">增信信息</span>
+        </div>
+        
+        <input type="text" class="hidden" id="marriedStatusValue" />
+        <input type="text" class="hidden" id="culturalLevelValue" />
+        
+        <button class="btn" id="btn-back" style="margin-top: 20px">返回</button>
+        <button class="btn" id="btn-edit" style="margin-top: 20px">修改</button>
+        
+        <button class="btn hidden" id="btn-esc" style="margin-top: 20px">取消</button>
+        <button class="btn hidden" id="btn-save" style="margin-top: 20px">保存</button> 
+        
+        
+        <form id="formA">
+        	<input type="file" class="hidden" id="fileA" name="file" accept="image/*" />
+        </form>
+        <form id="formB">
+        	<input type="file" class="hidden" id="fileB" name="file" accept="image/*" />
+        </form>
+        <form id="formC">
+        	<input type="file" class="hidden" id="fileC" name="file" accept="image/*" />
+        </form>   
+        
+    </body>
+</html>

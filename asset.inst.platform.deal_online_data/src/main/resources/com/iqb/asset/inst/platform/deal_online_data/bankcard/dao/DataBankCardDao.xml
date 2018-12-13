@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.deal_online_data.bankcard.dao.DataBankCardDao">
+	
+	<!-- 获取银行卡信息列表  -->
+	<select id="getBankCardInfoList" resultType="com.iqb.asset.inst.platform.deal_online_data.bankcard.bean.DataBankCardBean">
+		SELECT 
+		  t1.id,
+		  t1.user_id AS userId,
+		  t1.pay_account AS bankCardNo,
+		  t1.bankName,
+		  t1.cardCode AS bankCode,
+		  '2' AS STATUS
+		FROM
+		  (SELECT 
+		    fbc.id,
+		    fbc.user_id,
+		    fbc.pay_account,
+		    fbci.bankName,
+		fbci.cardCode FROM fqzf_bank_card fbc 
+		LEFT JOIN fqzf_bank_card_info fbci 
+		  ON SUBSTRING(fbc.pay_account, 1, 6) = fbci.cardNo1 WHERE fbc.id IN 
+		(SELECT 
+		  MAX(fbc1.id) 
+		FROM
+		  fqzf_bank_card fbc1 
+		GROUP BY fbc1.pay_account)) t1 
+		LEFT JOIN 
+		  (SELECT 
+		    t2fbc.id,
+		    '1' AS STATUS 
+		  FROM
+		    fqzf_bank_card t2fbc 
+		    LEFT JOIN fqzf_bank_card_info t2fbci 
+		      ON SUBSTRING(t2fbc.pay_account, 1, 6) = t2fbci.cardNo1 
+		  WHERE t2fbc.id IN 
+		    (SELECT 
+		      MAX(t2fbc1.id) 
+		    FROM
+		      fqzf_bank_card t2fbc1 
+		    GROUP BY t2fbc1.user_id)) t2 
+		  ON t1.id = t2.id 
+	</select>
+	
+	
+	<!-- 获取银行卡信息列表  -->
+	<select id="getBankCardInfoList4HT" resultType="com.iqb.asset.inst.platform.deal_online_data.bankcard.bean.DataBankCardBean">
+		SELECT 
+		  t.userId,
+		  t.bankCardNo,
+		  fbci.bankName,
+		  fbci.cardCode,
+		  '2' AS STATUS
+		FROM
+		  (SELECT 
+		    B.regId,
+		    B.orderId,
+		    U.id AS userId,
+		    U.id_card AS idNo,
+		    U.real_name AS realName,
+		    U.pay_account AS bankCardNo,
+		    (SELECT 
+		      C.bankCardNo 
+		    FROM
+		      inst_bankcard C 
+		    WHERE C.userId = U.id 
+		    ORDER BY id 
+		    LIMIT 1) AS bankCardNo1 
+		  FROM
+		    inst_bak2vc B,
+		    fqzf_user U 
+		  WHERE B.regId = U.reg_id) t 
+		  LEFT JOIN fqzf_bank_card_info fbci 
+		    ON SUBSTRING(t.bankCardNo, 1, 6) = fbci.cardNo1 
+		WHERE t.bankCardNo1 IS NULL 
+	</select>
+	
+	<!-- 获取银行卡信息列表  -->
+	<select id="getBankCardInfoById" resultType="com.iqb.asset.inst.platform.deal_online_data.bankcard.bean.DataBankCardBean" parameterType="string">
+		SELECT id, userId, bankCardNo, bankMobile, bankName, bankCode, STATUS, VERSION, createtime, updatetime FROM inst_bankcard WHERE id = #{id}
+	</select>
+	
+	<!-- 插入银行卡信息  -->
+	<insert id="insertBankCardInfo" parameterType="com.iqb.asset.inst.platform.deal_online_data.bankcard.bean.DataBankCardBean">
+		INSERT INTO inst_bankcard (id, userId, bankCardNo, bankMobile, bankName, bankCode, STATUS, VERSION, createtime, updatetime) VALUE (#{id}, #{userId}, #{bankCardNo}, #{bankMobile}, #{bankName}, #{bankCode}, #{status}, #{version}, #{createTime}, #{updateTime})
+	</insert>
+
+</mapper>

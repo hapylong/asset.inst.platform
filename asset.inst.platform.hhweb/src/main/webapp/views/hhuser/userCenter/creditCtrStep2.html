@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>信用信息</title>
+        
+        <!-- 样式文件引入 -->
+        <link rel="stylesheet" type="text/css" href="../../../css/hhuser/module.css" />
+        <link rel="stylesheet" type="text/css" href="../../../css/common/selection.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../../css/hhuser/stageApplication.css" />  
+        <link rel="stylesheet" type="text/css" href="../../../css/hhuser/creditCtrStep2.css" />  
+        
+        <!-- 脚本文件引入 -->
+        <script defer async="true" data-main="../../../js/hhuser/userCenter/creditCtrStep2.js" src="../../../js/require.js"></script>   
+            
+        <!-- 页面样式 -->
+        <style type="text/css">
+            .hidden {
+            	display: none;
+            }
+            .invisible {
+				visibility: hidden;
+			}
+        </style>
+    </head>
+    <body>
+        <div class="page2">
+            <p>身份证件</p>    
+            <div class="circle"></div>
+            <span>清晰可辨的身份证正反面照片(扫描拍照均可，要求：<br>完整，清晰)</span>   
+            <ul class="IdCard1">
+                <li class="IdCardFace">
+                    <img id="btn_file1" class="img1" src="../../../img/IdCardFace.png" />
+                    <span class="info">身份证正面照片</span>
+                </li>
+                <li class="IdCardBcak">
+                    <img id="btn_file2" class="img1" src="../../../img/IdCardBcak.png" />
+                    <span class="info">身份证背面照片</span>
+                </li>
+            </ul> 
+            <div class="circle"></div>
+            <span>借款人手持身份证照片：借款人头像清晰可辨，身份<br> 证件清晰可辨（注意身份证不要遮住借款人下巴）</span>
+            <ul class="IdCard2">
+                <li>
+                    <img id="btn_file3" class="img1" src="../../../img/IdCard.png" />
+                    <span class="info">借款人手持身份证照片</span>
+                </li>
+            </ul> 
+            <button class="btn" id="btn-apply" style="margin-top: 20px">下一步</button>
+        </div>
+        <form id="formA">
+        	<input type="file" class="hidden" id="fileA" name="file" accept="image/*" />
+        </form>
+        <form id="formB">
+        	<input type="file" class="hidden" id="fileB" name="file" accept="image/*" />
+        </form>
+        <form id="formC">
+        	<input type="file" class="hidden" id="fileC" name="file" accept="image/*" />
+        </form>
+        
+        
+        
+    </body>
+</html>

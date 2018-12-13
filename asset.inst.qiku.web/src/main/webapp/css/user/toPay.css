@@ -1,0 +1,321 @@
+html{font-size: 62.5%;}
+body {font:1.2rem Arial,"Microsoft YaHei","SimHei";background-color: #f5f5f5}
+*{margin:0;padding:0;font-family:Microsoft YaHei, Arial;}
+a,button,input,select,textarea,form{-webkit-tap-highlight-color: rgba(0,0,0,0);}
+#tabs {
+    overflow: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: #fff;
+    border-top: 1px solid #d5d5d5;
+    border-bottom: 1px solid #d5d5d5;
+    position:fixed;
+    left:0;
+    top:14px;;
+    z-index:2;
+}
+#tabs li {
+    float: left;
+    width:50%;
+    height:100%;
+    text-align: center;
+}
+#tabs li a{
+	width:100%;
+    display: inline-block;
+    height:45px;
+    font-size:1.6rem;
+    line-height: 48px;
+    color:#202020;
+}
+#current{
+    border-bottom: 2px solid #f39800;
+}
+.borderArea{
+    z-index:2;
+    margin-top:calc(14px + 45px);
+    border:none;
+    padding-bottom:7.5rem;
+}
+.block{
+    width:100%;
+	margin-top:8px;
+	border-top:1px solid #d5d5d5;
+	border-bottom:1px solid #d5d5d5;
+	background:#fff;	
+	overflow:hidden;
+}
+.orderTop{
+	width:100%;
+    height:5rem;
+    border-bottom:1px solid #d5d5d5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.orderIcon{
+	width:20px;
+	vertical-align:middle;
+	display:inline-block;
+	margin-left:1rem;
+}
+.orderName{
+	line-height:5rem;
+	color:#1b1b1b;
+	font-size:1.6rem;
+	margin-left:8px;
+}
+.orderBottom{
+	width:calc(100% - 1rem);
+	padding-left:1rem;
+	overflow:hidden;
+	position:relative;
+}
+table{
+	width:100%;
+	border-collapse: collapse;
+}
+.tableTitle{
+	width:100%;
+	height:4rem;
+	font-size:1.5rem;
+	color:#1b1b1b;
+	border-bottom:1px solid #d5d5d5;
+	text-align:center;
+}
+.tableContent{
+	width:100%;
+	height:4rem;
+	border-bottom:1px solid #d5d5d5;
+	text-align:center;
+	font-size:1.4rem;
+	color:#707070;
+}
+table .tableContent:last-child{
+	border-bottom:0;
+} 
+/*checkBox*/
+input[type=checkbox] {
+    visibility: hidden;
+}
+.checkbox{
+    float:left; 
+    height:25px;
+    position: relative;
+}
+.checkbox label {
+    cursor: pointer;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top:0.4rem;
+    left: 0px;
+    border-radius:2px;
+    border:1px solid #909090;
+}
+.checkbox label:focus{
+	outline:none;
+}
+.checkbox label:after {
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 5px;
+    background: transparent;
+    top: 2px;
+    left: 2px;
+    border: 2px solid #fff;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.checkbox input[type=checkbox]:checked + label{
+    border-color: #f39800;
+    outline:none;
+}
+.checkbox input[type=checkbox]:checked + label:after {
+    border-color: #f39800;
+}
+.tips{
+	width:20px;
+	position:absolute;
+	right:5px;
+	top:calc((4rem - 20px)/2);
+}
+/*底部样式*/
+.fixedBottom{
+	width:100%;
+	height:5.5rem;
+	background:#fff;
+	position:fixed;
+	right:0;
+	bottom:0rem;
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #ccc;
+}
+.moneyIcon{
+	width:21.5%;
+	position:absolute;
+	left:5px;
+	bottom:5px;
+}
+.moneyText{
+	font-size:1.6rem;
+	color:#000;
+	line-height:5.5rem;
+	float:left;
+}
+.payNow{
+	display:inline-block;
+	float:right;
+	font-size:1.6rem;
+	width:28.9%;
+	height:100%;
+	line-height:5.5rem;
+	text-align:center;
+	color:#fff;
+	background: #f39800;
+	position:absolute;
+	right:0;
+	bottom:0;
+}
+/*弹窗*/
+/* 弹窗样式  */
+#mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.5;
+    display: none;
+    z-index:3;
+}
+.maskcontent {
+    display: none;
+    width: 250px;
+    height: 130px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 10px #292929;
+    border: 1px solid #BDBDBD;
+    background:#fff;
+    position: fixed;
+    left: 30%;
+    top:200px;
+    z-index:4;
+}
+.cb {
+    width: 100%;
+    height:65px;
+    padding-top:20px;
+    font-size: 15px;
+    color: #212121;
+    text-align:center;
+}
+.cb p{
+	padding:0 10px;
+	line-height:22px;
+}
+.cm {
+    border-top: 1px solid #ddd;
+    height:50px;
+}
+.qd {
+    font-size: 16px;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 45px; 
+    line-height:45px;
+    text-align: center;
+    color: #b28850;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+/* 选择付款方式 */
+.planContent{
+    display: none;
+    background: #fff;
+    position: fixed;
+    left:0;
+    right:0;
+    bottom:0; 
+    z-index:4;
+    overflow:hidden;
+}
+.planContent-title{
+    width:100%;
+    height:4rem;
+    border-bottom:1px solid #dcdcdc;
+    line-height:4rem;
+    text-align:center;
+    font-size:1.7rem;
+    color:#000;
+    background:#fff;
+}
+.planContentItem{
+   width:calc(100% - 1rem);
+   min-height:10rem;
+   max-height:26rem;
+   padding-left:1rem;
+   overflow-y:scroll;
+   overflow-x:hidden;
+}
+.planContent-title span{
+    color:#ababab;
+    position:absolute;
+    left:15px;
+}
+.useNewCard{
+	font-size:1.6rem;
+	color:#000;
+	line-height:5rem;
+	border-bottom:1px solid #d5d5d5;
+}
+.bankCard{
+	font-size:1.6rem;
+	color:#000;
+	height:calc(7rem + 1px);
+	box-sizing:border-box;
+	border-bottom:1px solid #d5d5d5;
+	position:relative;
+}
+.useNewCard img{
+	width:12px;
+	float:right;
+	margin-right:1rem;
+	margin-top:calc((5rem - 19px)/2);
+}
+.bankImg{
+	width:30px;
+	float:left;
+	margin-top:calc((7rem - 30px)/2);
+}
+.TextBox{
+	width:calc(100% - 50px);
+	height:calc(100% - 2rem);
+	float:left;
+	overflow: hidden; 
+	padding-top:1rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left:1.5rem;
+}
+.bankTitle{
+	font-size:1.6rem;
+	color:#000;
+	line-height:3rem;
+}
+.limit{
+	font-size:1.4rem;
+	color:#ababab;
+	line-height:2rem;
+}

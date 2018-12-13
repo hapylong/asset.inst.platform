@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop classpath:org/springframework/aop/config/spring-aop-4.0.xsd 
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<context:component-scan base-package="com.iqb" />
+
+	<!-- 启动定时器 -->
+	<bean id="quartzTimer" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">
+		<property name="triggers">
+			<list>
+				<ref bean="dailySchedulerTigger" /><!--生成短信文件任务 -->
+			</list>
+		</property>
+	</bean>
+
+	<!-- 短信文件表达式包装 -->
+	<bean id="dailySchedulerTigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean" lazy-init="true">
+		<property name="jobDetail">
+			<ref bean="dailySchedulerBean" />
+		</property>
+		<!-- 每五秒执行一次 -->
+<!-- 		<property name="cronExpression" value="0/5 * * * * ? *" /> -->
+		<!-- 每天早上8点钟执行 -->
+		<property name="cronExpression" value="0 0 8 * * ? *" />
+	</bean>
+
+	<!-- 调度包装 -->
+	<bean id="dailySchedulerBean" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"
+		lazy-init="false">
+		<property name="targetObject">
+			<ref bean="dailyScheduler" />
+		</property>
+		<property name="targetMethod">
+			<value>getBankList</value>
+		</property>
+		<property name="concurrent" value="false" />
+	</bean>
+
+	<!-- 每天获取支付公司的支付银行列表 -->
+	<bean id="dailyScheduler" class="com.iqb.asset.inst.platform.front.scheduler.DailyScheduler" />
+</beans>

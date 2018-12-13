@@ -1,0 +1,271 @@
+html{font-size: 62.5%;}
+body {font:1.2rem Arial,"Microsoft YaHei","SimHei";background-color: #f5f5f5}
+.borderArea{
+	width:100% ;
+	border-top:1px solid #d2d2d2;
+	border-bottom:1px solid #d2d2d2;
+	padding:0;
+	background:#fff;
+}
+.orderTitle{
+	position:fixed;
+	left:0;
+	top:0.3rem;
+	z-index:2;
+}
+.iptItem{
+	width :100%;
+	border-bottom:1px solid #d2d2d2;
+	position:relative;
+	padding:0 1.5rem;
+	line-height: 5rem;
+}
+.iptItem span{
+	line-height: 5rem;
+	font-size:1.6rem;
+}
+#tabs {
+	/*overflow: hidden;*/
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	height:5rem;
+	background: #fff;
+}
+#content{
+	z-index:1;
+	margin-top:5.6rem;
+}
+#tabs li {
+	text-align: left;
+	float: left;
+	width:33.3%;
+	height:5rem;
+}
+#tabs li a{
+	display: inline-block;
+	box-sizing:border-box;
+	font-size:1.6rem;
+	line-height:4.8rem;
+	color:#000;
+	position:relative;
+}
+#current{
+	font-weight: bold;
+	border-bottom:2px solid #b38a53;
+}
+.number{
+	width:2rem;
+	height:2rem;
+	border-radius: 50%;
+	background: #b28850;
+	text-align: center;
+	padding:0!important;
+	line-height: 2rem!important;
+	color:#fff!important;
+	position:absolute;
+	top:3px;
+	right:-1.2rem;
+	font-size:1rem!important;
+	display:none;
+}
+.orderBlock{
+	margin-top:5px;
+	border-top:1px solid #d2d2d2;
+	border-bottom:1px solid #d2d2d2;
+	padding:0 1.5rem;
+	background:#fff;
+}
+.orderBlockTop{
+	height:5rem;
+	line-height:5rem;
+	border-bottom:1px solid #d2d2d2;
+	position:relative;
+}
+.orderBlockTop span{
+	font-size:1.5rem;
+	line-height:5rem;
+}
+.toOrderDetails{
+	width:10px;
+	position:absolute;
+	right:0;
+	bottom:calc((5rem - 20px)/2);
+}
+.orderBlockBottom{
+	height:10.5rem;
+	position:relative;
+}
+.blockName,.value{
+	font-size:1.6rem;
+	line-height:5.5rem;
+    color:#000;
+}
+.value{
+	float:right;
+	color:#adadad;
+}
+.houdeNumber{
+	font-size:1.5rem;
+	line-height:3rem;
+	color:#adadad;
+	overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.houdeNumber2{
+	display:inline-block;
+	font-size:1.5rem;
+	line-height:3rem;
+	color:#adadad;
+	width:80%;
+	overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.stutes{
+	font-size:1.5rem;
+	line-height:3rem;
+	color:#adadad;
+	float:right;
+}
+.overdue{
+	line-height:2.5rem;
+	font-size:1.4rem;
+	color:#adadad;
+	text-align:right;
+	padding:0 1rem;
+}
+.delete{
+	width:20px;
+	height:20px;
+	position:absolute;
+	right:1rem;
+	bottom:calc(7.3rem - 6rem + 10px);
+}
+/*申请放款*/
+.orderBlockBottomTop{
+	height:3.6rem;
+}
+.orderBlockBottomB{
+	height:3.7rem;
+}
+.userName,.type{
+	display:inline-block;
+	width:30%;
+	text-align:left;
+	font-size:1.5rem;
+	line-height:3.6rem;
+	overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.subType,.money{
+	display:inline-block;
+	width:30%;
+	text-align:center;
+	font-size:1.5rem;
+	line-height:3.6rem;
+	overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.life{
+	display:inline-block;
+	width:30%;
+	text-align:right;
+	font-size:1.5rem;
+	line-height:3.6rem;
+	overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.loanTitle{
+	width:calc(100% - 2rem);
+	padding:0 1rem;
+	border-top:1px solid #d2d2d2;
+	border-bottom:1px solid #d2d2d2;
+	background:#fff;
+	position:fixed;
+	left:0;
+	top:5.3rem;
+	z-index:2;
+}
+.loanTitleC{
+	font-size: 1.5rem;
+    line-height: 3.6rem;
+}
+.applyLoan{
+	text-decoration:underline;
+	float:right;
+	color:#adadad;
+}
+label {
+	display: inline;
+}
+.regular-radio {
+	display: none;
+}
+.regular-radio + label {
+	-webkit-appearance: none;
+	background-color: #f1f1f1;
+	border: 1px solid #a0a0a0;
+	padding: 9px;
+	border-radius: 50px;
+	display: inline-block;
+	position: relative;
+	vertical-align:-4px;
+}
+.regular-radio:checked + label:after {
+	content: '';
+	position: absolute;
+	width: 8px;
+	height: 5px;
+	background: transparent;
+	top: 4px;
+	left: 4px;
+	border: 2px solid #fff;
+	border-top: none;
+	border-right: none;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+.regular-radio:checked + label {
+	background-color: #4758c2;
+	border: 1px solid #4758c2;
+}
+/*申请放款*/
+/* ���� */
+.tips{
+	width:120px;
+	height:40px;
+	position: fixed;
+    right: 5px;
+    bottom: 15.1rem;
+    z-index: 2;
+}
+.tips img{
+	position:absolute;
+	left:0;
+	top:0;
+}
+.tips span{
+	position:absolute;
+	left:0;
+	top:0;
+	display:block;
+    width:40px;
+    height:40px;
+    font-size:1.5rem;
+    text-align:center;
+    line-height:40px;
+    color:#ff9900;
+    font-weight:bold;
+}
+.fin{
+	display:none;
+}

@@ -1,0 +1,206 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin: 0; padding: 0; }
+body{height:100%}
+html {font-size:20px; height:100%; overflow:hidden; }
+a,button,input,select,textarea,form {-webkit-tap-highlight-color: rgba(0,0,0,0);}
+.page{
+	width:100%;
+	height:100%;
+	background:#f5f5f5;
+}
+header{
+	position:relative;
+}
+header .header{
+	width:100%;
+}
+.t-font{
+	width:100%;
+	text-algn:center;
+	position:absolute;
+	bottom:1.05rem;
+}
+.t-font li{
+	width:100%;
+	height:1.5rem;
+	text-align:center;
+	line-height:1.5rem;
+	color:#fff;
+	font-size:0.65rem;
+}
+.block{
+	width:100%;
+	height:0.3rem;
+	background:#f2f2f2;
+}
+.sectionOne{
+    width:100%;
+    height:2.7rem;
+    background:#fff;
+    border-top:1px solid #e5e5e5;
+    border-bottom:1px solid #e5e5e5; 
+    display: box;
+    display: -webkit-box;
+}
+.sectionOne-right img,.sectionOne-left img{
+   width:25px;
+   vertical-align:middle;
+}
+.sectionOne-right span,.sectionOne-left span{
+    line-height:2.7rem;
+}
+.sectionOne-right,.sectionOne-left{
+    -webkit-box-flex: 1; 
+    box-flex: 1;
+    text-align:center;
+    font-size:0.75rem;
+    color:#1b1c21;
+}
+.sectionOne-left{
+    border-right:1px solid #eaeaea;
+    overflow:hidden;
+}
+.sectionOne-right{
+    border-left:1px solid #eaeaea;
+    overflow:hidden;
+}
+.sectionTwo{
+    width:100%;
+    height:5.5rem;
+    background:#fff;
+    border-top:1px solid #e5e5e5;
+    border-bottom:1px solid #e5e5e5;
+    display: box;
+    display: -webkit-box;
+}
+.sectionSon{
+    display: box;
+    display: -webkit-box;
+    -webkit-box-flex: 1; 
+    box-flex: 1;
+    text-align:center;
+    font-size:0.7rem;
+    color:#585858;
+    border-right:1px solid #eaeaea;
+    border-left:1px solid #eaeaea;
+    width:0;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+}
+.sectionSon div span{
+    font-size:0.7rem;
+    color:#585858;
+    display:block;
+    margin-top:0.2rem;
+}
+.sectionSon div img{
+    width:20px;
+}
+.sectionTwo-one{
+    border-left:0;
+}
+.sectionTwo-four{
+    border-right:0;
+}
+/*遮罩层*/
+#buyCarMask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.85;
+    display: none;
+}
+.buyCarMaskContent {
+    position: fixed;
+    top: 3%;
+    right: 3%;
+    bottom: 3%;
+    left:3%;
+    background:url(../../img/buyCarBack.png) no-repeat;
+    background-size:100% 100%;
+    display: none;
+}
+.financingMaskContent {
+    position: fixed;
+    top: 3%;
+    right: 3%;
+    bottom: 3%;
+    left:3%;
+    background:url(../../img/buyCarBack.png) no-repeat;
+    background-size:100% 100%;
+    display: none;
+}
+.showCar{
+	width:101%;
+	display:block;
+	position:absolute;
+	left:-8px;
+	top:5px;
+}
+.buyCarDiv{
+	width:90%;
+	height:1.6rem;
+	position:absolute;
+	bottom:22%;
+	left:5%;
+}
+.showFinancing{
+	width:103%;
+	display:block;
+	position:absolute;
+	left:-8px;
+	top:5px;
+}
+.financingDiv{
+	width:90%;
+	height:1.6rem;
+	position:absolute;
+	bottom:22%;
+	left:5%;
+}
+.mortgage{
+	width:45%;
+	height:100%;
+	border-radius:5px;
+	border:1px solid #fff;
+	line-height:1.6rem;
+	color:#fff;
+	font-size:0.8rem;
+	text-align:center;
+	float:left;
+}
+.pledge{
+	width:45%;
+	height:100%;
+	border-radius:5px;
+	border:1px solid #fff;
+	line-height:1.6rem;
+	color:#fff;
+	font-size:0.8rem;
+	text-align:center;
+	float:right;
+}
+.buyNewCar{
+	width:45%;
+	height:100%;
+	border-radius:5px;
+	border:1px solid #fff;
+	line-height:1.6rem;
+	color:#fff;
+	font-size:0.8rem;
+	text-align:center;
+	float:left;
+}
+.buyOldCar{
+	width:45%;
+	height:100%;
+	border-radius:5px;
+	border:1px solid #fff;
+	line-height:1.6rem;
+	color:#fff;
+	font-size:0.8rem;
+	text-align:center;
+	float:right;
+}

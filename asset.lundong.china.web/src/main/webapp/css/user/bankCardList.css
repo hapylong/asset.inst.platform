@@ -1,0 +1,135 @@
+.borderArea{
+	border-top:1px solid #d5d5d5;
+	border-bottom:1px solid #d5d5d5;
+	background:#fff;
+}
+.block{
+	width: 96%;
+	height:6rem;
+	margin:0 auto;
+	border-bottom:1px solid #d5d5d5;
+	position:relative;
+}
+.bankCard{
+	border-radius:1rem;
+	height: 11rem;
+	margin-top: 2%;
+}
+.limit{
+	display:none;
+}
+.number{
+	color: #fff;
+	margin-top: 2rem;
+	/* margin-left: 1rem; */
+	font-size: 1.7rem;
+	position: absolute;
+	right: 8%;
+	font-weight: bold;
+}
+.bankImg{
+	width: 30px;
+	float:left;
+	margin-top: 2rem;
+	margin-left: 3rem;
+}
+.TextBox{
+	width: 75%;
+	height: 11rem;
+	float:left;
+	overflow: hidden;
+}
+.imgBox{
+	overflow: hidden;
+    display: inline-block;
+    width: 20%;
+    float: left;
+    height: 11rem;
+}
+.bankTitle{
+	font-size: 1.8rem;
+	color: #fff;
+	margin-top: 2rem;
+	margin-right: 0rem;
+}
+.cardType{
+	/* margin-left: 60%; */
+	font-size: 1.5rem;
+	position: absolute;
+	right: 9%;
+}
+.limit{
+	font-size:1.4rem;
+	color:#ababab;
+	line-height:2rem;
+}
+.arrow{
+	width:12px;
+	float:right;
+	margin-top:calc((6rem - 19px)/2);
+}
+.iptItem{
+	width:calc(100% - 1rem);
+	margin-left:1rem;
+	padding:0;
+}
+.iptItem select{
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    background: url("../../img/selectArrow.png") no-repeat scroll right center transparent;
+    background-size:15px auto;
+}
+.toLimit{
+	float:right;
+	margin-right:1rem;
+	color:#b38a53;
+	font-size:1.4rem;
+	line-height:3rem;
+}
+.submit{
+    width: 90%;
+    margin: 0 auto;
+    overflow:hidden;
+}
+.save{
+    display: block;
+    width: 100%;
+    height: 3.6rem;
+    line-height: 3.6rem;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    text-align: center;
+    border:0;
+    outline:0;
+    background:#b38a53;
+    color:#fff;
+    -webkit-appearance: none;
+}
+/*閾惰鍗￠檺棰�/
+.bankLimit{
+	width:calc(100% - 1rem);
+	font-size:1.4rem;
+	color:#1b1b1b;
+	line-height:2.8rem;
+	padding-left:1rem;
+	margin-top:0.8rem;
+}
+table{
+	width:calc(100% - 2rem);
+	margin:0 auto;
+	border-collapse: collapse; 
+	background:#fff;
+}
+tr{
+	width:100%;
+	height:100%;
+	border:1px dashed #d5d5d5; 
+	line-height:2.8rem;
+}
+td{
+	font-size:1.4rem;
+	color:#707070;
+	text-align:center;
+	/* width:33.333333% */
+}

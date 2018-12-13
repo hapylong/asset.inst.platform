@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>提交分期申请</title>
+		
+		<!-- 样式文件引入 -->
+		<link rel="stylesheet" type="text/css" href="../../../css/common/module.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/common/selection.css" />
+		<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/user/mortgage.css" />
+		
+		<!-- 脚本文件引入 -->
+		<script defer async="true" data-main="../../../js/user/buyCar/buyNewCarResult.js" src="../../../js/require.js"></script>		
+	    <style type="text/css">
+			.invisible {
+				visibility: hidden;
+			}
+			.mainr span{
+			    width:25%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<form id="orderForm">
+				<section class="main" style="margin-top:14px;height:17.02rem;">
+					<div class="main1 clearfix">
+						<div class="mainr clearfix">
+			                <span>商户名称</span>
+							<input type="text" id="merchantShortName" name="merchantShortName" placeholder="商户名称" readonly />
+						</div>
+					</div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix">
+							<span>车辆信息</span>
+							<input type="text" id="orderName" name="orderName" placeholder="车辆信息" readonly />
+					    </div>
+					</div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix">
+							<span>订单总额</span>
+							<input type="text" id="installAmount" name="installAmount" placeholder="订单总额" readonly />
+					    </div>
+					</div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix">
+							<span>分期期数</span>
+							<input type="text" id="installPeriods" name="installPeriods" placeholder="分期期数" readonly />
+					    </div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>首<font class="invisible">占位</font>付</span>
+							<input type="text" id="downPayment" name="downPayment" placeholder="首付" readonly />
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>月付租金</span>
+							<input type="text" id="monthAmount" name="monthAmount" placeholder="月付租金" readonly />
+						</div>
+					</div> 
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>保&nbsp;&nbsp;证&nbsp;&nbsp;金</span>
+							<input type="text" id="margin" name="margin" placeholder="保证金" readonly />
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>服&nbsp;&nbsp;务&nbsp;&nbsp;费</span>
+							<input type="text" id="serviceFee" name="serviceFee" placeholder="服务费" readonly />
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix" style="border-bottom: none">
+							<span>上&nbsp;&nbsp;收&nbsp;&nbsp;息</span>
+							<input type="text" id="fee" name="fee" placeholder="上收息" readonly />
+						</div>
+					</div>
+				</section>
+			</form>
+			<button class="btn" id="btn-apply" style="margin-top:20px;">提交申请</button>
+		</div>
+	</body>
+</html>

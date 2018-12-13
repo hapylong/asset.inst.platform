@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.account.AccountDao">
+
+	<!-- 更新用户信息（账户相关）  -->
+	<update id="updateAccountInfo" parameterType="com.iqb.asset.inst.platform.data.bean.account.AccountBean">
+		UPDATE 
+		  inst_user 
+		SET
+		  idNo = #{idNo},
+		  realName = #{realName} 
+		WHERE regId = #{regId} 
+	</update>
+	
+	<!-- 保存用户是否通过鉴权  -->
+	<update id="updateUserAuthority" parameterType="string">
+		UPDATE 
+		  inst_user 
+		SET hasAuthority = 1 where regId = #{regId}
+	</update>
+
+    <select id="getBankcardByRegId" parameterType="java.lang.String" resultType="java.util.Map">
+        SELECT 
+            b.bankcardno,b.bankname,b.bankmobile
+        FROM 
+            inst_user a
+        LEFT JOIN
+            inst_bankcard b
+        ON
+            a.id = b.userid
+        WHERE 
+            a.regid = #{regId}
+        ORDER BY 
+            b.id 
+        DESC
+        LIMIT 1
+    </select>
+</mapper>

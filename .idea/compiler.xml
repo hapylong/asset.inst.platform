@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="asset.inst.platform.biz" />
+        <module name="asset.inst.platform.cache" />
+        <module name="asset.inst.platform.common" />
+        <module name="asset.inst.platform.data" />
+        <module name="asset.inst.platform.deal_online_data" />
+        <module name="asset.inst.platform.front" />
+        <module name="asset.inst.platform.hcarweb" />
+        <module name="asset.inst.platform.hhweb" />
+        <module name="asset.inst.platform.service" />
+        <module name="asset.inst.platform.testcase" />
+        <module name="asset.inst.platform.web" />
+        <module name="asset.inst.qiku.web" />
+        <module name="asset.lundong.china.web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.8">
+      <module name="asset.inst.platform" target="1.7" />
+      <module name="asset.inst.platform.biz" target="1.7" />
+      <module name="asset.inst.platform.cache" target="1.7" />
+      <module name="asset.inst.platform.common" target="1.7" />
+      <module name="asset.inst.platform.data" target="1.7" />
+      <module name="asset.inst.platform.deal_online_data" target="1.7" />
+      <module name="asset.inst.platform.front" target="1.7" />
+      <module name="asset.inst.platform.hcarweb" target="1.7" />
+      <module name="asset.inst.platform.hhweb" target="1.7" />
+      <module name="asset.inst.platform.service" target="1.7" />
+      <module name="asset.inst.platform.testcase" target="1.7" />
+      <module name="asset.inst.platform.web" target="1.7" />
+      <module name="asset.inst.qiku.web" target="1.7" />
+      <module name="asset.lundong.china.web" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

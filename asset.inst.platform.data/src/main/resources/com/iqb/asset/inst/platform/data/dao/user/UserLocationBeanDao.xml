@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.user.UserLocationBeanDao" >
+
+	<resultMap type="com.iqb.asset.inst.platform.data.bean.user.UserLocationBean" id="userLocationBean">
+		<result property="id" column="id" />
+		<result property="regId" column="regId" />
+		<result property="province" column="province" />
+		<result property="city" column="city" />
+		<result property="district" column="district" />
+		<result property="address" column="address" />
+		<result property="locateDate" column="locateDate" />
+		<result property="version" column="version" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+	
+	<!-- 表中的字段 -->
+	<sql id="cols">
+		regId,province,city,district,address,locateDate
+	</sql>
+	
+	<!-- 保存用户定位信息 数据分析使用 -->
+	<insert id="insertUserAddress" parameterType="com.iqb.asset.inst.platform.data.bean.user.UserLocationBean" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO inst_userlocation (regId, province, city, district, address, locateDate, version, createTime, updateTime) 
+		VALUES (#{regId}, #{province}, #{city}, #{district}, #{address}, #{locateDate}, #{version}, #{createTime}, #{updateTime});
+	</insert>
+	
+</mapper>

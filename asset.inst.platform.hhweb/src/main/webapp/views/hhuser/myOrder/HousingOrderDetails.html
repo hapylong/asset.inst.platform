@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="wdth=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>提交分期申请</title>
+		
+		<!-- 样式文件引入 -->		
+		<link rel="stylesheet" type="text/css" href="../../../css/hhuser/module.css" />				
+		<link rel="stylesheet" type="text/css" href="../../../css/hhuser/housingApplicationToPay.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/common/selection.css" />
+		<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+		
+
+		<!-- 脚本文件引入 -->
+		<script defer async="true" data-main="../../../js/hhuser/myOrder/HousingOrderDetail.js" src="../../../js/require.js"></script>		
+		
+		<!-- 页面样式 -->
+		<style type="text/css">
+			.hidden {
+				display: none;
+			}
+			.weui-dialog__btn_primary {
+			    color: #06c8c4;
+			}
+			.spanL{font-size: 0.8rem;}
+		    .spanR{
+	            float: right;
+	            color: #06c8c4;
+	            margin-right: 1rem;
+	            margin-top: 0.3rem;
+	            font-size: 0.8rem;
+		    }
+		    .invisible {
+				visibility: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<form id="orderForm">
+				<section class="main" style="height: 3.76rem;">
+					<div class="mains clearfix">
+		               <span class="spanL">订单状态:</span>
+		               <span class="spanR"></span>
+                    </div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix" style="position:relative;border-bottom:none;">
+							<span>商户名称</span>
+							<input type="text" id="merchantShortName" name="merchantShortName" placeholder="商户名称" readonly />
+							<!-- <div><img src="../../../img/ar.png" style="width: 20px; position: absolute; right:8px; top:14px;" /></div> -->
+						</div>
+					</div>
+					</section>
+					<section class="main" style="margin-top: 5px; height: 9.4rem;">
+					<div class="main1 clearfix">
+						<div class="mainr clearfix" style="position: relative">
+							<span>项目名称</span>
+							<input type="text" id="projectName" name="projectName" placeholder="项目名称" readonly />
+							<!-- <div><img src="../../../img/ar.png" style="width: 20px; position: absolute; right:8px; top:14px;" /></div> -->
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>押金金额</span>
+							<input type="number" id="margin" name="margin" placeholder="押金金额" />
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>月供金额</span>
+							<input type="number" id="monthAmount" name="monthAmount" placeholder="月供金额" />
+						</div>
+					</div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix plans" style="position: relative">
+							<span>分期期数</span>
+		                    <input type="text" id="orderItems" name="orderItems" placeholder="分期期数" readonly />
+						    <!-- <div class="choosePlan" ><img src="../../../img/choosePlan.png" style="width: 20px" /></div> -->
+						</div>
+					</div>								 
+					<div class="main1">
+						<div class="mainr clearfix" style="border-bottom: none">
+							<span>备注信息</span>
+							<input type="text" id="remark" name="remark" placeholder="备注信息" />
+						</div>
+					</div>
+				</section>
+				<section class="main amt" style="margin-top: 5px; height: 1.88rem">
+				    <div class="main1">
+						<div class="mainr clearfix" style="border-bottom: none">
+							<span>合<font class="invisible">占位</font>计</span>
+							<input type="text" id="amt" name="amt" placeholder="合计" readonly />
+						</div>
+					</div>
+				</section>
+			</form>
+			<button class="btn" id="btn-apply" style="margin-top: 20px;">立即支付</button>
+			<div id="mask"></div>
+			<div class='planContent'>
+			    <div class='planContent-title'>
+			                   选择付款方式
+		            <a href='javascript:;' class='close'>X</a>
+			    </div>
+			    <div class='planContentItem'>
+			         <p class='useNewCard'>使用新卡付款<img src='../../../img/arrowRight.png'></p>
+			    </div>
+			</div>
+		</div>
+	</body>
+</html>

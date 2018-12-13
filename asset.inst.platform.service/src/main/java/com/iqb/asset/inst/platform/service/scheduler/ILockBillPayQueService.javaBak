@@ -1,0 +1,23 @@
+package com.iqb.asset.inst.platform.service.scheduler;
+
+/**
+ * @author chenyong
+ * 2018-07-31
+ */
+public interface ILockBillPayQueService {
+
+	/**
+	 * 处理锁定账单支付金额队列
+	 */
+	void handleLockBillPayQue();
+	
+	/**
+	 * 处理先锋支付回调结果队列——全额
+	 */
+	void handleXfAmountAsyncQue();
+	
+	/**
+	 * 处理先锋支付回调结果队列——拆分支付
+	 */
+	void handleXfbreakAmtAsyncQue();
+}

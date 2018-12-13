@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.pledge.PledgeRepository" >
+
+    <select id="getAccountByConditions" parameterType="String" resultType="com.iqb.asset.inst.platform.data.bean.pledge.db.InstUserEntity">
+        SELECT
+            regid, realname, idno
+        FROM
+            inst_user
+        WHERE
+            regid = #{regId}
+    </select>
+    
+    <update id="updateAccountInfo" parameterType="com.iqb.asset.inst.platform.data.bean.pledge.request.PledgeUpdateAccountInfoRequestMessage" >
+        UPDATE
+            inst_user
+        SET
+            realname = #{realName} , idno = #{idNo}
+        WHERE 
+            regid = #{accountId}
+    </update>
+    
+    <insert id="createOrderInfoEntity" parameterType="com.iqb.asset.inst.platform.data.bean.pledge.db.InstOrderInfoEntity" >
+        INSERT INTO 
+            INST_ORDERINFO
+            (orderid, userid, regid, merchantno, biztype, ordername, orderamt,
+             orderitems, orderremark, preamt, preamtstatus, status, wfstatus,
+             riskstatus, riskretremark, refundflag, margin, downpayment, servicefee,
+             planid, qrcodeid, takepayment, feeyear, feeamount, monthinterest, chargeway,
+             procinstid, fee, summoney, applyamt, gpsamt, assessprice, orderno, loaninterval,
+             version, createtime, updatetime, contractstatus)
+        VALUES
+            (#{orderId}, #{userId}, #{regId}, #{merchantNo}, #{bizType}, #{orderName}, 
+            #{orderAmt}, #{orderItems}, #{orderRemark}, #{preAmt}, #{preAmtStatus}, 
+            #{status}, #{wfStatus}, #{riskStatus}, #{riskRetRemark}, #{refundFlag}, 
+            #{margin}, #{downPayment}, #{serviceFee}, #{planId}, #{qrCodeId}, #{takePayment}, 
+            #{feeYear}, #{feeAmount}, #{monthInterest}, #{chargeWay}, #{procInstId}, #{fee}, 
+            #{sumMoney}, #{applyAmt}, #{gpsAmt}, #{assessPrice}, #{orderNo}, #{loanInterval}, 
+            #{version}, #{createTime}, #{updateTime}, #{contractStatus})
+    </insert>
+    
+    <insert id="createPledgeInfoEntity" parameterType="com.iqb.asset.inst.platform.data.bean.pledge.db.InstPledgeInfoEntity">
+	    INSERT INTO 
+	       inst_pledgeinfo 
+	           (
+		           orderId, plate, 
+		           carType, engine, registAdd, 
+		           registDate, carNo, mileage, 
+		           version, createTime, updateTime
+	           )
+	    VALUES 
+	           (
+		           #{orderId,jdbcType=VARCHAR}, #{plate,jdbcType=VARCHAR}, 
+		           #{carType,jdbcType=TINYINT}, #{engine,jdbcType=VARCHAR}, #{registAdd,jdbcType=VARCHAR}, 
+		           #{registDate,jdbcType=DATE}, #{carNo,jdbcType=VARCHAR}, #{mileage,jdbcType=DOUBLE}, 
+		           #{version,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+	           )
+    </insert>
+    
+    <select id="getOrderGroup" parameterType="com.iqb.asset.inst.platform.data.bean.pledge.request.PledgeGetOrderGroupRequestMessage" resultType="com.iqb.asset.inst.platform.data.bean.pledge.db.InstOrderInfoEntity">
+        SELECT
+            *
+        FROM
+            inst_orderinfo
+        WHERE
+            regid = #{regId}
+        AND
+            riskStatus = #{riskStatus}
+        AND 
+            biztype = #{bizType}
+    </select>
+    
+    
+    <update id="refundOrder" parameterType="com.iqb.asset.inst.platform.data.bean.pledge.db.InstOrderInfoEntity" >
+        UPDATE
+            inst_orderinfo
+        SET
+            riskstatus = #{riskStatus}
+        WHERE 
+            orderid = #{orderId}
+    </update>
+    
+    <select id="getOrderDetails" parameterType="String" resultType="com.iqb.asset.inst.platform.data.bean.pledge.pojo.PledgeOrderDetailsPojo">
+        SELECT
+            a.orderid, a.ordername, a.assessprice, a.applyamt,
+            b.merchantShortName,b.merchantno,
+            c.plate, c.cartype, c.engine, c.registadd, c.registdate, c.carno, c.mileage
+        FROM
+            inst_orderinfo a
+        LEFT JOIN
+            inst_merchantinfo b
+        ON
+            a.merchantno = b.merchantno
+        LEFT JOIN
+            inst_pledgeinfo c
+        ON
+            a.orderid = c.orderid
+        WHERE
+            a.orderid = #{orderId}
+    </select>
+    
+    <select id="getPlanByID" parameterType="Long" resultType="com.iqb.asset.inst.platform.data.bean.pledge.pojo.PlanBean">
+        SELECT 
+            *
+        FROM
+            inst_plan
+        WHERE 
+            id=#{id} LIMIT 1
+    </select>
+    <select id="getOrderInfoByOid" parameterType="String" resultType="com.iqb.asset.inst.platform.data.bean.pledge.db.InstOrderInfoEntity">
+        SELECT 
+            *
+        FROM
+            inst_orderinfo
+        WHERE 
+            orderid = #{orderId}
+    </select>
+    
+    <update id="updateOrderInfoEntity" parameterType="com.iqb.asset.inst.platform.data.bean.pledge.db.InstOrderInfoEntity" >
+        UPDATE
+            inst_orderinfo
+        SET
+            downpayment = #{downPayment},
+            feeamount = #{feeAmount},
+            margin = #{margin},
+            monthinterest = #{monthInterest},
+            preamt = #{preAmt},
+            servicefee = #{serviceFee},
+            version = #{version},
+            wfstatus = #{wfStatus},
+            riskstatus = #{riskStatus},
+            orderitems = #{orderItems},
+            orderamt = #{orderAmt},
+            updatetime = #{updateTime},
+            procinstid = #{procInstId},
+            planid = #{planId},
+            riskretremark = #{riskRetRemark}
+        WHERE 
+            orderid = #{orderId}
+    </update>
+    
+    <update id="updatePledgeInfo" parameterType="String" >
+        UPDATE
+            inst_pledgeinfo
+        SET
+            purpose = #{purpose}
+        WHERE 
+            orderid = #{orderId}
+    </update>
+    
+    <select id="getOrderStatistics" resultType="Integer">
+        SELECT 
+            count(id)
+        FROM
+            inst_orderinfo
+        WHERE 
+            regid = #{regId}
+        AND
+            riskstatus = #{riskStatus}
+    </select>
+    
+    <select id="cgetCarInfo" parameterType="com.iqb.asset.inst.platform.data.bean.pledge.request.CGetCarInfoRequestMessage" resultType="com.iqb.asset.inst.platform.data.bean.pledge.db.InstPledgeInfoEntity">
+        SELECT
+            *
+        FROM
+            inst_pledgeinfo
+        <where>
+        status = 2
+            <if test="merchantNo != null and merchantNo != ''">
+                and merchantno = #{merchantNo}
+            </if>
+            <if test="plate != null and plate != ''">
+                and plate = #{plate}
+            </if>
+            <if test="engine != null and engine != ''">
+                and engine = #{engine}
+            </if>
+        </where>
+        ORDER BY 
+            createtime DESC
+        LIMIT 1
+    </select>
+    <update id="updateCarInfo" parameterType="com.iqb.asset.inst.platform.data.bean.pledge.request.UpdateCarInfoRequestMessage" >
+        UPDATE
+            inst_pledgeinfo
+        SET
+            assessprice = #{assessPrice}, applyamt = #{applyAmt}
+        WHERE 
+            id = #{id}
+    </update>
+    
+    <select id="getIPIEbyId" parameterType="com.iqb.asset.inst.platform.data.bean.pledge.request.CGetCarInfoRequestMessage" resultType="com.iqb.asset.inst.platform.data.bean.pledge.db.InstPledgeInfoEntity">
+        SELECT
+            *
+        FROM
+            inst_pledgeinfo
+        WHERE
+            id = #{id}
+    </select>
+    
+    <update id="updatePledgeInfoByid" parameterType="Map" >
+        UPDATE
+            inst_pledgeinfo
+        SET
+            purpose = #{purpose} , orderid = #{orderId}, status = #{status}
+        WHERE 
+            id = #{id}
+    </update>
+    
+    <select id="getIUEByRegId" parameterType="String" resultType="com.iqb.asset.inst.platform.data.bean.pledge.db.InstUserEntity">
+        SELECT
+            id,regid
+        FROM
+            inst_user
+        WHERE
+            regid = #{regId}
+    </select>
+</mapper>

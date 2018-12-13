@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/hhuser/module.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/merchant/carResetPwd.css">
+	<script defer async="true" data-main="../../../js/hhuser/aboutMe/resetPass.js" src="../../../js/require.js"></script>
+	<title>重置密码</title>
+</head>
+<body>
+<form id="loginForm" method="post">
+		<div style="padding-top:1rem;">
+			<div class="borderArea" style="margin-top:0;">
+				<p class="iptItem">
+					<span class="logIcon"><img src="../../../img/password1.png" alt=""></span>
+					<input type="password" class="login-pwd" id="password-current" name="password-current" onkeyup="this.value=this.value.replace(/[^0-9,a-z,A-Z]/g,'')" placeholder="请输入当前密码">
+					<i class="eyeIcon eye-close"><i></i></i>
+				</p>
+				<p class="iptItem">
+					<span class="logIcon"><img src="../../../img/password1.png" alt=""></span>
+					<input type="password" class="login-pwd" id="password" name="password" onkeyup="this.value=this.value.replace(/[^0-9,a-z,A-Z]/g,'')" placeholder="请设置密码">
+					<i class="eyeIcon eye-close"><i></i></i>
+				</p>
+				<p class="iptItem" style='border-bottom:none'>
+					<span class="logIcon"><img src="../../../img/password1.png" alt=""></span>
+					<input type="password" class="login-pwd" id="rePassword" name="rePassword" onkeyup="this.value=this.value.replace(/[^0-9,a-z,A-Z]/g,'')" placeholder="请重新输入密码">
+					<i class="eyeIcon eye-close"><i></i></i>
+				</p>
+			</div>
+		</div>
+		<div class="contectBox txtCenter" style="margin-top:1rem;">
+			<span class="contect-warning" style="display:none">请填写信息</span>
+		</div>
+		<div class="submit" style="margin-top:3rem;">
+			<a href="#" class="redBtn">确认</a>
+		</div>
+</form>
+</body>
+</html>

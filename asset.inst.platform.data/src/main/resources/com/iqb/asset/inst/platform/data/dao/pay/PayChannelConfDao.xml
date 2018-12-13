@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.pay.PayChannelConfDao">
+
+	<!-- 查询支付主体记录 -->
+	<select id="getByMerchantNo" resultType="com.iqb.asset.inst.platform.data.bean.pay.PayChannelConf" parameterType="String">
+		SELECT * FROM inst_payconf WHERE merchantNo = #{merchantNo} LIMIT 1
+	</select>
+	
+	<!-- 查询支付主体记录 -->
+	<select id="getById" resultType="com.iqb.asset.inst.platform.data.bean.pay.PayChannelConf" parameterType="String">
+		SELECT * FROM inst_payconf WHERE id = #{id}
+	</select>
+</mapper>

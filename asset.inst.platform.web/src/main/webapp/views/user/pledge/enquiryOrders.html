@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/common/module.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/user/enquiryOrders.css">
+	<script defer async="true" data-main="../../../js/user/pledge/enquiryOrders.js" src="../../../js/require.js"></script>
+    <title>询价订单</title>
+</head>
+<body>
+    <div style='height:0.3rem;width:100%;background:#f5f5f5;z-index:2'></div>
+	<div class="borderArea orderTitle" style='margin-top:0'>
+		<div class="iptItem" style="border-bottom:none">
+			<ul id="tabs">
+				<li style="text-align:left;"><a href="#" title="toEvaluate" id="current">待估价<span class='number number1'>1</span></a></li>
+				<li style="text-align:center;"><a href="#" title="evaluated">已估价<span class='number number2'>2</span></a></li>
+				<li style="text-align:right;padding-right:1rem;width:calc(33.3% - 1rem)"><a href="#" title="cancel">已取消<span class='number number3'>3</span></a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="content">
+		<div id="toEvaluate"  class="content-son" style="display: block">
+		</div>
+		<div id="evaluated"  class="content-son">
+		</div>
+		<div id="cancel"  class="content-son">
+		</div>
+		<div class='iconBlock' style='margin:50% auto 0;display:none;'>
+	         <img src='../../../img/none.png' style='width:125px;display:block;margin:0 auto;'>
+	         <p style='font-size:1.7rem;color:#adadad;text-align:center;margin-top:2rem;'>暂时还没有订单</p>
+	    </div>
+	</div>
+</body>
+</html>

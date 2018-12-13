@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.pay.PayRecordBeanDao">
+
+	<resultMap type="com.iqb.asset.inst.platform.data.bean.pay.PayRecordBean" id="payRecordBean">
+		<result property="id" column="id" />
+		<result property="regId" column="regId" />
+		<result property="orderId" column="orderId" />
+		<result property="content" column="content" />
+		<result property="repayAmt" column="repayAmt" />
+		<result property="version" column="version" />
+		<result property="createTime" column="createtime" />
+		<result property="updateTime" column="updatetime" />
+	</resultMap>
+	
+	<!-- 数据库字段 -->
+	<sql id="cols">
+		id, regId, orderId, content,repayAmt, version, createTime, updateTime
+	</sql>
+	
+	<sql id="table">inst_paytemprecord</sql>
+	
+	<!-- 插入记录-->
+	<insert id="insertPayRecord" parameterType="com.iqb.asset.inst.platform.data.bean.pay.PayRecordBean">
+		INSERT INTO <include refid="table" /> 
+		(
+			regId, orderId, content,repayAmt, version, createTime
+		)VALUES(
+			#{regId}, #{orderId}, #{content},#{repayAmt}, #{version}, NOW()
+		)
+	</insert>
+	
+	<!-- 删除记录 -->
+	<delete id="delPayRecord">
+		DELETE FROM <include refid="table" />  WHERE orderId = #{orderId}
+	</delete>
+	
+	<!-- 查询最新记录 -->
+	<select id="queryPayRecordByOrderId" resultMap="payRecordBean">
+		SELECT <include refid="cols" /> FROM <include refid="table" /> WHERE orderId = #{orderId} ORDER BY createTime DESC LIMIT 1
+	</select>
+</mapper>

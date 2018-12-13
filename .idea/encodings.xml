@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/asset.inst.platform.biz" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/asset.inst.platform.cache" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/asset.inst.platform.common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/asset.inst.platform.data" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/asset.inst.platform.deal_online_data" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/asset.inst.platform.front" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/asset.inst.platform.hcarweb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/asset.inst.platform.hhweb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/asset.inst.platform.service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/asset.inst.platform.testcase" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/asset.inst.platform.web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/asset.inst.qiku.web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/asset.lundong.china.web" charset="UTF-8" />
+  </component>
+</project>

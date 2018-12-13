@@ -1,0 +1,7 @@
+body{position: relative;}
+h1{width:90%;margin:0 auto;font-size: 1.6rem;line-height: 3rem;padding-top: 2.5rem;color: #202020;text-align: center;font-weight:200;}
+p{width: 90%;margin:0 auto;padding-top: 0.7rem;color: #444;font-size: 1.4rem;line-height: 1.8rem;}
+.serviceFee-title{width: 90%;margin:0 auto;padding-top: 1rem;color: #444;font-size: 1.4rem;line-height: 2.1rem;}
+img{display:block;width:90%;margin:0.7rem auto 0;}
+.back{position: absolute;width: 5rem;height: 3rem;line-height: 3rem;text-align: center;color: #666;font-size: 1.5rem;top: 0rem;left: 0rem;}
+.back:hover,.back:active{color: #06c8c4;}

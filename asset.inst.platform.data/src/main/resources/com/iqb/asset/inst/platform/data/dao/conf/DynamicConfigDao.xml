@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.conf.DynamicConfigDao">
+
+	<sql id="table">inst_dynamic_config</sql>
+	
+	<sql id="cols">
+		wechatNo,wechatRemark,dynamicType,dynamicValue
+	</sql>
+
+	<!-- 通过公众号号和类型获取对应的配置类型 -->
+	<select id="getConfByWechatNo" parameterType="java.lang.String" resultType="com.iqb.asset.inst.platform.data.bean.conf.DynamicConfig">
+		SELECT <include refid="cols"/> FROM <include refid="table"/> WHERE wechatNo = #{wechatNo} AND dynamicType = #{dynamicType};
+	</select>
+
+</mapper>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="wdth=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>提交分期申请</title>
+		
+		<!-- 样式文件引入 -->		
+		<link rel="stylesheet" type="text/css" href="../../../css/hhuser/module.css" />				
+		<link rel="stylesheet" type="text/css" href="../../../css/hhuser/stageApplication.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/common/selection.css" />
+		<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+		
+
+		<!-- 脚本文件引入 -->
+		<script defer async="true" data-main="../../../js/hhuser/stageApplication/housingApplication.js" src="../../../js/require.js"></script>		
+		
+		<!-- 页面样式 -->
+		<style type="text/css">
+			.hidden {
+				display: none;
+			}
+			.weui-dialog__btn_primary {
+			    color: #06c8c4;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<form id="orderForm">
+				<section class="main" style="height: 3.76rem;">
+					<div class="mains clearfix">
+						<div class="mainl" style="height: 100%; float: left; position: relative">
+							<img src="../../../img/location2.png" style="width: 10px;position: absolute; left: 0; top: calc((100% - 14px)/2);" />
+						</div>
+						<div class="mainsr clearfix">			                
+			                <input id="location" type="text" readonly />
+			                <span>请选择 &gt;</span>
+						</div>
+					</div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix" style="position:relative;border-bottom:none;">
+							<span>商户名称</span>
+							<input type="text" id="merchantShortName" name="merchantShortName" placeholder="请选择商户名称" readonly />
+							<div><img src="../../../img/ar.png" style="width: 20px; position: absolute; right:8px; top:14px;" /></div>
+						</div>
+					</div>
+					</section>
+					<section class="main" style="margin-top: 5px; height: 11.28rem;">
+					<div class="main1 clearfix">
+						<div class="mainr clearfix" style="position: relative">
+							<span>项目名称</span>
+							<input type="text" id="projectName" name="projectName" placeholder="请选择项目名称" readonly />
+							<div><img src="../../../img/ar.png" style="width: 20px; position: absolute; right:8px; top:14px;" /></div>
+						</div>
+					</div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix" style="position: relative">
+							<span>项目信息</span>
+							<input type="text" id="projectDetail" name="projectDetail" placeholder="请选择项目信息" readonly />
+							<div><img src="../../../img/ar.png" style="width: 20px; position: absolute; right: 8px; top: 14px;" /></div>
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>月供金额</span>
+							<input type="number" id="monthAmount" name="monthAmount" placeholder="请输入月供金额(元)" />
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>押金金额</span>
+							<input type="number" id="margin" name="margin" placeholder="请输入押金金额(元)" />
+						</div>
+					</div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix plans" style="position: relative">
+							<span>分期方案</span>
+		                    <input type="text" id="planShortName" name="planShortName" placeholder="请选择分期方案" readonly />
+						    <div class="choosePlan" ><img src="../../../img/choosePlan.png" style="width: 20px" /></div>
+						</div>
+					</div>								 
+					<div class="main1">
+						<div class="mainr clearfix" style="border-bottom: none">
+							<span>备注信息</span>
+							<input type="text" id="remark" name="remark" placeholder="请输入备注信息" />
+						</div>
+					</div>
+				</section>
+			</form>
+			<button class="btn" id="btn-apply" style="margin-top: 20px">提交申请</button>
+			<input type="text" class="hidden" id="merchantNo" />
+			<input type="text" class="hidden" id="planId" />
+			<div id="mask"></div>
+			<div class="planContent">
+			    <div class="planContent-title">请选择分期方案<span class="close">X</span></div>
+			    <div class="planContentItem"></div>
+			    <div class="planContent-bottom">确定</div>  
+			</div>
+		</div>
+	</body>
+</html>

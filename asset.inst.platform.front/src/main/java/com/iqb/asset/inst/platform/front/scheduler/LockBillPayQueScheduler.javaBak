@@ -1,0 +1,57 @@
+package com.iqb.asset.inst.platform.front.scheduler;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.annotation.Resource;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import com.iqb.asset.inst.platform.service.scheduler.ILockBillPayQueService;
+
+/**
+ * 处理锁定账单支付队列
+ * 
+ * @author chenyong
+ */
+//@Component
+public class LockBillPayQueScheduler {
+
+	protected static final Logger logger = LoggerFactory.getLogger(LockBillPayQueScheduler.class);
+	
+	//@Resource
+	private ILockBillPayQueService lockBillPayQueService;
+	
+	/**
+	 * 每5分钟检查锁定账单支付队列，发现队列由数据及时消费进行处理
+	 */
+	public void handleLockBillPayQue() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
+		logger.info("{}开始处理锁定账单支付队列", sdf.format(new Date()));
+		try{
+			lockBillPayQueService.handleLockBillPayQue();
+		}catch(Throwable e){
+			logger.error("",e);
+		}
+		logger.info("{}结束处理锁定账单支付队列", sdf.format(new Date()));
+		
+		logger.info("{}开始处理先锋支付回调结果队列——全额", sdf.format(new Date()));
+		try{
+			lockBillPayQueService.handleXfAmountAsyncQue();;
+		}catch(Throwable e){
+			logger.error("",e);
+		}
+		logger.info("{}结束处理先锋支付回调结果队列——全额", sdf.format(new Date()));
+		
+		logger.info("{}开始处理先锋支付回调结果队列——拆分支付", sdf.format(new Date()));
+		try{
+			lockBillPayQueService.handleXfbreakAmtAsyncQue();;
+		}catch(Throwable e){
+			logger.error("",e);
+		}
+		logger.info("{}结束处理先锋支付回调结果队列——拆分支付", sdf.format(new Date()));
+	}
+	
+}

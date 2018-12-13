@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.plan.PlanDao" >
+
+	<!-- 根据id获取二维码订单信息  -->
+	<select id="getPlanInfoById" parameterType="string" resultType="com.iqb.asset.inst.platform.data.bean.plan.PlanBean">
+		SELECT 
+		  id,
+		  PLANSHORTNAME AS planShortName,
+		  PLANFULLNAME AS planfullName,
+		  MERCHANTNO AS merchantNo,
+		  DOWNPAYMENTRATIO AS downPaymentRatio,
+		  SERVICEFEERATIO AS serviceFeeRatio,
+		  MARGINRATIO AS marginRatio,
+		  PLANID AS planId,
+		  UPINTERESTFEE AS upInterestFee,
+		  FEERATIO AS feeRatio,
+		  FEEYEAR AS feeYear,
+		  TAKEPAYMENT AS takePayment,
+		  remark,
+		  INSTALLPERIODS AS installPeriods,
+		  greenchannel
+		FROM
+		  inst_plan 
+		WHERE id = #{id}
+	</select>
+	
+</mapper>

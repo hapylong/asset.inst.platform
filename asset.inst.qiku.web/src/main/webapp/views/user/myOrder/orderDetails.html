@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/merchant/orderDetails.css">
+    <script defer async="true" data-main="../../../js/user/myOrder/orderDetails.js" src="../../../js/require.js"></script>
+    <title>订单详情</title>
+    <style>
+    .weui-dialog__bd:first-child{
+       font-family:"Microsoft YaHei","SimHei"
+    }
+    .toSplit span{ 
+       font-size:0.7rem;
+       color:#f39800;
+       vertical-align:middle;
+    }
+    .toSplit{ 
+       text-align:center;
+       margin-top:0.5rem;
+       display:none;
+    }     
+    </style>
+</head>
+<body>
+<div class="back">
+   <div class="part">
+      <div class="part-title">
+        <span class="sl">订单状态：</span>
+        <span class="sr"></span>
+      </div>
+      <div class="parti">
+         <span class="parti-l">订&nbsp;&nbsp;单&nbsp;&nbsp;号</span>
+         <span class="parti-m">：</span>
+         <span class="parti-r" id="orderNo"></span>
+      </div>
+      <div class="parti" style="margin-top:0.2rem;">
+         <span class="parti-l">订单名称</span>
+         <span class="parti-m">：</span>
+         <span class="parti-r" id="orderName"></span>
+      </div>
+      <div class="parti">
+         <span class="parti-l">订单金额</span>
+         <span class="parti-m">：</span>
+         <span class="parti-r" id="instalAmt"></span>
+      </div>
+      <!-- <div class="parti">
+         <span class="parti-l">分期详情</span>
+         <span class="parti-m">：</span>
+         <span class="parti-r" id="stageDetail"></span>
+      </div>
+      <div class="parti">
+         <span class="parti-l">首 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;付 </span>
+         <span class="parti-m">：</span>
+         <span class="parti-r" id="downPayment"></span>
+      </div>
+      <div class="parti">
+         <span class="parti-l">上&nbsp;&nbsp;收&nbsp;&nbsp;息</span>
+         <span class="parti-m">：</span>
+         <span class="parti-r" id="finalPayment"></span>
+      </div> -->
+      <div class="parti">
+         <span class="parti-l">月付租金</span>
+         <span class="parti-m">：</span>
+         <span class="parti-r" id="monthPer"></span>
+      </div>
+      <!-- <div class="parti">
+         <span class="parti-l">保&nbsp;&nbsp;证&nbsp;&nbsp;金 </span>
+         <span class="parti-m">：</span>
+         <span class="parti-r" id="margin"></span>
+      </div>
+      <div class="parti">
+         <span class="parti-l">服&nbsp;&nbsp;务&nbsp;&nbsp;费 </span>
+         <span class="parti-m">：</span>
+         <span class="parti-r" id="serviceFee"></span>
+      </div> -->
+      <!-- <div class="parti">
+         <span class="parti-l">备 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注 </span>
+         <span class="parti-m">：</span>
+         <span class="parti-r" id="remark"></span>
+      </div> -->
+      <div class="parti bordershow" style="padding-bottom:0.2rem;">
+         <span class="parti-l">下单时间</span>
+         <span class="parti-m">：</span>
+         <span class="parti-r" id="orderTime"></span>
+      </div>
+      <div class="parti toshow" style="margin-top:0.2rem;">
+         <span class="parti-bl">待支付金额：</span>
+         <span class="parti-br"></span>
+      </div>
+      <!-- <div class="parti toshow" style="line-height:1rem;padding-bottom:0.3rem;">
+         <span style="font-size:0.6rem;color:#aaaaaa;">待支付金额： 首付&nbsp;+&nbsp;保证金&nbsp;+&nbsp;服务费 </span>
+      </div> -->
+      <!-- <a href="iavascript:;" class="pay toshow">去支付</a> -->
+   </div>
+   <!-- <div class='toSplit'>
+      <img src='../../../img/warning.png' width='16px'></img>
+      <span>超限额了?</span>
+   </div> -->
+   <div class="part" style="margin-top:0.7rem;">
+      <div class="part-title">
+        <span class="sl">个人信息</span>
+      </div> 
+      <div class="parti" style="margin-top:0.2rem;">
+         <span class="parti-l">用户姓名</span>
+         <span class="parti-m">：</span>
+         <span class="parti-r" id="userName"></span>
+      </div>
+      <div class="parti">
+         <span class="parti-l">手&nbsp;&nbsp;机&nbsp;&nbsp;号 </span>
+         <span class="parti-m">：</span>
+         <span class="parti-r" id="regId"></span>
+      </div>
+      <div class="parti">
+         <span class="parti-l">身份证号</span>
+         <span class="parti-m">：</span>
+         <span class="parti-r" id="idCard"></span>
+      </div>
+   </div>
+   <!-- 银行卡弹窗 -->
+   <div id="mask"></div>
+   <div class='planContent'>
+	    <div class='planContent-title'>
+	                   选择付款方式
+            <span class='close'>X</span>
+	    </div>
+	    <div class='planContentItem'>
+	         <p class='useNewCard'>使用新卡付款<img src='../../../img/arrowRight.png'></p>
+	    </div>
+   </div>
+</div>	
+</body>
+</html>

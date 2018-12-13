@@ -1,0 +1,46 @@
+.approvedAmt{
+	display:none;
+}
+.preAmt{
+	display:none;
+}
+.btnBox{
+	display:none;
+}
+.btn{
+	display:none;
+}
+.btnQuit{
+	width:30%;
+	display:inline-block;
+	float:left;
+	margin: 1rem auto;
+	height: 1.8rem;
+	line-height: 1.8rem;
+	color: #fff;
+	font-size: 0.77rem;
+	background: #c5c5c5;
+	text-align: center;
+	border-radius:0.25rem;
+	border: 0;
+	outline:none;
+	margin-left:5%;
+	display:none;
+}
+.btnConfirm{
+	width:50%;
+	display:inline-block;
+	float:right;
+	margin: 1rem auto;
+	margin-right:5%;
+	height: 1.8rem;
+	line-height: 1.8rem;
+	color: #fff;
+	font-size: 0.77rem;
+	background: #06c8c4;
+	text-align: center;
+	border-radius:0.25rem;
+	border: 0;
+	outline:none;
+	display:none;
+}

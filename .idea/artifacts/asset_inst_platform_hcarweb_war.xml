@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="asset.inst.platform.hcarweb:war">
+    <output-path>$PROJECT_DIR$/asset.inst.platform.hcarweb/target</output-path>
+    <root id="archive" name="asset.inst.platform.hcarweb.war">
+      <element id="artifact" artifact-name="asset.inst.platform.hcarweb:war exploded" />
+    </root>
+  </artifact>
+</component>

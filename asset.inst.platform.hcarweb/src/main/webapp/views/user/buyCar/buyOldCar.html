@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="wdth=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>提交分期申请</title>
+		
+		<!-- 样式文件引入 -->
+		<link rel="stylesheet" type="text/css" href="../../../css/common/module.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/common/selection.css" />
+		<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/user/mortgage.css" />
+		
+		<!-- 脚本文件引入 -->
+		<script defer async="true" data-main="../../../js/user/buyCar/buyOldCar.js" src="../../../js/require.js"></script>		
+		
+		<!-- 页面样式 -->
+		<style type="text/css">
+			.hidden {
+				display: none;
+			}
+			.invisible {
+				visibility: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<form id="orderForm">
+				<section class="main">
+					<div class="mains clearfix">
+						<div class="mainl" style="height:100%; float: left;position:relative">
+							<img src="../../../img/location.png" style="width: 10px;position: absolute;left: 0;top: calc((100% - 14px)/2);" />
+						</div>
+						<div class="mainsr clearfix">			                
+			                <input id="location" type="text" readonly />
+			                <span>手动选择 &gt;</span>
+						</div>
+					</div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix" style="position:relative;">
+							<span>商户名称</span>
+							<input type="text" id="merchantShortName" name="merchantShortName" placeholder="请选择商户" readonly />
+							<div><img src="../../../img/ar.png" style="width: 20px; position: absolute; right:8px; top:14px;" /></div>
+						</div>
+					</div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix">
+			                <span>品<font class="invisible">占位</font>牌</span>
+							<input type="text" id="projectName" name="projectName" placeholder="请输入品牌" />
+						</div>
+					</div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix">
+							<span>车<font class="invisible">占位</font>系</span>
+							<input type="text" id="projectDetail" name="projectDetail" placeholder="请输入车系" />
+					    </div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>车辆总价</span>
+		                    <input type="number" id="amt" name="amt" placeholder="请输入车辆总价(元)" />			
+		            	</div>
+					</div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix plans" style="position:relative">
+							<span>方<font class="invisible">占位</font>案</span>
+		                    <input type="text" id="planShortName" name="planShortName" placeholder="请选择分期方案" readonly />
+						    <div class="choosePlan" ><img src="../../../img/choosePlan.png" style="width: 20px" /></div>
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>首<font class="invisible">占位</font>付</span>
+							<input type="text" id="downPayment" name="downPayment" placeholder="首付金额" readonly />
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>月<font class="invisible">占位</font>供</span>
+							<input type="text" id="monthAmount" name="monthAmount" placeholder="月供金额" readonly />
+						</div>
+					</div>										 
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>保&nbsp;&nbsp;证&nbsp;&nbsp;金</span>
+							<input type="text" id="margin" name="margin" placeholder="保证金额" readonly />
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>服&nbsp;&nbsp;务&nbsp;&nbsp;费</span>
+							<input type="text" id="serviceFee" name="serviceFee" placeholder="服务费金额" readonly />
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix" style="border-bottom: none">
+							<span>上&nbsp;&nbsp;收&nbsp;&nbsp;息</span>
+							<input type="text" id="feeAmount" name="feeAmount" placeholder="上收息金额" readonly />
+						</div>
+					</div>
+				</section>
+			</form>
+			<button class="btn" id="btn-apply" style="margin-top: 20px;">提交申请</button>
+			<input type="text" class="hidden" id="merchantNo" />
+			<input type="text" class="hidden" id="planId" />
+			<div id="mask"></div>
+			<div class="planContent">
+			    <div class="planContent-title">请选择分期方案<span class="close">X</span></div>
+			    <div class="planContentItem"></div>
+			    <div class="planContent-bottom">确定</div>  
+			</div>
+		</div>
+	</body>
+</html>

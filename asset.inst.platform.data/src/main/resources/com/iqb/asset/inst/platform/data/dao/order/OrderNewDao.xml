@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.order.OrderNewDao">
+
+	<!-- 替代，语句中的内容,简写 -->
+	<sql id="orderNewBeanCols">
+		id, orderId, userId, regId, merchantNo, bizType, orderName,
+		orderAmt, orderItems, orderRemark, preAmt,receivedPreAmt, preAmtStatus, status,
+		riskStatus, riskRetRemark, refundFlag, margin, downPayment,
+		serviceFee, planId, qrcodeId, takePayment, feeYear, feeAmount,wfStatus,
+		monthInterest, chargeWay, procInstId, fee, sumMoney, applyAmt, gpsAmt,gpsTrafficFee,
+		assessPrice, version, createTime, updateTime, contractStatus
+	</sql>
+
+	<!-- 获取订单信息 -->
+	<select id="selectOne" parameterType="String"
+		resultType="com.iqb.asset.inst.platform.data.bean.order.OrderNewBean">
+		select
+		<include refid="orderNewBeanCols"></include>
+		from inst_orderinfo where orderId = #{orderId}
+	</select>
+
+	<!-- 用户获取所有订单列表 -->
+	<select id="getMyOrderList" parameterType="java.util.Map"
+		resultType="com.iqb.asset.inst.platform.data.bean.order.OrderNewBean">
+		select
+		<include refid="orderNewBeanCols"></include>
+		from inst_orderinfo where status = 1 and
+		regId = #{regId} and bizType like CONCAT(#{wechatNo},'%')
+	</select>
+	
+	<!-- 用户获取所有订单列表 -->
+	<select id="getMyContractOrderList" parameterType="java.util.Map"
+		resultType="com.iqb.asset.inst.platform.data.bean.order.OrderNewBean">
+		select
+		<include refid="orderNewBeanCols"></include>
+		from inst_orderinfo where status = 1 and
+		regId = #{regId} and bizType like CONCAT(#{wechatNo},'%') and contractStatus = 1
+	</select>
+	<!-- 用户获取所有订单列表 -->
+    <select id="getOrderListByRegId" parameterType="java.util.Map"
+        resultType="com.iqb.asset.inst.platform.data.bean.order.OrderNewBean">
+        select
+        <include refid="orderNewBeanCols"></include>
+        from inst_orderinfo where status = 1 and
+        regId = #{regId} 
+    </select>
+</mapper>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>信用信息</title>
+        
+        <!-- 样式文件引入 -->
+        <link rel="stylesheet" type="text/css" href="../../../css/hhuser/module.css" />
+        <link rel="stylesheet" type="text/css" href="../../../css/common/selection.css" />
+        <link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../../css/hhuser/stageApplication.css" />  
+        <link rel="stylesheet" type="text/css" href="../../../css/hhuser/creditCtrStep1.css" />  
+        
+        <!-- 脚本文件引入 -->
+        <script defer async="true" data-main="../../../js/hhuser/userCenter/creditCtrStep1.js" src="../../../js/require.js"></script>  
+             
+        <!-- 页面样式 -->
+        <style type="text/css">
+            .hidden {
+            	display: none;
+            }
+            .invisible {
+				visibility: hidden;
+			}
+        </style>
+    </head>
+    <body>
+        <div class="page1">
+            <form id="orderForm">
+                <section class="main" style="height: auto">
+                    <div class="main1 clearfix">
+                        <div class="mainr clearfix">
+                            <img class="ico1" src="../../../img/basicInfo.png">
+                            <span style="width: 25%;margin-left:8px;">基本信息</span>            
+                        </div>
+                        <div class="mainr clearfix" style="position: relative">
+                            <span>婚姻状况</span>
+                            <input type="text" id="marriedStatus" name="marriedStatus" placeholder="请选择婚姻状况" readonly />
+                            <div><img src="../../../img/ar.png" style="width: 20px; position: absolute; right:8px; top:14px;" /></div>
+                        </div>
+                        <div class="mainr clearfix" style="position: relative">
+                            <span>性<font class="invisible">占位</font>别</span>
+                            <input type="text" id="sex" name="sex" placeholder="请选择性别" readonly />
+                            <div><img src="../../../img/ar.png" style="width: 20px; position: absolute; right:8px; top:14px;" /></div>
+                        </div>
+                        <div class="mainr clearfix" style="position: relative">
+                            <span>文化水平</span>
+                            <input type="text" id="culturalLevel" name="culturalLevel" placeholder="请选择文化水平" readonly />
+                            <div><img src="../../../img/ar.png" style="width: 20px; position: absolute; right:8px; top:14px;" /></div>
+                        </div>
+                        <div class="mainr clearfix">
+                            <span>常住地址</span>
+                            <input type="text" id="regAddr" name="regAddr" placeholder="请输入常住地址" />              
+                        </div>
+                        <div class="mainr clearfix">
+                            <span>工作单位</span>
+                            <input type="text" id="company" name="company" placeholder="请输入工作单位" />              
+                        </div>
+                        <div class="mainr clearfix">
+                            <span>单位座机</span>
+                            <input type="number" id="phoneNum" name="phoneNum" placeholder="请输入单位座机 如 01012345678" oninput="if(value.length>12)value=value.slice(0,12)" />              
+                        </div>
+                        <div class="mainr clearfix" style="border-bottom: none">
+                            <span>月&nbsp;&nbsp;收&nbsp;&nbsp;入</span>
+                            <input type="number" id="income" name="income" placeholder="请输入月收入" />              
+                        </div>
+                    </div>
+                </section>
+                <section class="main" style="height:auto;margin-top: 20px">
+                    <div class="main1 clearfix">
+                        <div class="mainr clearfix">
+                            <img class="ico2" src="../../../img/emergency.png">
+                            <span style="width: 25%;margin-left:8px;">紧急联系人</span>            
+                        </div>
+                        <div class="mainr clearfix">
+                            <span>亲属姓名</span>
+                            <input type="text" id="contactName1" name="contactName1" placeholder="请输入亲属姓名" />              
+                        </div>
+                        <div class="mainr clearfix">
+                            <span>手&nbsp;&nbsp;机&nbsp;&nbsp;号</span>
+                            <input type="number" id="contactMobel1" name="contactMobel1" placeholder="请输入亲属手机号" oninput="if(value.length>11)value=value.slice(0,11)" />              
+                        </div>
+                        <div class="mainr clearfix">
+                            <span>朋友姓名</span>
+                            <input type="text" id="contactName2" name="contactName2" placeholder="请输入朋友姓名" />              
+                        </div>
+                        <div class="mainr clearfix" style="border-bottom: none">
+                            <span>手&nbsp;&nbsp;机&nbsp;&nbsp;号</span>
+                            <input type="number" id="contactMobel2" name="contactMobel2" placeholder="请输入朋友手机号" oninput="if(value.length>11)value=value.slice(0,11)" />              
+                        </div>
+                    </div>
+                </section>
+            </form>
+            <input type="text" class="hidden" id="marriedStatusValue" />
+            <input type="text" class="hidden" id="culturalLevelValue" />
+            <button class="btn" id="btn-apply" style="margin-top: 20px">下一步</button>
+        </div>
+    </body>
+</html>

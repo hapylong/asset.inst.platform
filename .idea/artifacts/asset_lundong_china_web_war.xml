@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="asset.lundong.china.web:war">
+    <output-path>$PROJECT_DIR$/asset.lundong.china.web/target</output-path>
+    <root id="archive" name="asset.lundong.china.web.war">
+      <element id="artifact" artifact-name="asset.lundong.china.web:war exploded" />
+    </root>
+  </artifact>
+</component>

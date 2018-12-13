@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/asset.inst.platform.iml" filepath="$PROJECT_DIR$/asset.inst.platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/asset.inst.platform.biz/asset.inst.platform.biz.iml" filepath="$PROJECT_DIR$/asset.inst.platform.biz/asset.inst.platform.biz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/asset.inst.platform.cache/asset.inst.platform.cache.iml" filepath="$PROJECT_DIR$/asset.inst.platform.cache/asset.inst.platform.cache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/asset.inst.platform.common/asset.inst.platform.common.iml" filepath="$PROJECT_DIR$/asset.inst.platform.common/asset.inst.platform.common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/asset.inst.platform.data/asset.inst.platform.data.iml" filepath="$PROJECT_DIR$/asset.inst.platform.data/asset.inst.platform.data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/asset.inst.platform.deal_online_data/asset.inst.platform.deal_online_data.iml" filepath="$PROJECT_DIR$/asset.inst.platform.deal_online_data/asset.inst.platform.deal_online_data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/asset.inst.platform.front/asset.inst.platform.front.iml" filepath="$PROJECT_DIR$/asset.inst.platform.front/asset.inst.platform.front.iml" />
+      <module fileurl="file://$PROJECT_DIR$/asset.inst.platform.hcarweb/asset.inst.platform.hcarweb.iml" filepath="$PROJECT_DIR$/asset.inst.platform.hcarweb/asset.inst.platform.hcarweb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/asset.inst.platform.hhweb/asset.inst.platform.hhweb.iml" filepath="$PROJECT_DIR$/asset.inst.platform.hhweb/asset.inst.platform.hhweb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/asset.inst.platform.service/asset.inst.platform.service.iml" filepath="$PROJECT_DIR$/asset.inst.platform.service/asset.inst.platform.service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/asset.inst.platform.testcase/asset.inst.platform.testcase.iml" filepath="$PROJECT_DIR$/asset.inst.platform.testcase/asset.inst.platform.testcase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/asset.inst.platform.web/asset.inst.platform.web.iml" filepath="$PROJECT_DIR$/asset.inst.platform.web/asset.inst.platform.web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/asset.inst.qiku.web/asset.inst.qiku.web.iml" filepath="$PROJECT_DIR$/asset.inst.qiku.web/asset.inst.qiku.web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/asset.lundong.china.web/asset.lundong.china.web.iml" filepath="$PROJECT_DIR$/asset.lundong.china.web/asset.lundong.china.web.iml" />
+    </modules>
+  </component>
+</project>

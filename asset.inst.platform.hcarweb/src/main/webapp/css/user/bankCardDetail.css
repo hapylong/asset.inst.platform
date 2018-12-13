@@ -1,0 +1,118 @@
+html{font-size: 62.5%;}
+body {font:1.2rem Arial,"Microsoft YaHei","SimHei";background-color: #f5f5f5}
+*{margin:0;padding:0;font-family:Microsoft YaHei, Arial;}
+.bankCard{
+	width:calc(100% - 4rem);
+	height:16rem;
+	margin:0 auto;
+	margin-top:14px;
+	padding:0 1rem;
+	border:1px solid #d5d5d5;
+	background:#fff;
+}
+.detailTitle{
+    width:100%;
+    height:6rem;
+}
+.detailTitle img{
+	width:25px;
+	margin-top:calc((6rem - 25px)/2);
+	float:left;
+}
+.detailTitle span{
+	float:left;
+	line-height:6rem;
+	font-size:1.8rem;
+	color:#000;
+	margin-left:1rem;
+}
+.details{
+	margin-left:calc(25px + 1rem);
+}
+.details li{
+	font-size:1.5rem;
+	color:#434343;
+	line-height:2.8rem;
+}
+.submit{
+    width: 90%;
+    margin: 0 auto;
+    overflow:hidden;
+}
+.delete{
+    display: block;
+    width: 100%;
+    height: 3.6rem;
+    line-height: 3.6rem;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    text-align: center;
+    border:0;
+    outline:0;
+    background:#b38a53;
+    color:#fff;
+    -webkit-appearance: none;
+}
+/* 弹窗样式  */
+#mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.5;
+    display: none;
+}
+.maskcontent {
+    display: none;
+    width: 250px;
+    height: 130px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 10px #292929;
+    border: 1px solid #BDBDBD;
+    background:#fff;
+    position: fixed;
+    left: 30%;
+    top:170px;
+}
+.cb {
+    width: 100%;
+    height: 85px;
+    line-height:85px;
+    font-size: 14px;
+    color: #212121;
+    text-align:center;
+}
+.cm {
+    border-top: 1px solid #ddd;
+    height:50px;
+}
+.qd {
+    font-size: 16px;
+   display: inline-block;
+    margin: 0 auto;
+    width: 49%;
+    float:right;
+    height: 45px; 
+    line-height:45px;
+    text-align: center;
+    color: #b38a53;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.qx {
+    font-size: 16px;
+    display: inline-block;
+    margin: 0 auto;
+    width: 49%;
+    height: 45px; 
+    line-height:45px;
+    border-right:1px solid #ddd;
+    text-align: center;
+    color: #b38a53;
+    border-radius: 5px 0 0 5px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}

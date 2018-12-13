@@ -1,0 +1,23 @@
+.iptItem{
+	display: block;
+	position: relative;
+	width: 92%;
+	line-height: 3.6rem;
+	/* margin-left:1rem; */
+	margin-top: 5px;
+	border-bottom: 1px solid #D5D5DB;
+	zoom: 1;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	padding-left: 4%;
+}
+.borderArea{
+	width: 100%;
+	border:none;
+	margin-top: 1rem;
+	padding: 0.5rem 0;
+	background-color: #f5f5f5;
+	/* border-top:1px solid #D5D5DB; */
+	/* border-bottom:1px solid #D5D5DB; */
+}

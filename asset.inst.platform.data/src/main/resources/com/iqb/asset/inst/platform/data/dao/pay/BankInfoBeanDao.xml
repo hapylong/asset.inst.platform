@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.pay.BankInfoBeanDao">
+
+	<resultMap type="com.iqb.asset.inst.platform.data.bean.pay.BankInfoBean" id="bankInfoBean">
+		<result property="id" column="id" />
+		<result property="bankName" column="bankName" />
+		<result property="bankCode" column="bankCode" />
+		<result property="bankMobile" column="bankMobile" />
+		<result property="singleLimit" column="singleLimit" />
+		<result property="dayLimit" column="dayLimit" />
+		<result property="version" column="version" />
+		<result property="createTime" column="createtime" />
+		<result property="updateTime" column="updatetime" />
+	</resultMap>
+	
+	<!-- 数据库字段 -->
+	<sql id="cols">
+		bankName, bankCode, singleLimit, dayLimit
+	</sql>
+	<!-- 批量插入可用银行卡列表-->
+	<insert id="insertByBatch" parameterType="java.util.List">
+		INSERT INTO inst_basebankinfo
+		(bankName, bankCode, singleLimit, dayLimit, version, createTime, updateTime) VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.bankName},#{item.bankCode},
+			#{item.singleLimit},#{item.dayLimit},#{item.version},#{item.createTime},#{item.updateTime}
+			)
+		</foreach>
+	</insert>
+	
+	<!-- 清楚所有卡信息 -->
+	<delete id="delAllBankInfo">
+		DELETE FROM inst_basebankinfo;
+	</delete>
+	
+	<!-- 查询所有可使用银行卡信息 -->
+	<select id="queryAllBankInfo" resultMap="bankInfoBean">
+		SELECT <include refid="cols"></include> FROM inst_basebankinfo;
+	</select>
+</mapper>

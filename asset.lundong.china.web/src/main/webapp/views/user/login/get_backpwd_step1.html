@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<title>找回密码</title>
+	
+	<link rel="stylesheet" type="text/css" href="../../../css/common/module.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/login/login.css">
+	<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+	
+	<!-- 脚本文件引入 -->
+	<script defer async="true" data-main="../../../js/user/login/get_backpwd_step1.js" src="../../../js/require.js"></script>
+</head>
+<body>
+	<form id="forgetPwdForm">
+		<div style="padding-top:3rem;">
+			<div class="borderArea" style="margin-top:0;">
+				<p class="iptItem">
+					<span class="logIcon"><img src="../../../img/mobile.png" alt=""></span>
+					<input type="tel" class="login-input" maxlength="11" id="regId" name="regId" placeholder="请输入手机号" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
+					<i class="close"><img src="../../../img/close.png" alt=""></i>
+				</p>
+				<p class="iptItem" style="margin-top:5px">
+					<span class="logIcon"><img src="../../../img/code2.png" alt=""></span>
+					<input type="tel" class="login-input" id="verificationCode" maxlength="6" name="verificationCode" placeholder="请输入收到的验证码" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" >
+					<span id="smsSendBtn" class="sendMsg send-able"><span class="sendTim"></span><span style="color:#555c7b" class="sendDet">获取验证码</span></span>
+					<i class="close close2"><img src="../../../img/close.png" alt=""></i>
+				</p>
+			</div>
+		</div>
+		<div class="logTip" style="margin-top:1rem;">
+		</div>
+		<div class="contectBox txtCenter" style="margin-top:1rem;">
+			<span class="contect-warning" style="display:none;color:#354384" >请输入手机号</span>
+		</div>
+		<div id="resetNextBtn" class="submit" style="margin-top:1.5rem;">
+			<a href="#" class="redBtn">下一步</a>
+		</div>
+		<!-- 弹窗 -->
+	    <div id="mask"></div>
+		<div class="maskcontent">
+		    <div class="cb">
+		        <p>输入答案，即可获取验证码</p>
+		        <div class='code'>
+			        <img id="numCode" height='26px'/>
+			        <input type="tel" name="imageVerifyCode" id="imageVerifyCode" placeholder=''/>
+		        </div>
+		    </div>
+		    <div class="cm">
+		        <span class="qx">取消</span>
+		        <span class="qd">确定</span>
+		    </div>
+		</div>
+	</form>
+	<div class="weui-footer weui-footer_fixed-bottom">
+		<p class="weui-footer__text"></p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+html{font-size: 62.5%;}
+body {font:1.2rem Arial,"Microsoft YaHei","SimHei";background-color: #f5f5f5}
+*{margin:0;padding:0;font-family:Microsoft YaHei, Arial;}
+.block{
+    width:calc(100% - 1rem);
+    /* height:16rem; */
+    margin:0 auto;
+    margin-top: 0.1rem;
+    padding:0.5rem 0 1rem 1rem;
+    border-top:1px solid #d5d5d5;
+    border-bottom:1px solid #d5d5d5;
+    background:#fff;
+    overflow:hidden;
+}
+.orderTop{
+	width:100%;
+    height:4.5rem;
+    border-bottom:1px solid #d5d5d5;
+    position:relative;
+}
+.orderIcon{
+	width:18px;
+	/* vertical-align:middle; */
+	display:block;
+	position:absolute;
+	left:0;
+	top:calc((4.5rem - 22px)/2);
+}
+.orderName{
+	line-height:4.5rem;
+	color:#1b1b1b;
+	margin-left:26px;
+	font-size:1.6rem;
+	width:65%;
+	display:inline-block;
+	white-space:nowrap; 
+	overflow:hidden; 
+	text-overflow:ellipsis;
+}
+.state{
+	line-height:4.5rem;
+	color: #354384;
+	font-size:1.6rem;
+	float:right;
+	margin-right:1rem;
+}
+.orderBottom{
+	width:100%;
+	padding-top:1rem;
+}
+.orderNumber{
+	line-height:4rem;
+	color:#1b1b1b;
+	font-size:1.6rem;
+}
+.orderLeft{
+	float:left;
+}
+.orderLeft li{
+	color:#999999;
+	font-size:1.4rem;
+	line-height:2.5rem;
+}
+.orderRight{
+	float:right;
+	margin-right:1rem;
+}
+.orderRight li{
+	text-align:right;
+	color:#999999;
+	font-size:1.4rem;
+	line-height:2.5rem;
+}

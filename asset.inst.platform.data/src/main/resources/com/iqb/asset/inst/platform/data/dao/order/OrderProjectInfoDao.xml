@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.order.OrderProjectInfoDao">
+
+	<resultMap id="orderProjectInfo" type="com.iqb.asset.inst.platform.data.bean.order.OrderProjectInfo">
+		<result property="id" column="id" />
+		<result property="orderId" column="orderId" />
+		<result property="projectName" column="projectName" />
+		<result property="projectAmt" column="projectAmt" />
+		<result property="version" column="version" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<!-- order表字段 -->
+	<sql id="cols">
+		orderId,projectName,projectAmt,version,createTime,updateTime
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="condition_sql">
+
+	</sql>
+
+	<!-- 插入订单信息 -->
+	<insert id="insertProjectInfo" parameterType="com.iqb.asset.inst.platform.data.bean.order.OrderBean" keyProperty="id"
+		useGeneratedKeys="true">
+		INSERT INTO inst_orderprojectinfo (<include refid="cols"/>)
+		VALUES (#{orderId}, #{projectName}, #{projectAmt}, #{version}, #{createTime}, #{updateTime});
+	</insert>
+	
+	<select id="queryProjectInfo" parameterType="java.lang.String" resultMap="orderProjectInfo">
+		SELECT <include refid="cols"/> FROM inst_orderprojectinfo WHERE orderId = #{orderId} order by createTime desc LIMIT 1;
+	</select>
+
+</mapper>

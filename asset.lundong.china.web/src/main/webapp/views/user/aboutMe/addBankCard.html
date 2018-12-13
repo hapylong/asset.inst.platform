@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/common/module.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/common/selection.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/user/addBankCard.css">
+
+	<script defer async="true" data-main="../../../js/user/aboutMe/addBankCard.js" src="../../../js/require.js"></script>
+	<title>添加银行卡</title>
+	<style>
+        .invisible {
+			visibility: hidden;
+		}
+	</style>
+</head>
+<body>
+    <form id="bankCardForm" method="post">
+		<div class="borderArea" style="margin-top:0.3rem;padding:0">
+			<p class="iptItem">
+				<label>姓<font class="invisible">占位</font>名:</label>
+				<input type="text" class="text-input" id="realName" name="realName" disabled style='background:#fff;'>
+			</p>
+			<p class="iptItem" style="border-bottom:none;">
+				<label>身份证号:</label>
+				<input type="text" class="text-input" id="idCard" name='idCard' disabled style='background:#fff;'>
+			</p>
+		</div>
+		<div class="borderArea" style="margin-top:8px;padding:0">
+			<div class="iptItem">
+				<label>卡&nbsp;&nbsp;类&nbsp;&nbsp;型:</label>
+		        <input type="text" class="text-input" id="bankType" name="bankType" placeholder="请选择银行卡类型" readonly>
+		        <input type='hidden' id='bankCode'>
+			</div>
+			<p class="iptItem">
+				<label>卡<font class="invisible">占位</font>号:</label>
+				<input type="number" class="text-input" id="banNo" name='banNo' placeholder="请输入您的银行卡号" maxlength='20'>
+			</p>
+			<p class="iptItem" style="border-bottom:none;">
+				<label for="">预留手机号:</label>
+				<input type="text" class="text-input" id="phone" name="phone" placeholder="请输入您的银行预留手机号" maxlength='11'>
+				<i class="close"><img src="../../../img/close.png" alt=""></i>
+			</p>
+		</div>
+		<a href='limit.html' class='toLimit'> 查看银行卡限额  》</a>
+		<div class="submit" style="margin-top:3rem;">
+			<input type='button' class="save" value='保存' >
+		</div>
+	</form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.risk.RiskResultBeanDao">
+
+	<resultMap type="com.iqb.asset.inst.platform.data.bean.risk.RiskResultBean" id="riskResultBean">
+		<result property="id" column="id" />
+		<result property="orderId" column="orderId" />
+		<result property="riskStatus" column="riskStatus" />
+		<result property="status" column="status" />
+		<result property="version" column="version" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<sql id="cols">
+		id,orderId,riskStatus,status,version,createTime
+	</sql>
+
+	<insert id="insertRiskResult" parameterType="com.iqb.asset.inst.platform.data.bean.risk.RiskResultBean"
+		keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO inst_riskresult (orderId, riskStatus, status, version, createTime,
+		updateTime) VALUES (#{orderId}, #{riskStatus}, #{status}, #{version}, #{createTime}, #{updateTime});
+	</insert>
+
+	<!-- 修改状态 -->
+	<update id="updateRiskResut">
+		UPDATE inst_riskresult SET `status`=#{status},version=version+1 WHERE id=#{id};
+	</update>
+	
+	<!-- 查询二次处理风控记录 -->
+	<select id="queryRiskResult" resultMap="riskResultBean">
+		SELECT <include refid="cols"/> from inst_riskresult WHERE `status`=1 AND version &lt;5  ORDER BY createTime LIMIT 10;
+	</select>
+</mapper>

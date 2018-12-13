@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="wdth=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>我要融资</title> 
+		
+		<!-- 样式文件引入 -->
+		<link rel="stylesheet" type="text/css" href="../../../css/common/module.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/common/selection.css" />
+		<link rel="stylesheet" type="text/css" href="../../../js/lib/weui/css/weui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/user/mortgage.css" />
+		
+		<!-- 脚本文件引入 -->
+		<script defer async="true" data-main="../../../js/user/pledge/toFinance.js" src="../../../js/require.js"></script>		
+		
+		<!-- 页面样式 -->
+		<style type="text/css">
+			.hidden {
+				display: none;
+			}
+			.invisible {
+				visibility: hidden;
+			}
+			.enquiryTitle{
+			    font-size:0.65rem;
+				color:#b28850;
+				padding-left:1rem;
+				line-height:1.8rem;
+			}
+			.span1{
+			    width:27%!important;
+			}
+			.input1{
+			    width:calc(73% - 2rem)!important;
+			}
+			.span2{
+			    width:31%!important;
+			}
+			.input2{
+			    width:calc(69% - 2rem)!important;
+			}
+			.main{
+			    height:auto!important;
+			}
+			#submitApply{
+			    border:0;
+			    outline: 0;
+			    background: #b38a53;
+			    display: inline-block;
+			    width:45%;
+			    height:2rem;
+			    border-radius:0.25rem;
+			    text-decoration: none;
+			    color:#fff;
+			    font-size:0.8rem;
+			    text-align: center;
+			    line-height: 2rem;
+			    float:right;
+			}
+			#clear{
+			    border:0;
+			    outline: 0;
+			    background: #b38a53;
+			    display: inline-block;
+			    width:45%;
+			    height:2rem;
+			    border-radius:0.25rem;
+			    text-decoration: none;
+			    color:#fff;
+			    font-size:0.8rem;
+			    text-align: center;
+			    line-height: 2rem;
+			    float:left;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<form id="orderForm">
+				<p class='enquiryTitle'>车辆信息</p>
+				<section class="main">
+					<div class="main1 clearfix">
+						<div class="mainr clearfix" style="position:relative;">
+							<span>商户名称</span>
+							<input type="text" id="merchantShortName" name="merchantShortName" placeholder="请选择商户名称" readonly />
+						    <input type='hidden' id='merchantNo'>
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>车&nbsp;&nbsp;牌&nbsp;&nbsp;号</span>
+		                    <input type="text" id="licenseNumber" name="licenseNumber" placeholder="请输入车牌号"/>			
+		            	</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>发动机号</span>
+		                    <input type="text" id="engine" name="engine" placeholder="发动机号"/>			
+		            	</div>
+					</div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix">
+			                <span>品<font class="invisible">占位</font>牌</span>
+							<input type="text" id="projectName" name="projectName" placeholder="品牌" readonly/>
+						</div>
+					</div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix">
+							<span>型号配置</span>
+							<input type="text" id="typeConfigure" name="typeConfigure" placeholder="型号配置" readonly/>
+					    </div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>评估价格</span>
+							<input type="text" id="evaluatedPrice" name="evaluatedPrice" placeholder="评估价格" readonly/>
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span class='span1'>可融资额度</span>
+							<input type="text"  class='input1' id="creditLine" name="creditLine" placeholder="可融资额度" readonly/>
+						</div>
+					</div>
+					<!-- 融资填写信息 -->
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>申请金额</span>
+		                    <input type="number" id="amt" name="amt" placeholder="请输入申请金额(元)"/>			
+		            	</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>借款用途</span>
+		                    <input type="text" id="purpose" name="purpose" placeholder="请输入借款用途" value='资金周转' readonly/>
+		                    <input type='hidden' id='purposeNo'>
+							<div><img src="../../../img/ar.png" style="width: 20px; position: absolute; right:8px; top:14px;" /></div>	 	
+		            	</div>
+					</div>
+					<div class="main1 clearfix">
+						<div class="mainr clearfix plans" style="position:relative;">
+							<span>产品方案</span>
+		                    <input type="text" id="planShortName" name="planShortName" placeholder="请选择产品方案" readonly />
+						    <div class="choosePlan" ><img src="../../../img/choosePlan.png" style="width: 20px" /></div>
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>首<font class="invisible">占位</font>付</span>
+							<input type="text" id="downPayment" name="downPayment" placeholder="首付金额" readonly />
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix"> 
+							<span>月<font class="invisible">占位</font>供</span>
+							<input type="text" id="monthAmount" name="monthAmount" placeholder="月供金额" readonly />
+						</div>
+					</div>										 
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>保&nbsp;&nbsp;证&nbsp;&nbsp;金</span>
+							<input type="text" id="margin" name="margin" placeholder="保证金额" readonly />
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix">
+							<span>服&nbsp;&nbsp;务&nbsp;&nbsp;费</span>
+							<input type="text" id="serviceFee" name="serviceFee" placeholder="服务费金额" readonly />
+						</div>
+					</div>
+					<div class="main1">
+						<div class="mainr clearfix" style="border-bottom: none">
+							<span>上&nbsp;&nbsp;收&nbsp;&nbsp;息</span>
+							<input type="text" id="feeAmount" name="feeAmount" placeholder="上收息金额" readonly />
+						</div>
+					</div>
+				</section>
+			</form>
+			<div class='btnBox' style="width:90%;height:2.5rem;margin:2rem auto;">
+		        <a href="javascript:;"  id="clear">清空</a>
+		        <a href="javascript:;" id="submitApply">提交申请</a>
+		    </div>
+			<input type="text" class="hidden" id="merchantNo" />
+			<input type="text" class="hidden" id="planId" />
+			<div id="mask"></div>
+			<div class="planContent">
+			    <div class="planContent-title">请选择分期方案<span class="close">X</span></div>
+			    <div class="planContentItem"></div>
+			    <div class="planContent-bottom">确定</div>  
+			</div>
+		</div>
+	</body>
+</html>

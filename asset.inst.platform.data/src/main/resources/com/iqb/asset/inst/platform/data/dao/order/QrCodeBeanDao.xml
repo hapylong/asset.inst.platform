@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iqb.asset.inst.platform.data.dao.order.QrCodeBeanDao">
+
+	<resultMap id="qrCodeBean" type="com.iqb.asset.inst.platform.data.bean.order.QrCodeBean">
+		<result property="id" column="ID" />
+		<result property="planId" column="PLANID" />
+		<result property="projectName" column="PROJECTNAME" />
+		<result property="projectDetail" column="PROJECTDETAIL" />
+		<result property="merchantNo" column="MERCHANTNO" />
+		<result property="installAmount" column="INSTALLAMOUNT" />
+		<result property="installPeriods" column="INSTALLPERIODS" />
+		<result property="downPayment" column="DOWNPAYMENT" />
+		<result property="serviceFee" column="SERVICEFEE" />
+		<result property="monthInterest" column="MONTHINTEREST" />
+		<result property="margin" column="MARGIN" />
+		<result property="fee" column="FEE" />
+		<result property="remark" column="REMARK" />
+		<result property="imgName" column="IMGNAME" />
+		<result property="planFullName" column="PLANFULLNAME" />
+		<result property="version" column="VERSION" />
+		<result property="createTime" column="CREATETIME" />
+		<result property="updateTime" column="UPDATETIME" />
+	</resultMap>
+	
+	<!-- 生成二维码的字段 -->
+	<sql id="insertCodeCols">
+		PLANID,PROJECTNAME,PROJECTDETAIL,MERCHANTNO,INSTALLAMOUNT,INSTALLPERIODS,
+		DOWNPAYMENT,SERVICEFEE,MONTHINTEREST,MARGIN,FEE,REMARK,IMGNAME,VERSION,CREATETIME,UPDATETIME
+	</sql>
+
+	<!-- 二维码的字段 -->
+	<sql id="queryCodeCols">
+		Q.PLANID,P.PLANFULLNAME,Q.PROJECTNAME,Q.PROJECTDETAIL,Q.MERCHANTNO,Q.INSTALLAMOUNT,Q.INSTALLPERIODS,
+		Q.DOWNPAYMENT,Q.SERVICEFEE,Q.MONTHINTEREST,Q.MARGIN,Q.FEE,Q.REMARK,Q.IMGNAME,Q.VERSION,Q.CREATETIME,Q.UPDATETIME
+	</sql>
+	
+	<!-- 添加二维码 -->
+	<insert id="insertQRCode" parameterType="com.iqb.asset.inst.platform.data.bean.order.QrCodeBean" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO inst_qrcode (<include refid="insertCodeCols" />)
+		VALUES (#{planId},#{projectName}, #{projectDetail}, #{merchantNo},
+		#{installAmount}, #{installPeriods},#{downPayment},#{serviceFee},#{monthInterest},#{margin},#{fee},#{remark}, #{imgName},
+		#{version}, #{createTime}, #{updateTime});
+	</insert>
+	
+	<!-- 通过ID和商户查询二维码信息 -->
+	<select id="queryQrCode" parameterType="String" resultMap="qrCodeBean">
+		SELECT <include refid="queryCodeCols"/> FROM inst_qrcode Q,inst_plan P WHERE Q.PLANID = P.ID AND Q.ID = #{id};
+	</select>
+</mapper>

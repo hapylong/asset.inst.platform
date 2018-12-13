@@ -1,0 +1,26 @@
+/**
+* @Copyright (c) www.iqb.com  All rights reserved.
+* @Description: TODO
+* @date 2018年8月2日 11:00:18
+* @version V1.0 
+*/
+package com.iqb.asset.inst.platform.data.dao.pay;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
+public interface PaymentAmtDetailDao {
+
+	int insertPaymentAmtDetail(Map<String, Object> map);
+	
+	int updateCacheFlagByOutOrderId(Map<String, Object> map);
+	
+	Long sumCacheAmtByOrderIdANDRepayNo(@Param("orderId")String orderId
+			,@Param("repayNo")int repayNo);
+	
+	List<String> queryOutOrderIdByOrderIdANDRepayNo(@Param("orderId")String orderId
+			,@Param("repayNo")int repayNo);
+	
+}
